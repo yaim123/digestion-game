@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -69,7 +70,7 @@ const ui={
  scoreModal:document.getElementById('scoreModal'),resultRound:document.getElementById('resultRound'),resultScore:document.getElementById('resultScore'),scoreForm:document.getElementById('scoreForm'),school:document.getElementById('schoolInput'),pin:document.getElementById('pinInput'),scoreError:document.getElementById('scoreError'),submitScore:document.getElementById('submitScoreBtn'),skipScore:document.getElementById('skipScoreBtn'),resultChoices:document.getElementById('resultChoices'),retry:document.getElementById('retryBtn'),resultHome:document.getElementById('resultHomeBtn')
 };
 const TAU=Math.PI*2;
-const LEADERBOARD_API_URL='https://script.google.com/macros/s/AKfycbwERAFXRrxwqpCifGEk58Fq1G1BqmEXc5bWDuoq8WAscigdh7IkrO3EyowdHMZLn3Qv/exec';
+const LEADERBOARD_API_URL='https://script.google.com/macros/s/AKfycby2GEyY8s76LfF_V9Y_ZFqtyrU7Jz4NGrnCo24q9yxaP6ny2zS2VVLB37YWb0LF1te-/exec';
 const LOBBY_PARTICLES=Array.from({length:28},(_,i)=>({x:(i*83%997)/997,y:(i*149%587)/587,r:1+(i%3),v:.12+(i%5)*.025}));
 let bgmEnabled=true,lobbyLast=performance.now(),bgmStarted=false,masterVolume=.7;
 const audio={main:new Audio('./main_bgm.mp3'),game:new Audio('./game_bgm.mp3')};
