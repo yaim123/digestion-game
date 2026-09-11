@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -243,7 +242,7 @@ function r4Entries(types,count,r,options={}){const a=[];for(let i=0;i<count;i++)
 function r4Mixed(r,count,types,spicyTypes=[]){const a=[];const spicyCount=spicyTypes.length?Math.max(1,Math.round(count*.3)):0;for(let i=0;i<count-spicyCount;i++)a.push({type:r4Pick(types),wave:r,enteritis:isEnteritisRound(r),delay:.28});for(let i=0;i<spicyCount;i++)a.push({type:r4Pick(spicyTypes),wave:r,enteritis:isEnteritisRound(r),spicy:true,delay:.32});return a}
 function r4Fixed(type,count,r,delay=.5,spicy=undefined){return Array.from({length:count},()=>({type,wave:r,enteritis:isEnteritisRound(r),spicy,delay}))}
 function isEnteritisRound(r){return r>=30&&(r-30)%20===0}
-function r4GluttonRound(r){return [100,112,121,129,135,141,147].includes(r)||(r>=151&&(r-151)%4===0&&!isEnteritisRound(r))}
+function r4GluttonRound(r){return r===100}
 function normalEnemyForRound(r){if(r<13)return r4Pick(['glucose','maltose','starch','amino','peptide','protein','oyster']);return r4Pick(['starch','protein','fatblob','fatStage3','oyster'])}
 function makeRoundEntries(r){
  const enteritis=isEnteritisRound(r),base=8+Math.floor(r*1.05),normal=['starch','protein','fatblob','fatStage3'];
@@ -965,11 +964,43 @@ function r6NormalPlan(round){
 function r6BossPlan(round){
   const list=[];
   const add=(type,count,spacing)=>{for(let i=0;i<count;i++)list.push(r6Entry(type,round,spacing+(i%2)*.12))};
-  if(round>=41&&round<60){add('hamburger',2+(round%2),.95);if(round>=47&&round%3===0)add('pizza',1,1.15)}
-  else if(round>=60&&round<80){add('hamburger',1+(round%2),.95);add('pizza',2+(round%2),1.1);if(round>=66&&round%4===0)add('chicken',1,1.3)}
-  else if(round>=80&&round<90){add('hamburger',1,.95);add('pizza',2,1.05);add('chicken',2+(round%2),1.25)}
-  else if(round>=90&&round<100){add('hamburger',1,.9);add('pizza',2,1.05);add('chicken',2,1.2);add('malatang',1,1.45);if(round>=97&&round%2===1)add('spicyChicken',1,1.3)}
-  else if(round>100&&!r4GluttonRound(round)){add('hamburger',2,.9);add('pizza',2,.98);add('chicken',3,1.15);add('malatang',1+(round%4===0?1:0),1.4)}
+
+  if(round>=41&&round<60){
+    add('hamburger',2+(round%2),.95);
+    if(round>=47&&round%3===0)add('pizza',1,1.15);
+  }
+  else if(round>=60&&round<80){
+    add('hamburger',1+(round%2),.95);
+    add('pizza',2+(round%2),1.1);
+    if(round>=66&&round%4===0)add('chicken',1,1.3);
+  }
+  else if(round>=80&&round<90){
+    add('hamburger',1,.95);
+    add('pizza',2,1.05);
+    add('chicken',2+(round%2),1.25);
+  }
+  else if(round>=90&&round<100){
+    add('hamburger',1,.9);
+    add('pizza',2,1.05);
+    add('chicken',2,1.2);
+    add('malatang',1,1.45);
+    if(round>=97&&round%2===1)add('spicyChicken',1,1.3);
+  }
+  else if(round>100&&round<105){
+    add('hamburger',2,.9);
+    add('pizza',2,.98);
+    add('chicken',3,1.15);
+    add('malatang',1+(round%4===0?1:0),1.4);
+  }
+  else if(round>=105){
+    const step=round-105;
+    const gluttonCount=1+Math.floor(step/2);
+    const malatangCount=1+Math.floor((step+1)/2);
+
+    add('gluttonKing',gluttonCount,1.5);
+    add('malatang',malatangCount,1.4);
+  }
+
   return list;
 }
 function r6Interleave(entries,bosses,round){
