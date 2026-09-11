@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -529,7 +527,7 @@ Object.assign(TOWER_DEFS,{carbEnzyme:{...TOWER_DEFS.carbEnzyme,cost:500,range:2.
 function r5Limited(type){return (type==='atp'||type==='digestCannon')&&S.towers.filter(t=>t.type===type).length>=3}function r5LimitText(type){return type==='atp'?'마이토콘드리아는 최대 3개입니다.':'소화 캐논은 최대 3개입니다.'}function r5ShownCost(t){return t.type==='digestCannon'?CANNON_STAGES[t.level-1]?.cost||0:t.level<5?upgradeCost(t):0}
 /* Actual encounter data: fixed first appearances use these base values; only later
    appearances receive the small, one-time wave multiplier in enemy(). */
-Object.assign(ENEMY_DEFS,{oyster:{...ENEMY_DEFS.oyster,children:['peptide'],speed:132},spicyOyster:{...ENEMY_DEFS.spicyOyster,children:['peptide'],speed:150},hamburger:{...ENEMY_DEFS.hamburger,hp:15000,speed:24,unlockRound:20},oysterBoss:{...ENEMY_DEFS.oysterBoss,hp:18000,speed:85,unlockRound:32,children:['peptide','peptide']},spicyHamburger:{...ENEMY_DEFS.spicyHamburger,hp:15000,speed:25,unlockRound:34},pizza:{...ENEMY_DEFS.pizza,hp:90000,speed:19,unlockRound:40},spicyOysterBoss:{...ENEMY_DEFS.spicyOysterBoss,hp:18000,speed:90,unlockRound:42,children:['peptide','peptide']},spicyPizza:{...ENEMY_DEFS.spicyPizza,hp:90000,speed:21,unlockRound:52},chicken:{...ENEMY_DEFS.chicken,hp:400000,speed:15,unlockRound:60},spicyChicken:{...ENEMY_DEFS.spicyChicken,hp:400000,speed:17,unlockRound:72},malatang:{...ENEMY_DEFS.malatang,hp:1500000,speed:10,unlockRound:80},spicyMalatang:{...ENEMY_DEFS.spicyMalatang,hp:1500000,speed:12,unlockRound:92},gluttonKing:{name:'폭식의 왕 — 무한리필 뷔페',emoji:'🍽️',hp:1800000,speed:8.5,tier:9,color:'#e7b969',kind:'boss',boss:true,fixedHp:true,unlockRound:100,size:1.52,children:['malatang','malatang','chicken','chicken','pizza','pizza','oysterBoss','oysterBoss','hamburger','hamburger']}});
+Object.assign(ENEMY_DEFS,{oyster:{...ENEMY_DEFS.oyster,children:['peptide'],speed:132},spicyOyster:{...ENEMY_DEFS.spicyOyster,children:['peptide'],speed:150},hamburger:{...ENEMY_DEFS.hamburger,hp:15000,speed:24,unlockRound:20},oysterBoss:{...ENEMY_DEFS.oysterBoss,hp:18000,speed:85,unlockRound:32,children:['peptide','peptide']},spicyHamburger:{...ENEMY_DEFS.spicyHamburger,hp:15000,speed:25,unlockRound:34},pizza:{...ENEMY_DEFS.pizza,hp:90000,speed:19,unlockRound:40},spicyOysterBoss:{...ENEMY_DEFS.spicyOysterBoss,hp:18000,speed:90,unlockRound:42,children:['peptide','peptide']},spicyPizza:{...ENEMY_DEFS.spicyPizza,hp:90000,speed:21,unlockRound:52},chicken:{...ENEMY_DEFS.chicken,hp:400000,speed:15,unlockRound:60},spicyChicken:{...ENEMY_DEFS.spicyChicken,hp:400000,speed:17,unlockRound:72},malatang:{...ENEMY_DEFS.malatang,hp:1500000,speed:10,unlockRound:80},spicyMalatang:{...ENEMY_DEFS.spicyMalatang,hp:1500000,speed:12,unlockRound:92},gluttonKing:{name:'폭식의 왕 — 무한리필 뷔페',emoji:'🍽️',hp:3500000,speed:8.5,tier:9,color:'#e7b969',kind:'boss',boss:true,fixedHp:true,unlockRound:100,size:1.52,children:['malatang','malatang','chicken','chicken','pizza','pizza','oysterBoss','oysterBoss','hamburger','hamburger']}});
 BOSS_SCHEDULE.splice(0,BOSS_SCHEDULE.length,{round:20,type:'hamburger',announce:true},{round:32,type:'oysterBoss',announce:true},{round:34,type:'spicyHamburger',announce:true},{round:40,type:'pizza',announce:true},{round:42,type:'spicyOysterBoss',announce:true},{round:52,type:'spicyPizza',announce:true},{round:60,type:'chicken',announce:true},{round:72,type:'spicyChicken',announce:true},{round:80,type:'malatang',announce:true},{round:92,type:'spicyMalatang',announce:true},{round:100,type:'gluttonKing',announce:true});
 createInitialState=function(sandbox=false){return {round:1,gold:sandbox?999999:250,lives:20,enemies:[],towers:[],shots:[],fx:[],spawnQueue:[],spawnTimer:0,activeWaves:[],running:false,paused:false,speed:1,autoStart:false,autoTimer:0,skillCD:0,globalStun:0,globalBuff:0,globalAcid:0,selectedBuild:'mouth',selectedTower:null,gameOver:false,roundReady:true,hasStartedOnce:false,elapsed:0,last:performance.now(),messageTimer:0,discount:0,indigestionScore:0,indigestionGrace:0,indigestion:false,enteritis:false,alert:null,hover:{x:0,y:0},shake:0,roulette:null,score:0,kills:0,sandbox,sandboxSpicySpawn:false,seenBosses:{},seenNotices:{}}};
 buildMap=function(){const mapPx=Math.max(180,Math.min(W-18,H-18)),o={x:(W-mapPx)/2,y:(H-mapPx)/2};gridSize=mapPx/18;const p=(c,r)=>({x:o.x+(c+.5)*gridSize,y:o.y+(r+.5)*gridSize});const nodes=[{x:o.x-gridSize*.5,y:p(0,2).y},p(16,2),p(16,5),p(1,5),p(1,8),p(16,8),p(16,11),p(1,11),p(1,14),p(16,14),p(16,17),{x:p(16,17).x,y:o.y+18.32*gridSize}];path=[];for(let s=0;s<nodes.length-1;s++){const a=nodes[s],b=nodes[s+1],n=Math.max(2,Math.ceil(Math.hypot(b.x-a.x,b.y-a.y)/(gridSize*.2)));for(let i=0;i<n;i++){const q=i/n;path.push({x:a.x+(b.x-a.x)*q,y:a.y+(b.y-a.y)*q})}}path.push(nodes.at(-1));cells=[];trackCells=[];for(let r=0;r<18;r++)for(let c=0;c<18;c++){const z={...p(c,r),size:gridSize,col:c,row:r,used:false};(distToPathRaw(z.x,z.y).d<gridSize*.43?trackCells:cells).push(z)}};
@@ -996,12 +994,18 @@ function r6BossPlan(round){
   }
   else if(round>=105){
     const step=round-105;
-    const gluttonCount=1+Math.floor(step/2);
-    const malatangCount=1+Math.floor((step+1)/2);
+    let gluttonCount=1+Math.floor(step/2);
+    let malatangCount=1+Math.floor((step+1)/2);
+
+    // 장염 라운드에서는 폭식의 왕과 마라탕 계열을 각각 1마리씩 감소.
+    if(isEnteritisRound(round)){
+      gluttonCount=Math.max(0,gluttonCount-1);
+      malatangCount=Math.max(0,malatangCount-1);
+    }
 
     add('gluttonKing',gluttonCount,1.5);
 
-    // 원래 코드의 매운 마라탕 확률 복원:
+    // 매운 마라탕 확률:
     // 105R 40%에서 시작, 라운드마다 +1.5%p, 최대 95%.
     const spicyMalaChance=Math.min(.95,.4+(round-105)*.015);
     for(let i=0;i<malatangCount;i++){
@@ -1010,8 +1014,44 @@ function r6BossPlan(round){
     }
   }
 
-  // 101R 이후 기존 일반/매운 보스 난입 확률 복원.
-  // 난입 여부는 최대 85%, 난입한 보스가 매운 보스로 바뀔 확률도 최대 85%.
+  // 굴초밥 보스 난입
+  // 50~104R: 이벤트 없는 라운드에 최소 1마리, 10라운드마다 1마리씩 증가.
+  // 105R 이상 일반 라운드: 실제 폭식의 왕 등장 수 × 7.
+  // 105R 이상 장염 라운드: 실제 폭식의 왕 등장 수 × 5.
+  // 각 개체는 기존 매운 보스 확률 흐름에 따라 매운 굴초밥 보스가 될 수 있음.
+  const oysterRaidBlocked=
+    R6_MAINTENANCE.has(round) ||
+    R6_FIXED_ROUNDS.has(round) ||
+    r4GluttonRound(round);
+
+  if(round>=50&&!oysterRaidBlocked){
+    let oysterBossCount=0;
+
+    if(round>=105){
+      const actualGluttonCount=list.filter(entry=>entry.type==='gluttonKing').length;
+      oysterBossCount=actualGluttonCount*(isEnteritisRound(round)?5:7);
+    }else if(!isEnteritisRound(round)){
+      oysterBossCount=1+Math.floor((round-50)/10);
+    }
+
+    const spicyOysterChance=round>=47
+      ? Math.min(.85,.15+(round-47)*.02)
+      : 0;
+
+    for(let i=0;i<oysterBossCount;i++){
+      const spicy=Math.random()<spicyOysterChance;
+      const oysterType=spicy?'spicyOysterBoss':'oysterBoss';
+
+      list.push(r6Entry(
+        oysterType,
+        round,
+        1+(i%3)*.12,
+        spicy
+      ));
+    }
+  }
+
+  // 101R 이후 기존 일반/매운 보스 난입 확률 유지.
   if(round>100){
     const unlocked=BOSS_SCHEDULE
       .filter(b=>b.round+5<=round&&b.type!=='gluttonKing')
