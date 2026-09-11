@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -998,7 +1000,50 @@ function r6BossPlan(round){
     const malatangCount=1+Math.floor((step+1)/2);
 
     add('gluttonKing',gluttonCount,1.5);
-    add('malatang',malatangCount,1.4);
+
+    // 원래 코드의 매운 마라탕 확률 복원:
+    // 105R 40%에서 시작, 라운드마다 +1.5%p, 최대 95%.
+    const spicyMalaChance=Math.min(.95,.4+(round-105)*.015);
+    for(let i=0;i<malatangCount;i++){
+      const malaType=Math.random()<spicyMalaChance?'spicyMalatang':'malatang';
+      list.push(r6Entry(malaType,round,1.4+(i%2)*.12,malaType==='spicyMalatang'));
+    }
+  }
+
+  // 101R 이후 기존 일반/매운 보스 난입 확률 복원.
+  // 난입 여부는 최대 85%, 난입한 보스가 매운 보스로 바뀔 확률도 최대 85%.
+  if(round>100){
+    const unlocked=BOSS_SCHEDULE
+      .filter(b=>b.round+5<=round&&b.type!=='gluttonKing')
+      .map(b=>b.type)
+      .filter(type=>type!=='oysterBoss'||round>=37)
+      .filter(type=>type!=='pizza'||round>=45);
+
+    if(unlocked.length&&Math.random()<Math.min(.85,.3+(round-39)*.012)){
+      const type=r4Pick(unlocked);
+      const spicyUnlocked=unlocked.filter(t=>t.includes('spicy'));
+      let finalType=type;
+
+      if(spicyUnlocked.length>0){
+        const latestSpicyUnlock=Math.max(...spicyUnlocked.map(t=>ENEMY_DEFS[t]?.unlockRound||34));
+
+        if(round>=latestSpicyUnlock+5){
+          const elapsedRounds=round-(latestSpicyUnlock+5);
+          const spicyChance=Math.min(.85,.15+elapsedRounds*.02);
+
+          if(Math.random()<spicyChance){
+            finalType=r4Pick(spicyUnlocked);
+          }
+        }
+      }
+
+      list.push(r6Entry(
+        finalType,
+        round,
+        finalType.includes('oysterBoss')?1:.85,
+        finalType.includes('spicy')
+      ));
+    }
   }
 
   return list;
@@ -1014,7 +1059,7 @@ function r6Interleave(entries,bosses,round){
 }
 makeRoundEntries=function(round){
   if(R6_MAINTENANCE.has(round))return r6MaintenanceEntries(round);
-  if(R6_FIXED_ROUNDS.has(round)||isEnteritisRound(round)||r4GluttonRound(round)){
+  if(R6_FIXED_ROUNDS.has(round)||r4GluttonRound(round)||(round<105&&isEnteritisRound(round))){
     const fixed=r5BaseMakeEntries(round);for(const entry of fixed)entry.delay=Math.max(R6_INTERNAL_SPAWN_GAP,entry.delay??R6_INTERNAL_SPAWN_GAP);return fixed;
   }
   if(round>=45)return r6Interleave(r6NormalPlan(round),r6BossPlan(round),round);
