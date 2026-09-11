@@ -274,9 +274,32 @@ function makeRoundEntries(r){
  if(r>100&&r4GluttonRound(r))return r4Fixed('gluttonKing',1,r,1);
  const a=r4Mixed(r,base,normal,r>=18?['starch','protein','fatblob']:[]);
  if(r>=41)a.unshift({type:'hamburger',wave:r,enteritis,delay:.8});
- const unlocked=BOSS_SCHEDULE.filter(b=>b.round+5<=r&&b.type!=='gluttonKing').map(b=>b.type).filter(type=>type!=='oysterBoss'||r>=37).filter(type=>type!=='pizza'||r>=45);
- if(unlocked.length&&r>=25&&Math.random()<Math.min(.55,.12+r*.006)){const type=r4Pick(unlocked);a.splice(Math.min(a.length,Math.max(1,Math.floor(a.length*.55))),0,{type,wave:r,enteritis,delay:type.includes('oysterBoss')?1:.85})}
- return a
+const unlocked=BOSS_SCHEDULE.filter(b=>b.round+5<=r&&b.type!=='gluttonKing').map(b=>b.type).filter(type=>type!=='oysterBoss'||r>=37).filter(type=>type!=='pizza'||r>=45); 
+
+  // 1. 80라운드 이상 고라운드: 마라탕/매운 마라탕 무한 증식 웨이브 (상한선 없음)
+  if(r >= 80 && Math.random() < 0.45){
+    const malaType = (Math.random() < 0.55) ? 'spicyMalatang' : 'malatang';
+    const malaCount = 2 + Math.floor((r - 80) / 10);
+    
+    for(let k = 0; k < malaCount; k++){
+      a.push({type: malaType, wave: r, enteritis, spicy: malaType.includes('spicy'), delay: 1.2});
+    }
+  } 
+  // 2. 25라운드 이상: 매운 보스 난입 확률 대폭 상향된 일반 보스 난입 웨이브
+  else if(unlocked.length && r >= 25 && Math.random() < Math.min(0.85, 0.3 + r * 0.012)){
+    const type = r4Pick(unlocked);
+    const spicyUnlocked = unlocked.filter(t => t.includes('spicy'));
+    const finalType = (spicyUnlocked.length > 0 && Math.random() < 0.6) ? r4Pick(spicyUnlocked) : type;
+    
+    a.splice(Math.min(a.length, Math.max(1, Math.floor(a.length * .55))), 0, {
+      type: finalType, 
+      wave: r, 
+      enteritis, 
+      spicy: finalType.includes('spicy'), 
+      delay: finalType.includes('oysterBoss') ? 1 : .85
+    });
+  } 
+  return a;
 }
 function enqueueRound(round=S.round,append=false){const entries=makeRoundEntries(round);if(append)S.spawnQueue.push(...entries);else{S.spawnQueue=entries;S.spawnTimer=0}return entries}
 function triggerAlert(text,color='#ffcf6b',emoji=''){S.alert={text,color,emoji,timer:2.8};setMsg(text);burst(W*.5,H*.48,color,12)}
