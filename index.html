@@ -241,7 +241,7 @@ function enemy(type,options={}){const d=ENEMY_DEFS[type],boss=d.boss===true,wave
 function r4Pick(list){return list[Math.floor(Math.random()*list.length)]}
 function r4Entries(types,count,r,options={}){const a=[];for(let i=0;i<count;i++)a.push({type:r4Pick(types),wave:r,enteritis:!!options.enteritis,spicy:!!options.spicy,delay:options.delay??.28});return a}
 function r4Mixed(r,count,types,spicyTypes=[]){const a=[];const spicyCount=spicyTypes.length?Math.max(1,Math.round(count*.3)):0;for(let i=0;i<count-spicyCount;i++)a.push({type:r4Pick(types),wave:r,enteritis:isEnteritisRound(r),delay:.28});for(let i=0;i<spicyCount;i++)a.push({type:r4Pick(spicyTypes),wave:r,enteritis:isEnteritisRound(r),spicy:true,delay:.32});return a}
-function r4Fixed(type,count,r,delay=.5,spicy=false){return Array.from({length:count},()=>({type,wave:r,enteritis:isEnteritisRound(r),spicy,delay}))}
+function r4Fixed(type,count,r,delay=.5,spicy=undefined){return Array.from({length:count},()=>({type,wave:r,enteritis:isEnteritisRound(r),spicy,delay}))}
 function isEnteritisRound(r){return r>=30&&(r-30)%20===0}
 function r4GluttonRound(r){return [100,112,121,129,135,141,147].includes(r)||(r>=151&&(r-151)%4===0&&!isEnteritisRound(r))}
 function normalEnemyForRound(r){if(r<13)return r4Pick(['glucose','maltose','starch','amino','peptide','protein','oyster']);return r4Pick(['starch','protein','fatblob','fatStage3','oyster'])}
