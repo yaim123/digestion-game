@@ -276,20 +276,53 @@ function makeRoundEntries(r){
  if(r>=41)a.unshift({type:'hamburger',wave:r,enteritis,delay:.8});
 const unlocked=BOSS_SCHEDULE.filter(b=>b.round+5<=r&&b.type!=='gluttonKing').map(b=>b.type).filter(type=>type!=='oysterBoss'||r>=37).filter(type=>type!=='pizza'||r>=45); 
 
-  // 1. 80라운드 이상 고라운드: 마라탕/매운 마라탕 무한 증식 웨이브 (상한선 없음)
-  if(r >= 80 && Math.random() < 0.45){
-    const malaType = (Math.random() < 0.55) ? 'spicyMalatang' : 'malatang';
-    const malaCount = 2 + Math.floor((r - 80) / 10);
+  // 1. 105라운드 이상: 폭식의 왕 + 마라탕/폭식의 왕 동반 5라운드 주기로 개수 증가
+  if(r >= 105 && Math.random() < 0.4){
+    const bossCount = 1 + Math.floor((r - 105) / 5);
+    
+    for(let k = 0; k < bossCount; k++){
+      let chosenType = '';
+      let isSpicy = false;
+      
+      if(Math.random() < 0.5) {
+        chosenType = 'gluttonKing';
+      } else {
+        const spicyMalaChance = Math.min(0.95, 0.4 + (r - 105) * 0.015);
+        chosenType = (Math.random() < spicyMalaChance) ? 'spicyMalatang' : 'malatang';
+        isSpicy = chosenType.includes('spicy');
+      }
+      
+      a.push({type: chosenType, wave: r, enteritis, spicy: isSpicy, delay: 1.3});
+    }
+  }
+  // 2. 92~104라운드 구간: 마라탕 단독 증식 (5라운드마다 1개씩)
+  else if(r >= 92 && Math.random() < 0.35){
+    const spicyMalaChance = Math.min(0.95, 0.3 + (r - 92) * 0.012);
+    const malaType = (Math.random() < spicyMalaChance) ? 'spicyMalatang' : 'malatang';
+    const malaCount = 1 + Math.floor((r - 92) / 5);
     
     for(let k = 0; k < malaCount; k++){
       a.push({type: malaType, wave: r, enteritis, spicy: malaType.includes('spicy'), delay: 1.2});
     }
   } 
-  // 2. 25라운드 이상: 매운 보스 난입 확률 대폭 상향된 일반 보스 난입 웨이브
-  else if(unlocked.length && r >= 25 && Math.random() < Math.min(0.85, 0.3 + r * 0.012)){
+  // 3. 일반 보스 난입 (첫 매운 보스인 매운 햄버거 34R + 5라운드 뒤인 39R부터 난입 개시)
+  else if(unlocked.length && r >= 39 && Math.random() < Math.min(0.85, 0.3 + (r - 39) * 0.012)){
     const type = r4Pick(unlocked);
     const spicyUnlocked = unlocked.filter(t => t.includes('spicy'));
-    const finalType = (spicyUnlocked.length > 0 && Math.random() < 0.6) ? r4Pick(spicyUnlocked) : type;
+    
+    let finalType = type;
+    if(spicyUnlocked.length > 0){
+      const latestSpicyUnlock = Math.max(...spicyUnlocked.map(t => ENEMY_DEFS[t]?.unlockRound || 34));
+      
+      if(r >= latestSpicyUnlock + 5){
+        const elapsedRounds = r - (latestSpicyUnlock + 5);
+        const spicyChance = Math.min(0.85, 0.15 + elapsedRounds * 0.02);
+        
+        if(Math.random() < spicyChance){
+          finalType = r4Pick(spicyUnlocked);
+        }
+      }
+    }
     
     a.splice(Math.min(a.length, Math.max(1, Math.floor(a.length * .55))), 0, {
       type: finalType, 
