@@ -2655,6 +2655,29 @@ r5LobbyMala=function(c,x,y,r,phase){
   lobbyChaser(c,x-76,y-3,r*1.16,'spicyMalatang',phase+1);
 };
 
+// Entries already use game seconds here, after the legacy time conversion.
+// Keep enemy generation, RNG calls and all other rounds unchanged.
+const earlySpacingBaseEntries = makeRoundEntries;
+const earlySpacingGameSeconds = earlySpacingBaseEntries(1)[0].delay;
+makeRoundEntries = function(round) {
+  const entries = earlySpacingBaseEntries(round);
+  if (round >= 2 && round < 15) {
+    for (const entry of entries) entry.delay = earlySpacingGameSeconds;
+  }
+  return entries;
+};
+
+// An empty queue keeps accumulating negative time while enemies remain alive.
+// Early forced starts must not spend that idle time spawning one enemy per frame.
+const earlySpacingBaseEnqueue = enqueueRound;
+enqueueRound = function(round = S.round, append = false) {
+  const discardIdleTime = round >= 1 && round < 15 && append &&
+    S.spawnQueue.length === 0 && S.spawnTimer < 0;
+  const entries = earlySpacingBaseEnqueue(round, append);
+  if (discardIdleTime) S.spawnTimer = 0;
+  return entries;
+};
+
 </script>
 </body>
 </html>
