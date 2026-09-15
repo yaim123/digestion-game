@@ -56,6 +56,16 @@
 
 /* Only the short landscape touch layout gets these rules. */
 #mlRail,#mlShopScroll,#mlDetails{display:none}
+#mlTabs,#mlSandboxScroll{display:none}
+body.mobileLandscape #panel.mlSandboxMode #mlTabs{display:flex;flex:none;gap:4px;padding:5px;border-bottom:1px solid #504360}
+body.mobileLandscape #mlTabs button{flex:1;min-height:36px;background:#211b35;color:#eee;border:1px solid #735c84;border-radius:7px;font-size:11px;cursor:pointer}
+body.mobileLandscape #mlTabs button[aria-selected="true"]{background:#494060;border-color:#b7a6e8}
+body.mobileLandscape #panel.mlShowSandbox #mlShopScroll,body.mobileLandscape #panel.mlShowSandbox #mlDetails{display:none!important}
+body.mobileLandscape #panel.mlShowSandbox #mlSandboxScroll{display:block;flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y}
+body.mobileLandscape #mlSandboxScroll #sandboxTools.show{position:static;width:auto;max-height:none;overflow:visible;margin:4px;border-radius:7px}
+body.mobileLandscape #mlSandboxScroll .sandboxBosses{grid-template-columns:repeat(2,minmax(0,1fr))}
+body.mobileLandscape #mlSandboxScroll .sandboxBtn{min-height:36px;white-space:normal}
+body.mobileLandscape #mlSandboxScroll input{min-width:0;max-width:100%}
 body.mobileLandscape{overflow:hidden}
 body.mobileLandscape #app.gameVisible{
   position:fixed;inset:0;display:grid!important;
@@ -653,7 +663,7 @@ openGuide=function(){openModal('🧠 게임 설명',`<p><b>자유 설치:</b> �
 drawGhost=function(){if(!S.selectedBuild)return;const d=TOWER_DEFS[S.selectedBuild],near=cells.concat(trackCells).find(z=>Math.hypot(z.x-S.hover.x,z.y-S.hover.y)<z.size*.55),valid=near&&cells.includes(near)&&!near.used;if(!near)return;ctx.save();ctx.globalAlpha=.12;ctx.fillStyle=valid?d.color:'#ff6068';ctx.beginPath();ctx.arc(near.x,near.y,d.range*gridSize,0,TAU);ctx.fill();ctx.globalAlpha=valid ? 0.72 : 0.5;ctx.translate(near.x,near.y);r4TowerCore(ctx,S.selectedBuild,1);ctx.restore()};
 openGuide=function(){openModal('🧠 상세 게임 설명',`<p><b>목표</b><br>소화관을 통과해 출구 밖으로 나가는 영양소를 막으세요. 소형은 생명 -1, 중형은 -2, 대형은 -4, 보스는 즉시 패배입니다.</p><p><b>영양소와 분해</b><br>하늘색 육각형은 탄수화물, 연보라 사각형은 단백질, 노란 물방울은 지방입니다. 상위 단계는 쓰러지면 더 작은 영양소로 분해됩니다.</p><p><b>효소 대응표</b><br>아밀레이스·탄수화물 분해 효소 → 탄수화물<br>위산/펩신·단백질 분해 효소 → 단백질<br>쓸개즙·라이페이스 → 지방<br>이자액은 모든 영양소에 대응합니다.</p><p><b>매운맛과 장염</b><br>매운 영양소는 매운맛을 올려 이동 속도를 높입니다. 유산균은 이를 낮춥니다. 장염 라운드에는 소화관 운동이 빨라집니다.</p><p><b>자유 설치와 Lv6 입</b><br>18×18 빈 격자에 타워를 설치하세요. Lv6 입은 마라탕 계열을 제외한 가장 큰 대상 하나를 하위 분해 없이 완전 소화합니다.</p>`)};
 lobbyRunner=function(x,y,r,kind,phase){const c=lobbyCtx;c.save();c.strokeStyle='#17233c';c.lineWidth=2.4;c.beginPath();c.moveTo(x-r*.45,y+r*.24);c.lineTo(x-r*.95,y+r*.52);c.moveTo(x+r*.45,y+r*.24);c.lineTo(x+r*.94,y-r*.03);c.moveTo(x-r*.18,y+r*.52);c.lineTo(x-r*.52,y+r*(1+.13*Math.sin(phase)));c.moveTo(x+r*.18,y+r*.52);c.lineTo(x+r*.54,y+r*(1-.13*Math.sin(phase)));c.stroke();c.restore();lobbyFace(x,y,r,kind,0);c.font='14px serif';c.textAlign='center';c.fillText('💦',x+r*.92,y-r*.65)};
-drawLobby=function(now){const rect=ui.lobby.getBoundingClientRect(),LW=rect.width,LH=rect.height,dt=Math.min(.05,(now-lobbyLast)/1000);lobbyLast=now;if(LW&&LH&&!ui.lobby.classList.contains('hidden')){const c=lobbyCtx;c.clearRect(0,0,LW,LH);const g=c.createLinearGradient(0,0,LW,LH);g.addColorStop(0,'#191c48');g.addColorStop(.55,'#392253');g.addColorStop(1,'#101c36');c.fillStyle=g;c.fillRect(0,0,LW,LH);c.globalAlpha=.22;c.strokeStyle='#ff9ed2';c.lineWidth=50;c.beginPath();c.moveTo(LW*.1,LH*.14);c.bezierCurveTo(LW*.8,LH*.08,LW*.18,LH*.55,LW*.8,LH*.65);c.bezierCurveTo(LW*.98,LH*.72,LW*.42,LH*.84,LW*.55,LH);c.stroke();c.globalAlpha=1;for(const p of LOBBY_PARTICLES){p.y-=p.v*dt*.05;if(p.y<0)p.y=1;c.fillStyle=`hsla(${285+p.r*20},88%,78%,.52)`;c.beginPath();c.arc(p.x*LW,p.y*LH,p.r,0,TAU);c.fill()}const bob=Math.sin(now*.002);lobbyFace(LW*.16,LH*.28,34,'carb',bob*.1);lobbyFace(LW*.82,LH*.30,38,'protein',-bob*.12);lobbyFace(LW*.21,LH*.57,28,'fat',bob*.1);const run=(now*.11)%(LW+410)-115,cy=LH*.9;c.fillStyle='rgba(8,10,28,.42)';c.fillRect(0,LH*5/6,LW,LH/6);lobbyRunner(run,cy,21,'carb',now*.014);lobbyRunner(run-60,cy+7,18,'protein',now*.014+1);lobbyRunner(run-112,cy+2,17,'fat',now*.014+2);c.strokeStyle='#251229';c.lineWidth=3;c.beginPath();c.moveTo(run-203,cy+10);c.lineTo(run-228,cy+29);c.moveTo(run-166,cy+10);c.lineTo(run-145,cy+29);c.moveTo(run-192,cy+23);c.lineTo(run-213,cy+44);c.moveTo(run-178,cy+23);c.lineTo(run-158,cy+44);c.stroke();c.font='39px serif';c.textAlign='center';c.textBaseline='middle';c.fillText('🍜',run-185,cy);c.strokeStyle='#ff7653';c.lineWidth=3;c.beginPath();c.moveTo(run-205,cy-26);c.lineTo(run-191,cy-42);c.moveTo(run-166,cy-26);c.lineTo(run-180,cy-42);c.stroke();c.font='16px serif';c.fillText('🔥',run-185,cy-39)}requestAnimationFrame(drawLobby)};
+drawLobby=function(now){const rect=ui.lobby.getBoundingClientRect(),LW=rect.width,LH=rect.height,dt=Math.min(.05,(now-lobbyLast)/1000);lobbyLast=now;if(LW&&LH&&!ui.lobby.classList.contains('hidden')){const c=lobbyCtx;c.clearRect(0,0,LW,LH);const g=c.createLinearGradient(0,0,LW,LH);g.addColorStop(0,'#191c48');g.addColorStop(.55,'#392253');g.addColorStop(1,'#101c36');c.fillStyle=g;c.fillRect(0,0,LW,LH);c.globalAlpha=.22;c.strokeStyle='#ff9ed2';c.lineWidth=50;c.beginPath();c.moveTo(LW*.1,LH*.14);c.bezierCurveTo(LW*.8,LH*.08,LW*.18,LH*.55,LW*.8,LH*.65);c.bezierCurveTo(LW*.98,LH*.72,LW*.42,LH*.84,LW*.55,LH);c.stroke();c.globalAlpha=1;for(const p of LOBBY_PARTICLES){p.y-=p.v*dt*.05;if(p.y<0)p.y=1;c.fillStyle=`hsla(${285+p.r*20},88%,78%,.52)`;c.beginPath();c.arc(p.x*LW,p.y*LH,p.r,0,TAU);c.fill()}const bob=Math.sin(now*.002);lobbyFace(LW*.16,LH*.28,34,'carb',bob*.1);lobbyFace(LW*.82,LH*.30,38,'protein',-bob*.12);lobbyFace(LW*.21,LH*.57,28,'fat',bob*.1);const run=(now*.11)%(LW+310)-115,cy=LH*.9;c.fillStyle='rgba(8,10,28,.42)';c.fillRect(0,LH*5/6,LW,LH/6);lobbyRunner(run,cy,21,'carb',now*.014);lobbyRunner(run-60,cy+7,18,'protein',now*.014+1);lobbyRunner(run-112,cy+2,17,'fat',now*.014+2);c.strokeStyle='#251229';c.lineWidth=3;c.beginPath();c.moveTo(run-203,cy+10);c.lineTo(run-228,cy+29);c.moveTo(run-166,cy+10);c.lineTo(run-145,cy+29);c.moveTo(run-192,cy+23);c.lineTo(run-213,cy+44);c.moveTo(run-178,cy+23);c.lineTo(run-158,cy+44);c.stroke();c.font='39px serif';c.textAlign='center';c.textBaseline='middle';c.fillText('🍜',run-185,cy);c.strokeStyle='#ff7653';c.lineWidth=3;c.beginPath();c.moveTo(run-205,cy-26);c.lineTo(run-191,cy-42);c.moveTo(run-166,cy-26);c.lineTo(run-180,cy-42);c.stroke();c.font='16px serif';c.fillText('🔥',run-185,cy-39)}requestAnimationFrame(drawLobby)};
 openGuide=function(){const glyph=(kind,color)=>`<span class="nutrientGlyph ${kind}" style="--c:${color}"></span>`;openModal('🧠 상세 게임 설명',`<h3>1. 게임 목표</h3><p>이 게임은 입으로 들어온 영양소들이 소화관의 끝에 도달하기 전까지 소화 효소 타워를 이용해 영양소를 분해하는 타워디펜스 게임입니다. 소형은 생명 -1, 중형은 -2, 대형은 -4, 보스는 즉시 패배입니다.</p><h3>2. 영양소 소개</h3><p>${glyph('carb','#4DEEEA')} <b>탄수화물</b>은 포도당·엿당·녹말 순으로 커지며, ${glyph('protein','#E056FD')} <b>단백질</b>은 아미노산·펩타이드·단백질, ${glyph('fat','#FFFA65')} <b>지방</b>은 지방산·지방산 묶음·지방 덩어리로 분해됩니다.</p><p>빠른 초밥은 펩타이드로, 햄버거는 세 계열로 분해됩니다. 피자·치킨·마라탕은 하위 보스로 이어집니다. 고추 표시는 매운 상태입니다.</p><h3>3. 소화 효소 타워</h3><p>기초: 👄 입 · 🌾 아밀레이스 · 🧪 위산/펩신 · 🫧 라이페이스<br>고급: 🌾 탄수화물 분해 효소 · ✂️ 단백질 분해 효소 · 쓸개즙 · 치아 · 🔬 이자액<br>지원: 대장 · ⚡ 마이토콘드리아 · 유산균<br>합성: 크러셔 3종 · 초효소 융합액 · 👑 궁극의 소화킹</p><p>아밀레이스·탄수 효소는 탄수화물, 위산/펩신·단백질 효소는 단백질, 쓸개즙·라이페이스는 지방에 강합니다. 마이토콘드리아는 생체 에너지를 만들고, 유산균은 매운맛을 낮춥니다.</p><h3>4. 매운맛</h3><p>머리 위 🌶️ 영양소는 이동이 더 빠릅니다. 매운 상태는 분해된 모든 하위 영양소에 이어지지만, 매운맛 게이지 증가는 부모 등장·처치·탈출 효과로만 계산해 과도하게 중복되지 않습니다.</p><h3>5. 장염</h3><p>장염 이벤트 라운드에는 소화관 운동이 빨라집니다. 대기 화면의 사전 안내를 확인하고 유산균·감속 타워를 준비하세요.</p>`) };
 function r3RoundNotice(round){S.seenNotices||={};const notes={1:'초반에는 탄수화물 영양소만 등장합니다!',6:'다음 라운드부터 단백질 영양소와 빠른 초밥이 등장합니다!',13:'다음 라운드부터 지방 영양소가 섞여 나옵니다!',17:'다음 라운드에는 매운 초밥이 처음 등장합니다!',27:'다음 라운드에는 일반 초밥 러시가 시작됩니다!',37:'다음 라운드에는 매운 초밥 러시가 시작됩니다!',57:'다음 라운드에는 초밥 보스 기습이 있습니다!',67:'다음 라운드에는 매운 초밥 보스 기습이 있습니다!',87:'다음 라운드에는 초밥 보스 대행진이 있습니다!'};const key=isEnteritisRound(round)?`enteritis-${round}`:round,text=isEnteritisRound(round)?`다음 라운드에 장염이 발생합니다!`:notes[round];if(text&&!S.seenNotices[key]){S.seenNotices[key]=true;setMsg(text)}}
 const r3StartRound=startRound,r3NextRound=nextRound,r3SpawnOne=spawnOne,r3ResolveDeath=resolveDeath;startRound=function(){const wasReady=S.roundReady,wave=S.round;r3StartRound();if(wasReady&&S.running)r3RoundNotice(wave)};nextRound=function(){r3NextRound();r3RoundNotice(S.round)};spawnOne=function(entry){const data=typeof entry==='string'?{type:entry,wave:S.round}:entry;const before=S.enemies.length;r3SpawnOne(data);const e=S.enemies[S.enemies.length-1];if(S.enemies.length>before&&e?.special==='oyster'&&!e.boss){e.speed*=.985+Math.random()*.03;e.t=Math.max(0,e.t-Math.random()*.004)}};resolveDeath=function(e){if(e.dead||e.deathResolved)return;const p=e.special==='oyster'?perfPosition(e):null;r3ResolveDeath(e);if(p)S.fx.push({kind:'split',x:p.x,y:p.y,vx:14,vy:-18,r:2,life:.2,color:'#effffb'});};ui.start.onclick=startRound;
@@ -969,7 +979,7 @@ r3SubmitScore=async function(){const code=document.getElementById('r3ResultCode'
 openVersion=function(){openModal('ⓘ 버전 정보','<p><b>영양소 대습격</b> · Classroom Edition <b>v1.1</b></p><p>순수 HTML/CSS/Canvas 단일 파일 버전입니다. 생체 에너지와 소화 효소로 소화관을 방어합니다.</p>')};ui.version.onclick=openVersion;
 
 function r5LobbyMala(c,x,y,r,phase){c.save();c.strokeStyle='#251229';c.lineWidth=2.8;c.beginPath();c.moveTo(x-r*.55,y+r*.2);c.lineTo(x-r*1.05,y+r*.5);c.moveTo(x+r*.55,y+r*.2);c.lineTo(x+r*1.05,y-r*.1);c.moveTo(x-r*.2,y+r*.48);c.lineTo(x-r*.55,y+r*(1+.14*Math.sin(phase)));c.moveTo(x+r*.2,y+r*.48);c.lineTo(x+r*.55,y+r*(1-.14*Math.sin(phase)));c.stroke();c.fillStyle='#7c2631';c.beginPath();c.arc(x,y, r*.88,0,TAU);c.fill();c.stroke();c.fillStyle='#d44a43';c.beginPath();c.ellipse(x,y+3,r*.61,r*.3,0,0,TAU);c.fill();c.strokeStyle='#f7dfad';c.lineWidth=2;c.beginPath();c.arc(x,y+2,r*.38,.2,2.8);c.stroke();c.fillStyle='#fff';c.beginPath();c.arc(x-r*.2,y-3,3.2,0,TAU);c.arc(x+r*.2,y-3,3.2,0,TAU);c.fill();c.fillStyle='#351427';c.beginPath();c.arc(x-r*.2,y-2,1.4,0,TAU);c.arc(x+r*.2,y-2,1.4,0,TAU);c.fill();c.strokeStyle='#351427';c.lineWidth=2;c.beginPath();c.moveTo(x-r*.36,y-r*.34);c.lineTo(x-r*.10,y-r*.48);c.moveTo(x+r*.36,y-r*.34);c.lineTo(x+r*.10,y-r*.48);c.stroke();c.font='14px serif';c.textAlign='center';c.fillText('🔥',x,y-r*1.2);c.restore()}
-drawLobby=function(now){const rect=ui.lobby.getBoundingClientRect(),LW=rect.width,LH=rect.height,dt=Math.min(.05,(now-lobbyLast)/1000);lobbyLast=now;if(LW&&LH&&!ui.lobby.classList.contains('hidden')){const c=lobbyCtx;c.clearRect(0,0,LW,LH);const g=c.createLinearGradient(0,0,LW,LH);g.addColorStop(0,'#191c48');g.addColorStop(.55,'#392253');g.addColorStop(1,'#101c36');c.fillStyle=g;c.fillRect(0,0,LW,LH);c.globalAlpha=.22;c.strokeStyle='#ff9ed2';c.lineWidth=50;c.beginPath();c.moveTo(LW*.1,LH*.14);c.bezierCurveTo(LW*.8,LH*.08,LW*.18,LH*.55,LW*.8,LH*.65);c.bezierCurveTo(LW*.98,LH*.72,LW*.42,LH*.84,LW*.55,LH);c.stroke();c.globalAlpha=1;for(const p of LOBBY_PARTICLES){p.y-=p.v*dt*.05;if(p.y<0)p.y=1;c.fillStyle=`hsla(${285+p.r*20},88%,78%,.52)`;c.beginPath();c.arc(p.x*LW,p.y*LH,p.r,0,TAU);c.fill()}const bob=Math.sin(now*.002);lobbyFace(LW*.16,LH*.28,34,'carb',bob*.1);lobbyFace(LW*.82,LH*.30,38,'protein',-bob*.12);lobbyFace(LW*.21,LH*.57,28,'fat',bob*.1);const run=(now*.11)%(LW+310)-115,cy=LH*.9;c.fillStyle='rgba(8,10,28,.42)';c.fillRect(0,LH*5/6,LW,LH/6);lobbyRunner(run,cy,21,'carb',now*.014);lobbyRunner(run-60,cy+7,18,'protein',now*.014+1);lobbyRunner(run-112,cy+2,17,'fat',now*.014+2);r5LobbyMala(c,run-185,cy,22,now*.014)}requestAnimationFrame(drawLobby)};
+drawLobby=function(now){const rect=ui.lobby.getBoundingClientRect(),LW=rect.width,LH=rect.height,dt=Math.min(.05,(now-lobbyLast)/1000);lobbyLast=now;if(LW&&LH&&!ui.lobby.classList.contains('hidden')){const c=lobbyCtx;c.clearRect(0,0,LW,LH);const g=c.createLinearGradient(0,0,LW,LH);g.addColorStop(0,'#191c48');g.addColorStop(.55,'#392253');g.addColorStop(1,'#101c36');c.fillStyle=g;c.fillRect(0,0,LW,LH);c.globalAlpha=.22;c.strokeStyle='#ff9ed2';c.lineWidth=50;c.beginPath();c.moveTo(LW*.1,LH*.14);c.bezierCurveTo(LW*.8,LH*.08,LW*.18,LH*.55,LW*.8,LH*.65);c.bezierCurveTo(LW*.98,LH*.72,LW*.42,LH*.84,LW*.55,LH);c.stroke();c.globalAlpha=1;for(const p of LOBBY_PARTICLES){p.y-=p.v*dt*.05;if(p.y<0)p.y=1;c.fillStyle=`hsla(${285+p.r*20},88%,78%,.52)`;c.beginPath();c.arc(p.x*LW,p.y*LH,p.r,0,TAU);c.fill()}const bob=Math.sin(now*.002);lobbyFace(LW*.16,LH*.28,34,'carb',bob*.1);lobbyFace(LW*.82,LH*.30,38,'protein',-bob*.12);lobbyFace(LW*.21,LH*.57,28,'fat',bob*.1);drawLobbyChase(c,LW,LH,now)}requestAnimationFrame(drawLobby)};
 document.querySelectorAll('[data-spawn]').forEach(button=>button.onclick=()=>{if(!S.sandbox)return;const type=button.dataset.spawn,definition=ENEMY_DEFS[type];if(!definition)return;const e=enemy(type,{wave:Math.max(1,S.round),spicy:definition.spicy===true||S.sandboxSpicySpawn});e.t=.015;S.enemies.push(e);setMsg(`${e.name}을(를) 소환했습니다.`)});
 /* R6 cumulative pass: newest scheduling, economy, art, and accessibility rules. */
 const R6_INTERNAL_SPAWN_GAP=.375;
@@ -1273,7 +1283,7 @@ function r6AttemptPlay(track,reason){if(!bgmEnabled||masterVolume<=0||r6BgmPendi
 function r6Fade(track,target,duration=.9){const a=audio[track],token=++r6AudioTickets[track],start=a.volume,at=performance.now();if(target>0)r6AttemptPlay(track,'play-rejected');const tick=now=>{if(token!==r6AudioTickets[track])return;const p=Math.min(1,(now-at)/(duration*1000));a.volume=start+(target-start)*p;if(p<1)requestAnimationFrame(tick);else if(target===0){a.pause();a.currentTime=0}};requestAnimationFrame(tick)}
 switchBgm=function(track){const other=track==='main'?'game':'main';r6Fade(other,0,.85);if(bgmEnabled&&masterVolume>0){bgmStarted=false;r6Fade(track,masterVolume,1)}};
 for(const track of ['main','game'])audio[track].addEventListener('error',()=>{r6BgmLastFailure=`${track}-load-error`},{once:true});
-const r6RetryBgm=()=>{if(!bgmStarted&&bgmEnabled&&masterVolume>0)r6AttemptPlay(ui.lobby.classList.contains('hidden')?'game':'main','interaction-rejected')};
+const r6RetryBgm=()=>{if(bgmEnabled&&masterVolume>0)r6AttemptPlay(ui.lobby.classList.contains('hidden')?'game':'main','interaction-rejected')};
 document.addEventListener('pointerdown',r6RetryBgm,{passive:true});document.addEventListener('keydown',r6RetryBgm);document.addEventListener('touchstart',r6RetryBgm,{passive:true});r6AttemptPlay('main','autoplay-rejected');
 const r6BaseEnterGame=enterGame,r6BaseRestartGame=restartGame;
 enterGame=function(sandbox=false){r6BaseEnterGame(sandbox);if(sandbox){ui.sandboxSpice.textContent='🌶️ 매운 소환 OFF';r6SyncSandboxBossLabels()}};
@@ -2361,8 +2371,17 @@ const mlHead=mlElement('div','mlDetailHead',ml.details);mlHead.className='mlDeta
 const mlTitle=document.createElement('span');mlTitle.textContent='선택한 타워';mlHead.appendChild(mlTitle);
 ml.close=mlElement('button','mlClose',mlHead);ml.close.type='button';ml.close.textContent='✕';ml.close.setAttribute('aria-label','타워 선택 해제');ml.close.onclick=()=>{clearSelection(null);mlSync();};
 ml.detailScroll=mlElement('div','mlDetailScroll',ml.details);ml.detailScroll.tabIndex=0;ml.detailScroll.setAttribute('aria-label','타워 설명, 우선 공격, 강화와 판매');
+ml.tab='towers';
+ml.tabs=mlElement('div','mlTabs',ml.panel);ml.panel.prepend(ml.tabs);
+ml.tabs.setAttribute('role','tablist');ml.tabs.setAttribute('aria-label','타워와 샌드박스 전환');
+ml.sandbox=mlElement('div','mlSandboxScroll',ml.panel);ml.sandbox.setAttribute('role','tabpanel');
+ml.tabButtons={};
+for(const [key,label,panelId] of [['towers','타워','mlShopScroll'],['sandbox','샌드박스','mlSandboxScroll']]){
+  const b=mlElement('button','mlTab_'+key,ml.tabs);b.type='button';b.textContent=label;b.setAttribute('role','tab');b.setAttribute('aria-controls',panelId);
+  b.onclick=()=>{ml.tab=key;mlSync()};ml.tabButtons[key]=b;
+}
 ml.topbar=document.getElementById('topbar');
-for(const node of [ml.topbar,ui.grid,ui.info,ui.med,ui.medCool,ui.sell]){
+for(const node of [ml.topbar,ui.grid,ui.info,ui.med,ui.medCool,ui.sell,ui.sandboxTools]){
   const anchor=document.createComment('mobile layout return: '+node.id);node.before(anchor);ml.anchors.set(node,anchor);
 }
 for(const [id,short] of [['roundLabel','R'],['goldLabel','⚡'],['lifeLabel','♥']]){
@@ -2386,6 +2405,12 @@ function mlWanted(){
 }
 function mlSync(){
   if(!ml.active)return;
+  const sandbox=!!S.sandbox,showSandbox=sandbox&&ml.tab==='sandbox';
+  perfToggle(ml.panel,'mlSandboxMode',sandbox);perfToggle(ml.panel,'mlShowSandbox',showSandbox);
+  for(const [key,b] of Object.entries(ml.tabButtons)){
+    const selected=(showSandbox?'sandbox':'towers')===key;
+    if(b.getAttribute('aria-selected')!==String(selected))b.setAttribute('aria-selected',String(selected));
+  }
   const chosen=!!(S.selectedBuild||S.selectedTower);
   perfToggle(ml.details,'hasSelection',chosen);
   if(ml.details.getAttribute('aria-hidden')!==String(!chosen))ml.details.setAttribute('aria-hidden',String(!chosen));
@@ -2411,6 +2436,7 @@ function mlApply(){
     if(active){
       ml.rail.appendChild(ml.topbar);ml.shop.insertBefore(ui.grid,ml.roulette);
       ml.roulette.append(ui.med,ui.medCool);ml.detailScroll.append(ui.info,ui.sell);
+      ml.sandbox.appendChild(ui.sandboxTools);
     }else{
       for(const [node,anchor] of ml.anchors)anchor.after(node);
       perfText(ui.pause,S.paused?'▶ 재개':'❚❚ 일시정지');
@@ -2655,6 +2681,29 @@ r5LobbyMala=function(c,x,y,r,phase){
   lobbyChaser(c,x-76,y-3,r*1.16,'spicyMalatang',phase+1);
 };
 
+const chaseBossTypes=['spicyHamburger','spicyPizza','spicyChicken','spicyMalatang'];
+const chaseBossRadii=[19,22,25,28];
+let chaseElapsed=0,chaseLast=null;
+function chaseSceneAt(seconds,width){
+  const durations=chaseBossTypes.map((_,i)=>(width+305+i*78)/110);
+  const total=durations.reduce((a,b)=>a+b,0);
+  let remaining=((seconds%total)+total)%total,stage=0;
+  while(stage<3&&remaining>=durations[stage])remaining-=durations[stage++];
+  return {stage,direction:stage%2?-1:1,run:-60+remaining*110,duration:durations[stage],total};
+}
+function drawLobbyChase(c,width,height,now){
+  if(chaseLast!==null)chaseElapsed+=Math.max(0,Math.min(.1,(now-chaseLast)/1000));
+  chaseLast=now;
+  const scene=chaseSceneAt(chaseElapsed,width),y=height*.9,phase=now*.014;
+  c.fillStyle='rgba(8,10,28,.42)';c.fillRect(0,height*5/6,width,height/6);
+  c.save();if(scene.direction<0){c.translate(width,0);c.scale(-1,1)}
+  lobbyRunner(scene.run,y,21,'carb',phase);
+  lobbyRunner(scene.run-60,y+7,18,'protein',phase+1);
+  lobbyRunner(scene.run-112,y+2,17,'fat',phase+2);
+  for(let i=0;i<=scene.stage;i++)lobbyChaser(c,scene.run-185-i*78,y-2,chaseBossRadii[i],chaseBossTypes[i],phase+i);
+  c.restore();
+}
+
 // Entries already use game seconds here, after the legacy time conversion.
 // Keep enemy generation, RNG calls and all other rounds unchanged.
 const earlySpacingBaseEntries = makeRoundEntries;
@@ -2677,6 +2726,188 @@ enqueueRound = function(round = S.round, append = false) {
   if (discardIdleTime) S.spawnTimer = 0;
   return entries;
 };
+
+// Keep the existing volume and fade functions; retry from actual playback state.
+const interactionAudio={track:ui.lobby.classList.contains('hidden')?'game':'main',tokens:{main:0,game:0}};
+const interactionSwitchBgm=switchBgm;
+switchBgm=function(track){
+  interactionAudio.track=track==='game'?'game':'main';
+  interactionSwitchBgm(interactionAudio.track);
+};
+r6AttemptPlay=function(track,reason){
+  const a=audio[track];
+  if(!a||!bgmEnabled||masterVolume<=0||track!==interactionAudio.track)return;
+  if(!a.paused){bgmStarted=true;return}
+  // A user gesture can retry even if an earlier autoplay promise is still pending.
+  if(r7AudioPending[track]&&reason!=='user-interaction')return;
+  const token=++interactionAudio.tokens[track];r7AudioPending[track]=true;
+  const finish=()=>{if(token===interactionAudio.tokens[track])r7AudioPending[track]=false};
+  try{
+    Promise.resolve(a.play()).then(()=>{
+      if(!bgmEnabled||masterVolume<=0||track!==interactionAudio.track){a.pause();return}
+      if(token!==interactionAudio.tokens[track])return;
+      bgmStarted=true;r6BgmLastFailure='';
+    }).catch(error=>{
+      if(token!==interactionAudio.tokens[track])return;
+      bgmStarted=false;r6BgmLastFailure=error?.name||'play-failed';
+    }).finally(finish);
+  }catch(error){bgmStarted=false;r6BgmLastFailure=error?.name||'play-failed';finish()}
+};
+document.removeEventListener('pointerdown',r6RetryBgm);
+document.removeEventListener('touchstart',r6RetryBgm);
+document.removeEventListener('keydown',r6RetryBgm);
+function interactionRetryBgm(event){
+  if(event?.target instanceof Element&&event.target.closest('#lobbyBgmBtn,#gameBgmBtn'))return;
+  if(!bgmEnabled||masterVolume<=0)return;
+  const track=interactionAudio.track;
+  if(audio[track].paused)r6AttemptPlay(track,'user-interaction');
+}
+document.addEventListener('click',interactionRetryBgm,true);
+document.addEventListener('keydown',interactionRetryBgm,true);
+toggleBgm=function(){
+  bgmEnabled=!bgmEnabled;
+  try{localStorage.setItem('nutritionTdBgm',bgmEnabled?'on':'off')}catch(_){}
+  if(!bgmEnabled){
+    for(const track of ['main','game']){
+      ++r6AudioTickets[track];++interactionAudio.tokens[track];
+      r7AudioPending[track]=false;audio[track].pause();
+    }
+    bgmStarted=false;
+  }else switchBgm(interactionAudio.track);
+  syncBgmButtons();
+};
+ui.lobbyBgm.onclick=toggleBgm;ui.gameBgm.onclick=toggleBgm;
+
+/* One target, one damage event. Satellites and charging are visual only. */
+const KING_DAMAGE=Object.freeze([5200,6600,7200,7900,8700]);
+const KING_COLORS=['#70edff','#d1a1ff','#ffe46c','#ffa8df'];
+const KING_PERIOD=32,KING_NORMAL=20,KING_RATE=.48; // .32 game seconds, legacy rate units.
+Object.assign(TOWER_DEFS.digestionKing,{
+  damage:KING_DAMAGE[0],rate:KING_RATE,
+  desc:'금빛 포격과 위성 4개가 한 대상을 집중 공격합니다. 피해 판정은 한 번입니다. 초효소 폭주: 일반 20게임초 후 12게임초 동안 기본 피해 +50%.',
+  awaken:'초효소 폭주 · 관통 및 주변 추가 공격 없음'
+});
+function kingState(t){return t.kingState||(t.kingState={time:0,shot:{life:0,x:0,y:0,rage:false},view:{}})}
+function kingRaging(t){return (t.kingState?.time||0)%KING_PERIOD>=KING_NORMAL}
+const kingCreateBase=createTower;
+createTower=function(type,x,y){const t=kingCreateBase(type,x,y);if(type==='digestionKing')kingState(t);return t};
+const kingUpgradeBase=upgradeTower;
+upgradeTower=function(t){
+  if(t?.type!=='digestionKing')return kingUpgradeBase(t);
+  if(t!==S.selectedTower||t.level>=5)return;
+  const cost=upgradeCost(t);if(!S.sandbox&&S.gold<cost){setMsg('생체 에너지가 부족하여 강화할 수 없습니다.');return}
+  if(!S.sandbox){S.gold-=cost;t.spent=(t.spent||0)+cost}
+  const mult=UPG[t.level-1].mul;t.level++;
+  t.range*=t.level===5?1.25:1+(mult-.9)*.16;
+  t.rangeTiles=t.range/gridSize;t.damage=KING_DAMAGE[t.level-1];t.damageBase=KING_DAMAGE[0];t.rate=KING_RATE;
+  // Retain the existing cooldown and cycle through upgrades; no free extra attack.
+  showTowerInfo(t);setMsg(`👑 궁극의 소화킹이 ${t.level}단계로 성장했습니다.`);
+};
+const kingAwakenBase=awakenTower;
+awakenTower=function(t){if(t?.type!=='digestionKing')return kingAwakenBase(t)};
+const kingUpdateBase=update;
+update=function(dt){
+  if(!S.gameOver&&!S.paused){
+    const step=Math.max(0,Number(dt)||0),gameStep=step*Math.max(1,Number(S.speed)||1);
+    const fighting=S.running||(S.sandbox&&S.enemies.length>0);
+    for(const t of S.towers)if(t.type==='digestionKing'){
+      const k=kingState(t);if(fighting)k.time=(k.time+gameStep)%KING_PERIOD;
+      // Screen-time lifetime: a new shot always survives its first render, even at 4x/20FPS.
+      k.shot.life=Math.max(0,k.shot.life-step);
+    }
+  }
+  return kingUpdateBase(dt);
+};
+const kingDealBase=deal;
+deal=function(e,raw,t){
+  if(t?.type!=='digestionKing')return kingDealBase(e,raw,t);
+  if(!e||e.dead||e.digesting||e.hp<=0)return;
+  const rage=kingRaging(t),point=perfPosition(e);
+  const dealt=r9Hit(e,raw*(rage?1.5:1),t);
+  if(dealt>0){const shot=kingState(t).shot;shot.target=e;shot.x=point.x;shot.y=point.y;shot.rage=rage;shot.life=.14}
+};
+
+// Reuse two glow bitmaps. No per-shot particles, filters, shadowBlur or event queues.
+const kingGlows=[false,true].map(rage=>{
+  const canvas=document.createElement('canvas');canvas.width=canvas.height=96;
+  const c=canvas.getContext('2d'),g=c.createRadialGradient(48,48,0,48,48,48);
+  g.addColorStop(0,rage?'rgba(255,255,237,.95)':'rgba(255,222,135,.8)');
+  g.addColorStop(.3,rage?'rgba(255,230,139,.48)':'rgba(255,176,69,.28)');
+  g.addColorStop(1,'rgba(255,180,70,0)');c.fillStyle=g;c.fillRect(0,0,96,96);return canvas;
+});
+function kingVisual(t){
+  const state=kingState(t),v=state.view,phase=state.time%KING_PERIOD;
+  const warning=.8*Math.max(1,Number(S.speed)||1);
+  v.rage=phase>=KING_NORMAL;v.charge=v.rage?0:Math.max(0,Math.min(1,(phase-(KING_NORMAL-warning))/warning));
+  v.angle=state.time*.33;v.orbit=v.rage?33:28-9*v.charge;
+  v.scale=Math.min(1,gridSize/36);return v;
+}
+function kingPolygon(c,r,count,angle=0){
+  c.beginPath();for(let i=0;i<count;i++){const a=angle+i*TAU/count,x=Math.cos(a)*r,y=Math.sin(a)*r;i?c.lineTo(x,y):c.moveTo(x,y)}c.closePath();
+}
+function kingPaint(c,level,v){
+  const rage=v.rage,charge=v.charge||0,power=(level-1)/4;
+  c.save();c.drawImage(kingGlows[rage?1:0],-38-charge*5,-38-charge*5,76+charge*10,76+charge*10);
+  c.strokeStyle=rage?'#fff5c3':'#99703e';c.lineWidth=rage?1.7:1;
+  c.beginPath();c.ellipse(0,0,v.orbit,v.orbit*.73,-.25,0,TAU);c.stroke();
+  if(rage){kingPolygon(c,25,8,v.angle*.3);c.strokeStyle='#ffd666';c.stroke()}
+  kingPolygon(c,18,8,Math.PI/8);c.fillStyle='#171c35';c.fill();c.strokeStyle='#e8b453';c.lineWidth=2;c.stroke();
+  c.save();c.rotate(-v.angle*.45);
+  for(let i=0;i<4;i++){c.strokeStyle=KING_COLORS[i];c.lineWidth=2+power;c.beginPath();c.arc(0,0,13,i*Math.PI/2+.10,(i+1)*Math.PI/2-.16);c.stroke()}
+  c.restore();
+  // A readable crown silhouette remains at the core in every level.
+  c.beginPath();c.moveTo(-9,-5);c.lineTo(-5,-1);c.lineTo(0,-9);c.lineTo(5,-1);c.lineTo(9,-5);c.lineTo(7,7);c.lineTo(-7,7);c.closePath();
+  c.fillStyle=rage?'#fffde5':'#ffd777';c.fill();c.strokeStyle='#ffb743';c.lineWidth=1;c.stroke();
+  c.fillStyle='#fff';c.beginPath();c.arc(0,1,1.7+charge,0,TAU);c.fill();
+  for(let i=0;i<4;i++){
+    const angle=v.angle+i*Math.PI/2,x=Math.cos(angle)*v.orbit,y=Math.sin(angle)*v.orbit*.73;
+    c.save();c.translate(x,y);c.fillStyle=KING_COLORS[i];c.globalAlpha=rage?.3:.12+charge*.25;c.beginPath();c.arc(0,0,9+power*2,0,TAU);c.fill();c.globalAlpha=1;
+    c.strokeStyle=KING_COLORS[i];c.lineWidth=1.7;c.fillStyle='#151b31';
+    if(i===2){c.beginPath();c.arc(0,0,5.5,0,TAU)}else kingPolygon(c,6,i===0?6:i===1?4:8,Math.PI/4);
+    c.fill();c.stroke();c.fillStyle=rage||charge>.5?'#fffcea':KING_COLORS[i];c.beginPath();c.arc(0,0,2.8+charge,0,TAU);c.fill();c.restore();
+  }
+  c.restore();
+}
+const kingCrusherBase=r3Crusher;
+r3Crusher=function(t){if(t.type!=='digestionKing')return kingCrusherBase(t);const v=kingVisual(t);ctx.save();ctx.scale(v.scale,v.scale);kingPaint(ctx,t.level,v);ctx.restore()};
+const kingPreviewBase=r3DrawCrusher;
+r3DrawCrusher=function(c,type,elapsed=0,scale=1){
+  if(type!=='digestionKing')return kingPreviewBase(c,type,elapsed,scale);
+  c.save();c.scale(scale*.72,scale*.72);kingPaint(c,1,{rage:false,charge:0,angle:-Math.PI/4,orbit:28});c.restore();
+};
+const kingShotsBase=drawShots;
+drawShots=function(){
+  kingShotsBase();
+  for(const t of S.towers){
+    if(t.type!=='digestionKing'||!t.kingState?.shot.life)continue;
+    const shot=t.kingState.shot,v=kingVisual(t);
+    if(shot.target){const p=perfPosition(shot.target);shot.x=p.x;shot.y=p.y}
+    const dx=shot.x-t.x,dy=shot.y-t.y;
+    ctx.save();ctx.lineCap='round';ctx.globalAlpha=Math.min(1,shot.life/.07);
+    // Four colored filaments converge on the same hit point; no secondary targets.
+    for(let i=0;i<4;i++){
+      const angle=v.angle+i*Math.PI/2,x=t.x+Math.cos(angle)*v.orbit*v.scale,y=t.y+Math.sin(angle)*v.orbit*.73*v.scale;
+      ctx.strokeStyle=KING_COLORS[i];ctx.lineWidth=(shot.rage?2.2:1.2)*v.scale;
+      ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(t.x+dx*.48+Math.cos(angle)*13*v.scale,t.y+dy*.48+Math.sin(angle)*13*v.scale,shot.x,shot.y);ctx.stroke();
+    }
+    ctx.strokeStyle=shot.rage?'rgba(255,210,91,.38)':'rgba(255,188,64,.25)';ctx.lineWidth=(shot.rage?13:8)*v.scale;
+    ctx.beginPath();ctx.moveTo(t.x,t.y);ctx.lineTo(shot.x,shot.y);ctx.stroke();
+    ctx.strokeStyle='#ffd56b';ctx.lineWidth=(shot.rage?5:3)*v.scale;ctx.stroke();
+    ctx.strokeStyle='#fffde5';ctx.lineWidth=(shot.rage?2.2:1.2)*v.scale;ctx.stroke();
+    const r=(shot.rage?15:10)*v.scale;
+    ctx.drawImage(kingGlows[shot.rage?1:0],shot.x-r*2,shot.y-r*2,r*4,r*4);
+    ctx.strokeStyle=shot.rage?'#fffce6':'#ffe3a3';ctx.lineWidth=1.3*v.scale;ctx.beginPath();ctx.arc(shot.x,shot.y,r*(1.4-shot.life/.14*.4),0,TAU);ctx.stroke();ctx.restore();
+  }
+};
+const kingInfoBase=showTowerInfo;
+showTowerInfo=function(t){
+  kingInfoBase(t);if(t?.type!=='digestionKing')return;
+  const box=document.createElement('div');box.className='kingSkillInfo';
+  box.style.cssText='margin-top:8px;padding:8px;border:1px solid #8b7042;border-radius:8px;color:#ffe5a4;line-height:1.5';
+  box.textContent=`초효소 폭주: 일반 20게임초 → 폭주 12게임초 반복. 폭주 중 기본 피해 ${Math.round(t.damage*1.5).toLocaleString()} (+50%). 공격 간격 유지. 4배속에서는 일반 5초·폭주 3초이며, 시작 전 0.8초 예고 중에도 계속 공격합니다.`;
+  ui.info.appendChild(box);
+};
+if(S.selectedTower?.type==='digestionKing')showTowerInfo(S.selectedTower);
 
 </script>
 </body>
