@@ -1209,7 +1209,7 @@ r5UpdateCannon=function(t,buff,dtt){
 
 function r6DigestRank(e){return e.type==='chicken'||e.type==='spicyChicken'?4:e.type==='pizza'||e.type==='spicyPizza'?3:e.type==='oysterBoss'||e.type==='spicyOysterBoss'?2:e.type==='hamburger'||e.type==='spicyHamburger'?1:0}
 function r6DigestSeconds(e){const rank=r6DigestRank(e);return rank===4?12:rank===3?8:rank===2?6:5}
-r3DigestTarget=function(){let best=null;for(const e of S.enemies){if(e.dead||e.digesting||!e.boss||r6DigestRank(e)===0)continue;if(!best||r6DigestRank(e)>r6DigestRank(best)||(r6DigestRank(e)===r6DigestRank(best)&&e.t>best.t))best=e}if(best&&!best.r6DigestSetter){const total=r6DigestSeconds(best)*1.5;let value=0,started=false;Object.defineProperty(best,'digesting',{configurable:true,get(){return value},set(next){if(!started&&next===5){started=true;value=total}else value=next}});best.r6DigestSetter=true;best.digestTotal=total}return best};
+r3DigestTarget=function(){let best=null;for(const e of S.enemies){if(e.dead||e.digesting||e.hp<=0||!e.boss||r6DigestRank(e)===0)continue;if(!best||r6DigestRank(e)>r6DigestRank(best)||(r6DigestRank(e)===r6DigestRank(best)&&e.t>best.t))best=e}if(best&&!best.r6DigestSetter){const total=r6DigestSeconds(best)*1.5;let value=0,started=false;Object.defineProperty(best,'digesting',{configurable:true,get(){return value},set(next){if(!started&&next===5){started=true;value=total}else value=next}});best.r6DigestSetter=true;best.digestTotal=total}return best};
 
 function r6Frame(c,type,level,draw){const d=TOWER_DEFS[type],radius=(level===6?24:19);c.save();c.fillStyle='rgba(17,20,43,.96)';c.beginPath();c.arc(0,0,radius,0,TAU);c.fill();c.strokeStyle=d.color;c.lineWidth=2.4;c.stroke();c.save();c.beginPath();c.arc(0,0,level===6?21:16.5,0,TAU);c.clip();c.lineJoin='round';c.lineCap='round';draw(c);c.restore();c.restore()}
 r4TowerCore=function(c,type,level,scale=1){
@@ -1322,7 +1322,7 @@ r5CannonBossTarget=function(t,range){r6PruneKnockMap(t);const counts=r6KnockMap(
 r5CannonKick=function(t,target){const counts=r6KnockMap(t),used=counts.get(target.r6Id)||0,now=S.compatElapsed||0;r5CannonFire(t,target,t.level>=10?2:1.5,false);if(used<2&&(target.knockImmuneUntil||0)<=now){const huge=['malatang','spicyMalatang','gluttonKing'].includes(target.type);r5Backtrack(target,t.level>=10?(huge?3:5):(huge?1:3));target.knockImmuneUntil=now+10;counts.set(target.r6Id,used+1)}t.cannonKickCD=8};
 r5ProcessCannonEvents=function(){const events=S.cannonEvents||[],now=S.compatElapsed||0;let write=0;for(let i=0;i<events.length;i++){const event=events[i];if(event.due>now){events[write++]=event;continue}if(!S.towers.includes(event.source))continue;if(event.kind==='blast')r5CannonArea(event.source,event.x,event.y,event.raw,event.radius,null);else if(event.kind==='salvo'){const target=findTarget(event.source,event.source.range*(1+getBuff(event.source).range));if(target)r5CannonFire(event.source,target,.40,false)}}events.length=write};
 r5UpdateCannon=function(t,buff,legacyDt){t.cannonKickCD=Math.max(0,(t.cannonKickCD||0)-legacyDt);r6PruneKnockMap(t);const range=t.range*(1+buff.range);if(t.level>=9&&t.cannonKickCD<=0){const boss=r5CannonBossTarget(t,range);if(boss){r5CannonKick(t,boss);t.cool=Math.max(.1,t.rate/(1+buff.rate));return}}if(t.cool>0)return;const target=findTarget(t,range);if(!target)return;t.cool=Math.max(.1,t.rate/(1+buff.rate));t.cannonShots=(t.cannonShots||0)+1;r5CannonFire(t,target,1,true);if(t.level>=7&&t.cannonShots%4===0){const q=S.cannonEvents||(S.cannonEvents=[]),now=S.compatElapsed||0;q.push({kind:'salvo',due:now+.12,source:t});q.push({kind:'salvo',due:now+.24,source:t})}};
-update=function(dt){if(S.gameOver||S.paused)return;const cannonShotStart=S.shots.length,cannonFxStart=S.fx.length;const gameDt=Math.max(0,Number(dt)||0)*Math.max(1,Number(S.speed)||1),legacyDt=r7ToLegacySeconds(gameDt);S.elapsed+=gameDt;S.compatElapsed=(S.compatElapsed||0)+legacyDt;S.skillCD=Math.max(0,S.skillCD-legacyDt);S.globalStun=Math.max(0,S.globalStun-legacyDt);S.globalBuff=Math.max(0,S.globalBuff-legacyDt);S.globalAcid=Math.max(0,S.globalAcid-legacyDt);S.discount=Math.max(0,S.discount-legacyDt/45*.2);S.shake=Math.max(0,S.shake-legacyDt);if(S.roulette&&(S.roulette.timer-=legacyDt)<=0)S.roulette=null;if(S.alert&&(S.alert.timer-=legacyDt)<=0)S.alert=null;if(!S.running&&S.autoStart&&S.roundReady&&(S.autoTimer-=legacyDt)<=0)startRound();if(S.running){S.gold+=2*legacyDt;S.spawnTimer-=gameDt;if(S.spawnQueue.length&&S.spawnTimer<=0){const entry=S.spawnQueue.shift();spawnOne(entry);S.spawnTimer+=Math.max(.25,entry.delay??.25)}}for(const e of S.enemies){if(e.dead)continue;e.fieldAge=(e.fieldAge||0)+gameDt;e.stun=Math.max(0,e.stun-legacyDt);e.slow=Math.max(0,e.slow-legacyDt);e.blocked=Math.max(0,(e.blocked||0)-legacyDt);e.splitFlash=Math.max(0,(e.splitFlash||0)-legacyDt);e.bossBadge=Math.max(0,(e.bossBadge||0)-legacyDt);e.vulnerable=Math.max(0,(e.vulnerable||0)-legacyDt);e.emulsified=Math.max(0,(e.emulsified||0)-legacyDt);e.enteritisPurify=Math.max(0,(e.enteritisPurify||0)-legacyDt);if(e.digesting){e.digesting-=legacyDt;const mouth=e.digestSource;e.digestX+=(mouth.x-e.digestX)*Math.min(1,legacyDt*2.3);e.digestY+=(mouth.y-e.digestY)*Math.min(1,legacyDt*2.3);if(e.digesting<=0)r3CompleteDigestion(e);continue}if(S.globalStun>0){if(e.boss)r4ApplySlow(e,.8,S.globalStun,'medicine');else e.stun=Math.max(e.stun,S.globalStun)}if(e.stun>0||e.blocked>0)continue;const purified=e.enteritisPurify>0||purifiedByProbiotic(e),enteritisSpeed=e.enteritis&&!purified?1.5:1;e.t+=e.speed*roundMult().speed*enteritisSpeed*r4SlowMultiplier(e)*legacyDt/7600;if(e.t>=1){e.dead=true;e.deathResolved=true;if(!S.sandbox){S.lives-=lifeLoss(e);if(S.lives<=0)return gameOver()}}}perfBeginCombat();for(const t of S.towers){const d=TOWER_DEFS[t.type],buff=getBuff(t);t.cool-=legacyDt;if(t.type==='atp'){if(S.running){t.farm+=legacyDt;if(t.farm>=4){t.farm=0;S.gold+=28*(1+(t.level-1)*.55)*(t.level===5?3:1);burst(t.x,t.y,'#ffe27c',7)}}continue}if(t.type==='mouth'&&t.level===6){t.digestCool=Math.max(0,t.digestCool-legacyDt);if(t.digestCool<=0){const e=r3DigestTarget();if(e){const p=perfPosition(e);e.digesting=e.boss?5:3.5;e.digestX=p.x;e.digestY=p.y;e.digestSource=t;t.digestCool=e.boss?40:30}}continue}if(t.type==='digestCannon'){r5UpdateCannon(t,buff,legacyDt);continue}if(t.cool<=0){const e=findTarget(t,t.range*(1+buff.range));if(e){t.cool=Math.max(.1,t.rate/(1+buff.rate));if(d.type==='stun'){if(e.boss)r4ApplySlow(e,t.level>=5?.65:.8,1.5+.2*(t.level-1),'colon');else e.stun=Math.max(e.stun,t.level===5?5:1.5);addShot(t,e,'#c18cff')}else deal(e,t.damage,t)}}}r5ProcessCannonEvents();for(const e of S.enemies)if(!e.dead&&e.hp<=0)resolveDeath(e);let ew=0;for(const e of S.enemies)if(!e.dead)S.enemies[ew++]=e;S.enemies.length=ew;let sw=0;for(let si=0;si<S.shots.length;si++){const s=S.shots[si];if(si<cannonShotStart||s.kind!=='cannon')s.ttl-=legacyDt;if(s.ttl>0)S.shots[sw++]=s}S.shots.length=sw;let fw=0;for(let fi=0;fi<S.fx.length;fi++){const f=S.fx[fi];if(fi<cannonFxStart||(f.kind!=='cannonBlast'&&f.kind!=='muzzle'))f.life-=legacyDt;f.x+=f.vx*legacyDt;f.y+=f.vy*legacyDt;if(f.life>0)S.fx[fw++]=f}S.fx.length=fw;perf.combat=false;if(S.running&&!S.spawnQueue.length&&!S.enemies.length&&!(S.cannonEvents||[]).length)nextRound();updateIndigestion(gameDt)};
+update=function(dt){if(S.gameOver||S.paused)return;const cannonShotStart=S.shots.length,cannonFxStart=S.fx.length;const gameDt=Math.max(0,Number(dt)||0)*Math.max(1,Number(S.speed)||1),legacyDt=r7ToLegacySeconds(gameDt);S.elapsed+=gameDt;S.compatElapsed=(S.compatElapsed||0)+legacyDt;S.skillCD=Math.max(0,S.skillCD-legacyDt);S.globalStun=Math.max(0,S.globalStun-legacyDt);S.globalBuff=Math.max(0,S.globalBuff-legacyDt);S.globalAcid=Math.max(0,S.globalAcid-legacyDt);S.discount=Math.max(0,S.discount-legacyDt/45*.2);S.shake=Math.max(0,S.shake-legacyDt);if(S.roulette&&(S.roulette.timer-=legacyDt)<=0)S.roulette=null;if(S.alert&&(S.alert.timer-=legacyDt)<=0)S.alert=null;if(!S.running&&S.autoStart&&S.roundReady&&(S.autoTimer-=legacyDt)<=0)startRound();if(S.running){S.gold+=2*legacyDt;S.spawnTimer-=gameDt;if(S.spawnQueue.length&&S.spawnTimer<=0){const entry=S.spawnQueue.shift();spawnOne(entry);S.spawnTimer+=Math.max(.25,entry.delay??.25)}}for(const e of S.enemies){if(e.dead)continue;e.fieldAge=(e.fieldAge||0)+gameDt;e.stun=Math.max(0,e.stun-legacyDt);e.slow=Math.max(0,e.slow-legacyDt);e.blocked=Math.max(0,(e.blocked||0)-legacyDt);e.splitFlash=Math.max(0,(e.splitFlash||0)-legacyDt);e.bossBadge=Math.max(0,(e.bossBadge||0)-legacyDt);e.vulnerable=Math.max(0,(e.vulnerable||0)-legacyDt);e.emulsified=Math.max(0,(e.emulsified||0)-legacyDt);e.enteritisPurify=Math.max(0,(e.enteritisPurify||0)-legacyDt);if(e.digesting){e.digesting-=legacyDt;const mouth=e.digestSource;e.digestX+=(mouth.x-e.digestX)*Math.min(1,legacyDt*2.3);e.digestY+=(mouth.y-e.digestY)*Math.min(1,legacyDt*2.3);if(e.digesting<=0)r3CompleteDigestion(e);continue}if(S.globalStun>0){if(e.boss)r4ApplySlow(e,.8,S.globalStun,'medicine');else e.stun=Math.max(e.stun,S.globalStun)}if(e.stun>0||e.blocked>0)continue;const purified=e.enteritisPurify>0||purifiedByProbiotic(e),enteritisSpeed=e.enteritis&&!purified?1.5:1;e.t+=e.speed*roundMult().speed*enteritisSpeed*r4SlowMultiplier(e)*legacyDt/7600;if(e.t>=1){e.dead=true;e.deathResolved=true;if(!S.sandbox){S.lives-=lifeLoss(e);if(S.lives<=0)return gameOver()}}}perfBeginCombat();for(const t of S.towers){const d=TOWER_DEFS[t.type],buff=getBuff(t);t.cool-=legacyDt;if(t.type==='atp'){if(S.running){t.farm+=legacyDt;if(t.farm>=4){t.farm=0;S.gold+=28*(1+(t.level-1)*.55)*(t.level===5?3:1);burst(t.x,t.y,'#ffe27c',7)}}continue}if(t.type==='mouth'&&t.level===6){cadenceDigestStep(t,legacyDt);continue}if(t.type==='digestCannon'){r5UpdateCannon(t,buff,legacyDt);continue}if(t.type==='digestionKing'){kingAttackStep(t,buff);continue}cadenceAttackStep(t,buff,d);}r5ProcessCannonEvents();for(const e of S.enemies)if(!e.dead&&e.hp<=0)resolveDeath(e);let ew=0;for(const e of S.enemies)if(!e.dead)S.enemies[ew++]=e;S.enemies.length=ew;let sw=0;for(let si=0;si<S.shots.length;si++){const s=S.shots[si];if(si<cannonShotStart)s.ttl-=legacyDt;if(s.ttl>0)S.shots[sw++]=s}S.shots.length=sw;let fw=0;for(let fi=0;fi<S.fx.length;fi++){const f=S.fx[fi];if(fi<cannonFxStart)f.life-=legacyDt;f.x+=f.vx*legacyDt;f.y+=f.vy*legacyDt;if(f.life>0)S.fx[fw++]=f}S.fx.length=fw;perf.combat=false;if(S.running&&!S.spawnQueue.length&&!S.enemies.length&&!(S.cannonEvents||[]).length)nextRound();updateIndigestion(gameDt)};
 
 /* Build / selected-tower text: Lv6 remains a hidden fifth-level upgrade, while
    automatic probiotic growth keeps its own wording. */
@@ -1702,7 +1702,7 @@ deal=function(e,raw,t){
   if(pancreasTargets)for(const target of pancreasTargets){
     if(target.dead||target.digesting||target.hp<=0)continue;
     const point=perfPosition(target);r9Hit(target,raw*.70,t);
-    S.shots.push({kind:'pancreasChain',x:origin.x,y:origin.y,tx:point.x,ty:point.y,ttl:.18,color:'#75f4ff',type:'pancreas'});
+    if(cadenceVisuals)S.shots.push({kind:'pancreasChain',x:origin.x,y:origin.y,tx:point.x,ty:point.y,ttl:.18,color:'#75f4ff',type:'pancreas'});
   }
   if(t.type==='digestionKing'){
     let linked=0;for(const other of perfNearby(t.x,t.y,t.range)){
@@ -2061,7 +2061,7 @@ function perfNearby(x, y, radius) {
   return hits.map(entry => entry.e);
 }
 
-findTarget = function(t, range) {
+findTarget = function(t, range, livingOnly = false) {
   const mode = t.targetMode || 'front';
   const priority = ['protein', 'carb', 'fat', 'boss'].includes(mode);
   let preferred = null, fallback = null;
@@ -2076,7 +2076,7 @@ findTarget = function(t, range) {
   };
   for (const e of perfNearby(t.x, t.y, range)) {
     // v1.1 intentionally leaves hp<=0 pending until its death-resolution phase.
-    if (e.dead || e.digesting) continue;
+    if (e.dead || e.digesting || (livingOnly && e.hp <= 0)) continue;
     const p = perfPosition(e);
     if (!perfWithin(p.x - t.x, p.y - t.y, range)) continue;
     if (priority) {
@@ -2543,7 +2543,7 @@ r5CannonBossTarget=function(t,range){
   let available=null,fallback=null;
   const better=(a,b)=>!a?b:mode==='back'?(b.t<a.t?b:a):mode==='strong'?(b.hp>a.hp?b:a):mode==='weak'?(b.hp<a.hp?b:a):(b.t>a.t?b:a);
   for(const e of perfNearby(t.x,t.y,range)){
-    if(e.dead||e.digesting||!e.boss)continue;
+    if(e.dead||e.digesting||e.hp<=0||!e.boss)continue;
     const p=perfPosition(e);if(!perfWithin(p.x-t.x,p.y-t.y,range))continue;
     fallback=better(fallback,e);
     if((counts.get(e.r6Id)||0)<2&&(e.knockImmuneUntil||0)<=now)available=better(available,e);
@@ -2778,17 +2778,33 @@ toggleBgm=function(){
 };
 ui.lobbyBgm.onclick=toggleBgm;ui.gameBgm.onclick=toggleBgm;
 
-/* One target, one damage event. Satellites and charging are visual only. */
-const KING_DAMAGE=Object.freeze([5200,6600,7200,7900,8700]);
+/* One primary hit plus bounded, weak splash. Satellites remain visual only. */
+const KING_DAMAGE=Object.freeze([2600,3300,3600,3950,4350]);
 const KING_COLORS=['#70edff','#d1a1ff','#ffe46c','#ffa8df'];
-const KING_PERIOD=32,KING_NORMAL=20,KING_RATE=.48; // .32 game seconds, legacy rate units.
+const KING_PERIOD=32,KING_NORMAL=20,KING_RATE=.24; // .16 game seconds, legacy rate units.
+const KING_SPLASH=.20,KING_SPLASH_TILES=.9,KING_SPLASH_LIMIT=6,KING_MAX_ATTACKS=6;
 Object.assign(TOWER_DEFS.digestionKing,{
   damage:KING_DAMAGE[0],rate:KING_RATE,
-  desc:'금빛 포격과 위성 4개가 한 대상을 집중 공격합니다. 피해 판정은 한 번입니다. 초효소 폭주: 일반 20게임초 후 12게임초 동안 기본 피해 +50%.',
-  awaken:'초효소 폭주 · 관통 및 주변 추가 공격 없음'
+  desc:'금빛 포격과 위성 4개가 한 대상을 집중 공격하고, 착탄점 0.9타일 안의 가까운 적 최대 6명에게 기본 피해의 20%를 줍니다. 초효소 폭주: 일반 20게임초 후 12게임초 동안 기본 피해 +50%.',
+  awaken:'초효소 폭주 · 금빛 파동: 주변 최대 6명에게 20% 피해'
 });
-function kingState(t){return t.kingState||(t.kingState={time:0,shot:{life:0,x:0,y:0,rage:false},view:{}})}
-function kingRaging(t){return (t.kingState?.time||0)%KING_PERIOD>=KING_NORMAL}
+function kingState(t){return t.kingState||(t.kingState={time:0,angle:0,shot:{life:0,x:0,y:0,rage:false},view:{},splash:[],distances:[]})}
+function kingRaging(t,offset=0){return (((t.kingState?.time||0)+offset+1e-9)%KING_PERIOD+KING_PERIOD)%KING_PERIOD>=KING_NORMAL}
+function kingAttackStep(t,buff){
+  if(t.cool>1e-9)return;
+  // Halve the old .1 legacy-second floor as well, preserving high-buff DPS.
+  const interval=Math.max(.05,t.rate/(1+buff.rate));
+  // Six is sufficient even at the game's .05s frame cap, 4x speed and rate floor.
+  // Discard only exceptional backlog; never bank attacks while no target exists.
+  t.cool=Math.max(t.cool,-interval*(KING_MAX_ATTACKS-1));
+  for(let n=0;n<KING_MAX_ATTACKS&&t.cool<=1e-9;n++){
+    const e=findTarget(t,t.range*(1+buff.range),true);
+    if(!e){t.cool=0;break}
+    const rage=kingRaging(t,-Math.max(0,-t.cool)/1.5);
+    deal(e,t.damage,t,rage);
+    t.cool+=interval;
+  }
+}
 const kingCreateBase=createTower;
 createTower=function(type,x,y){const t=kingCreateBase(type,x,y);if(type==='digestionKing')kingState(t);return t};
 const kingUpgradeBase=upgradeTower;
@@ -2811,7 +2827,7 @@ update=function(dt){
     const step=Math.max(0,Number(dt)||0),gameStep=step*Math.max(1,Number(S.speed)||1);
     const fighting=S.running||(S.sandbox&&S.enemies.length>0);
     for(const t of S.towers)if(t.type==='digestionKing'){
-      const k=kingState(t);if(fighting)k.time=(k.time+gameStep)%KING_PERIOD;
+      const k=kingState(t);if(fighting){k.time=(k.time+gameStep)%KING_PERIOD;k.angle+=gameStep*.33}
       // Screen-time lifetime: a new shot always survives its first render, even at 4x/20FPS.
       k.shot.life=Math.max(0,k.shot.life-step);
     }
@@ -2819,12 +2835,29 @@ update=function(dt){
   return kingUpdateBase(dt);
 };
 const kingDealBase=deal;
-deal=function(e,raw,t){
+deal=function(e,raw,t,rageOverride){
   if(t?.type!=='digestionKing')return kingDealBase(e,raw,t);
   if(!e||e.dead||e.digesting||e.hp<=0)return;
-  const rage=kingRaging(t),point=perfPosition(e);
-  const dealt=r9Hit(e,raw*(rage?1.5:1),t);
-  if(dealt>0){const shot=kingState(t).shot;shot.target=e;shot.x=point.x;shot.y=point.y;shot.rage=rage;shot.life=.14}
+  const rage=rageOverride??kingRaging(t),point=perfPosition(e),damage=raw*(rage?1.5:1);
+  const dealt=r9Hit(e,damage,t);
+  if(dealt>0){
+    const state=kingState(t),shot=state.shot;shot.target=e;shot.x=point.x;shot.y=point.y;shot.rage=rage;shot.life=.14;
+    // Reuse two tiny arrays; choose up to six nearest eligible neighbors, with
+    // original enemy order breaking equal-distance ties. No recursive splash.
+    const hits=state.splash,distances=state.distances,radius=gridSize*KING_SPLASH_TILES;
+    hits.length=distances.length=0;
+    for(const other of perfNearby(point.x,point.y,radius)){
+      if(other===e||other.dead||other.digesting||other.hp<=0)continue;
+      const p=perfPosition(other),dx=p.x-point.x,dy=p.y-point.y,d2=dx*dx+dy*dy;
+      if(!perfWithin(dx,dy,radius))continue;
+      let at=hits.length;while(at>0&&d2<distances[at-1])at--;
+      if(at>=KING_SPLASH_LIMIT)continue;
+      for(let j=Math.min(hits.length,KING_SPLASH_LIMIT-1);j>at;j--){hits[j]=hits[j-1];distances[j]=distances[j-1]}
+      hits[at]=other;distances[at]=d2;
+    }
+    for(const other of hits)r9Hit(other,damage*KING_SPLASH,t);
+    hits.length=distances.length=0;
+  }
 };
 
 // Reuse two glow bitmaps. No per-shot particles, filters, shadowBlur or event queues.
@@ -2837,35 +2870,45 @@ const kingGlows=[false,true].map(rage=>{
 });
 function kingVisual(t){
   const state=kingState(t),v=state.view,phase=state.time%KING_PERIOD;
-  const warning=.8*Math.max(1,Number(S.speed)||1);
+  const speed=Math.max(1,Number(S.speed)||1),warning=.8*speed;
   v.rage=phase>=KING_NORMAL;v.charge=v.rage?0:Math.max(0,Math.min(1,(phase-(KING_NORMAL-warning))/warning));
-  v.angle=state.time*.33;v.orbit=v.rage?33:28-9*v.charge;
+  // Both sides of every phase boundary have identical geometry and brightness.
+  // Start drawing inward during the warning, merge fully, then unfold before wrap.
+  const smooth=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x)};
+  const gather=.25+.75*smooth((phase-KING_NORMAL)/(.65*speed));
+  const release=1-smooth((phase-(KING_PERIOD-.8*speed))/(.8*speed));
+  v.merge=v.rage?gather*release:.25*smooth(v.charge);
+  v.angle=state.angle;v.orbit=28*(1-v.merge);
   v.scale=Math.min(1,gridSize/36);return v;
 }
 function kingPolygon(c,r,count,angle=0){
   c.beginPath();for(let i=0;i<count;i++){const a=angle+i*TAU/count,x=Math.cos(a)*r,y=Math.sin(a)*r;i?c.lineTo(x,y):c.moveTo(x,y)}c.closePath();
 }
 function kingPaint(c,level,v){
-  const rage=v.rage,charge=v.charge||0,power=(level-1)/4;
-  c.save();c.drawImage(kingGlows[rage?1:0],-38-charge*5,-38-charge*5,76+charge*10,76+charge*10);
-  c.strokeStyle=rage?'#fff5c3':'#99703e';c.lineWidth=rage?1.7:1;
+  const merge=v.merge||0,power=(level-1)/4,glow=38+merge*12;
+  c.save();c.drawImage(kingGlows[0],-glow,-glow,glow*2,glow*2);
+  c.save();c.globalAlpha=merge;c.drawImage(kingGlows[1],-glow,-glow,glow*2,glow*2);c.restore();
+  c.strokeStyle='#99703e';c.lineWidth=1;
   c.beginPath();c.ellipse(0,0,v.orbit,v.orbit*.73,-.25,0,TAU);c.stroke();
-  if(rage){kingPolygon(c,25,8,v.angle*.3);c.strokeStyle='#ffd666';c.stroke()}
+  if(merge>0){c.save();c.globalAlpha=merge;kingPolygon(c,25-merge*5,8,v.angle*.3);c.strokeStyle='#ffd666';c.stroke();c.restore()}
   kingPolygon(c,18,8,Math.PI/8);c.fillStyle='#171c35';c.fill();c.strokeStyle='#e8b453';c.lineWidth=2;c.stroke();
   c.save();c.rotate(-v.angle*.45);
-  for(let i=0;i<4;i++){c.strokeStyle=KING_COLORS[i];c.lineWidth=2+power;c.beginPath();c.arc(0,0,13,i*Math.PI/2+.10,(i+1)*Math.PI/2-.16);c.stroke()}
+  for(let i=0;i<4;i++){c.strokeStyle=KING_COLORS[i];c.lineWidth=2+power;c.beginPath();c.arc(0,0,13*(1-merge*.8),i*Math.PI/2+.10,(i+1)*Math.PI/2-.16);c.stroke()}
   c.restore();
   // A readable crown silhouette remains at the core in every level.
   c.beginPath();c.moveTo(-9,-5);c.lineTo(-5,-1);c.lineTo(0,-9);c.lineTo(5,-1);c.lineTo(9,-5);c.lineTo(7,7);c.lineTo(-7,7);c.closePath();
-  c.fillStyle=rage?'#fffde5':'#ffd777';c.fill();c.strokeStyle='#ffb743';c.lineWidth=1;c.stroke();
-  c.fillStyle='#fff';c.beginPath();c.arc(0,1,1.7+charge,0,TAU);c.fill();
+  c.fillStyle='#ffd777';c.fill();c.save();c.globalAlpha=merge;c.fillStyle='#fffde5';c.fill();c.restore();c.strokeStyle='#ffb743';c.lineWidth=1;c.stroke();
+  c.fillStyle='#fff';c.beginPath();c.arc(0,1,1.7+merge*2,0,TAU);c.fill();
   for(let i=0;i<4;i++){
     const angle=v.angle+i*Math.PI/2,x=Math.cos(angle)*v.orbit,y=Math.sin(angle)*v.orbit*.73;
-    c.save();c.translate(x,y);c.fillStyle=KING_COLORS[i];c.globalAlpha=rage?.3:.12+charge*.25;c.beginPath();c.arc(0,0,9+power*2,0,TAU);c.fill();c.globalAlpha=1;
+    c.save();c.translate(x,y);c.fillStyle=KING_COLORS[i];c.globalAlpha=.12+merge*.28;c.beginPath();c.arc(0,0,9+power*2+merge*4,0,TAU);c.fill();c.globalAlpha=1;
+    c.scale(1-merge*.68,1-merge*.68);
     c.strokeStyle=KING_COLORS[i];c.lineWidth=1.7;c.fillStyle='#151b31';
     if(i===2){c.beginPath();c.arc(0,0,5.5,0,TAU)}else kingPolygon(c,6,i===0?6:i===1?4:8,Math.PI/4);
-    c.fill();c.stroke();c.fillStyle=rage||charge>.5?'#fffcea':KING_COLORS[i];c.beginPath();c.arc(0,0,2.8+charge,0,TAU);c.fill();c.restore();
+    c.fill();c.stroke();c.fillStyle=KING_COLORS[i];c.beginPath();c.arc(0,0,2.8+merge,0,TAU);c.fill();c.save();c.globalAlpha=merge;c.fillStyle='#fffcea';c.fill();c.restore();c.restore();
   }
+  // The four lights overlap into one bright core. Only cached glow sprites are used.
+  if(merge>0){c.save();c.globalAlpha=merge;const r=12+merge*10;c.drawImage(kingGlows[1],-r,-r,r*2,r*2);c.fillStyle='#fffde5';c.beginPath();c.arc(0,0,merge*4,0,TAU);c.fill();c.restore()}
   c.restore();
 }
 const kingCrusherBase=r3Crusher;
@@ -2882,21 +2925,24 @@ drawShots=function(){
     if(t.type!=='digestionKing'||!t.kingState?.shot.life)continue;
     const shot=t.kingState.shot,v=kingVisual(t);
     if(shot.target){const p=perfPosition(shot.target);shot.x=p.x;shot.y=p.y}
-    const dx=shot.x-t.x,dy=shot.y-t.y;
+    const dx=shot.x-t.x,dy=shot.y-t.y,merge=v.merge,spread=1-merge;
     ctx.save();ctx.lineCap='round';ctx.globalAlpha=Math.min(1,shot.life/.07);
-    // Four colored filaments converge on the same hit point; no secondary targets.
-    for(let i=0;i<4;i++){
+    // Filaments close together as the satellites converge, becoming one thick beam.
+    if(spread>.01){ctx.save();ctx.globalAlpha*=spread;for(let i=0;i<4;i++){
       const angle=v.angle+i*Math.PI/2,x=t.x+Math.cos(angle)*v.orbit*v.scale,y=t.y+Math.sin(angle)*v.orbit*.73*v.scale;
-      ctx.strokeStyle=KING_COLORS[i];ctx.lineWidth=(shot.rage?2.2:1.2)*v.scale;
-      ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(t.x+dx*.48+Math.cos(angle)*13*v.scale,t.y+dy*.48+Math.sin(angle)*13*v.scale,shot.x,shot.y);ctx.stroke();
-    }
-    ctx.strokeStyle=shot.rage?'rgba(255,210,91,.38)':'rgba(255,188,64,.25)';ctx.lineWidth=(shot.rage?13:8)*v.scale;
+      ctx.strokeStyle=KING_COLORS[i];ctx.lineWidth=(1.2+merge)*v.scale;
+      ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(t.x+dx*.48+Math.cos(angle)*13*v.scale*spread,t.y+dy*.48+Math.sin(angle)*13*v.scale*spread,shot.x,shot.y);ctx.stroke();
+    }ctx.restore()}
+    ctx.strokeStyle='rgba(255,200,80,.28)';ctx.lineWidth=(8+merge*16)*v.scale;
     ctx.beginPath();ctx.moveTo(t.x,t.y);ctx.lineTo(shot.x,shot.y);ctx.stroke();
-    ctx.strokeStyle='#ffd56b';ctx.lineWidth=(shot.rage?5:3)*v.scale;ctx.stroke();
-    ctx.strokeStyle='#fffde5';ctx.lineWidth=(shot.rage?2.2:1.2)*v.scale;ctx.stroke();
-    const r=(shot.rage?15:10)*v.scale;
-    ctx.drawImage(kingGlows[shot.rage?1:0],shot.x-r*2,shot.y-r*2,r*4,r*4);
-    ctx.strokeStyle=shot.rage?'#fffce6':'#ffe3a3';ctx.lineWidth=1.3*v.scale;ctx.beginPath();ctx.arc(shot.x,shot.y,r*(1.4-shot.life/.14*.4),0,TAU);ctx.stroke();ctx.restore();
+    ctx.strokeStyle='#ffd56b';ctx.lineWidth=(3+merge*8)*v.scale;ctx.stroke();
+    ctx.strokeStyle='#fffde5';ctx.lineWidth=(1.2+merge*3.8)*v.scale;ctx.stroke();
+    const r=(10+merge*7)*v.scale;
+    ctx.drawImage(kingGlows[0],shot.x-r*2,shot.y-r*2,r*4,r*4);
+    ctx.save();ctx.globalAlpha*=merge;ctx.drawImage(kingGlows[1],shot.x-r*2,shot.y-r*2,r*4,r*4);ctx.restore();
+    ctx.strokeStyle='#ffe3a3';ctx.lineWidth=1.3*v.scale;ctx.beginPath();ctx.arc(shot.x,shot.y,r*(1.4-shot.life/.14*.4),0,TAU);ctx.stroke();
+    // One shared shock ring shows the splash footprint; no per-victim effects.
+    ctx.globalAlpha*=.25;ctx.beginPath();ctx.arc(shot.x,shot.y,gridSize*KING_SPLASH_TILES*(1-shot.life/.14*.2),0,TAU);ctx.stroke();ctx.restore();
   }
 };
 const kingInfoBase=showTowerInfo;
@@ -2904,10 +2950,102 @@ showTowerInfo=function(t){
   kingInfoBase(t);if(t?.type!=='digestionKing')return;
   const box=document.createElement('div');box.className='kingSkillInfo';
   box.style.cssText='margin-top:8px;padding:8px;border:1px solid #8b7042;border-radius:8px;color:#ffe5a4;line-height:1.5';
-  box.textContent=`초효소 폭주: 일반 20게임초 → 폭주 12게임초 반복. 폭주 중 기본 피해 ${Math.round(t.damage*1.5).toLocaleString()} (+50%). 공격 간격 유지. 4배속에서는 일반 5초·폭주 3초이며, 시작 전 0.8초 예고 중에도 계속 공격합니다.`;
+  box.textContent=`금빛 파동: 착탄점 0.9타일 안의 가까운 적 최대 6명에게 기본 피해의 20%. 주 대상에는 중복 적용되지 않습니다. 초효소 폭주: 일반 20게임초 → 폭주 12게임초 반복. 폭주 중 기본 피해 ${Math.round(t.damage*1.5).toLocaleString()} (+50%). 4배속에서는 일반 5초·폭주 3초이며, 위성들이 하나의 빛으로 모였다가 다시 펼쳐집니다. 시작 전 0.8초 예고와 복귀 연출 중에도 계속 공격합니다.`;
   ui.info.appendChild(box);
 };
 if(S.selectedTower?.type==='digestionKing')showTowerInfo(S.selectedTower);
+
+/* Preserve attack-time remainders, without changing authored damage or intervals.
+ * The game advances at most .3 legacy seconds per frame (4x, .05s frame cap).
+ * With the existing .1 interval floor, four iterations cover even an initial shot.
+ */
+const CADENCE_MAX_ATTACKS=4,CADENCE_EPS=1e-9;
+let cadenceVisuals=true;
+const cadenceAddShot=addShot;
+addShot=function(t,e,color){
+  if(!cadenceVisuals){Math.random();return} // Preserve the visual RNG draw, not its allocation.
+  return cadenceAddShot(t,e,color);
+};
+function cadenceAttackStep(t,buff,def){
+  if(t.cool>CADENCE_EPS)return;
+  const range=t.range*(1+buff.range),interval=Math.max(.1,t.rate/(1+buff.rate));
+  // Probiotics are a passive buff; retain their existing decorative pulse cadence.
+  if(def.type==='buff'){
+    const e=findTarget(t,range);if(e){t.cool=interval;deal(e,t.damage,t)}return;
+  }
+  t.cool=Math.max(t.cool,-interval*(CADENCE_MAX_ATTACKS-1));
+  const previousVisuals=cadenceVisuals;
+  try{
+    for(let n=0;n<CADENCE_MAX_ATTACKS&&t.cool<=CADENCE_EPS;n++){
+      const e=findTarget(t,range,true);
+      if(!e){t.cool=0;break} // No burst saved up while idle or out of range.
+      cadenceVisuals=previousVisuals&&n===0;
+      t.cool+=interval;
+      if(def.type==='stun'){
+        if(e.boss)r4ApplySlow(e,t.level>=5?.65:.8,1.5+.2*(t.level-1),'colon');
+        else e.stun=Math.max(e.stun,t.level===5?5:1.5);
+        addShot(t,e,'#c18cff');
+      }else deal(e,t.damage,t);
+    }
+  }finally{cadenceVisuals=previousVisuals}
+}
+
+function cadenceDigestStep(t,legacyDt){
+  const remaining=(t.digestCool||0)-legacyDt;
+  t.digestCool=Math.max(-legacyDt,remaining);
+  if(t.digestCool>CADENCE_EPS)return;
+  const e=r3DigestTarget();
+  if(!e){t.digestCool=0;return}
+  const p=perfPosition(e);
+  e.digesting=e.boss?5:3.5;e.digestX=p.x;e.digestY=p.y;e.digestSource=t;
+  t.digestCool+=(e.boss?40:30);
+}
+
+const cadenceCannonFire=r5CannonFire;
+r5CannonFire=function(t,target,scale=1,second=true){
+  if(!target||target.hp<=0)return false;
+  return cadenceCannonFire(t,target,scale,second);
+};
+r5UpdateCannon=function(t,buff,legacyDt){
+  const previousKick=t.cannonKickCD||0,kickRemaining=previousKick-legacyDt;
+  t.cannonKickCD=Math.max(0,kickRemaining);r6PruneKnockMap(t);
+  const range=t.range*(1+buff.range),interval=Math.max(.1,t.rate/(1+buff.rate));
+  // Keep the independent kick priority: a ready kick replaces the normal shot.
+  if(t.level>=9&&t.cannonKickCD<=CADENCE_EPS){
+    const boss=r5CannonBossTarget(t,range);
+    if(boss){
+      const late=previousKick>0?Math.max(-legacyDt,Math.min(0,kickRemaining)):0;
+      r5CannonKick(t,boss);t.cannonKickCD+=late;t.cool=interval+late;return;
+    }
+  }
+  if(t.cool>CADENCE_EPS)return;
+  t.cool=Math.max(t.cool,-interval*(CADENCE_MAX_ATTACKS-1));
+  for(let n=0;n<CADENCE_MAX_ATTACKS&&t.cool<=CADENCE_EPS;n++){
+    const target=findTarget(t,range,true);
+    if(!target){t.cool=0;break}
+    t.cool+=interval;t.cannonShots=(t.cannonShots||0)+1;
+    r5CannonFire(t,target,1,true);
+    // Delayed blasts and the two extra salvos retain their authored spacing.
+    if(t.level>=7&&t.cannonShots%4===0){
+      const q=S.cannonEvents||(S.cannonEvents=[]),now=S.compatElapsed||0;
+      q.push({kind:'salvo',due:now+.12,source:t});q.push({kind:'salvo',due:now+.24,source:t});
+    }
+  }
+};
+r5ProcessCannonEvents=function(){
+  const events=S.cannonEvents||[],now=S.compatElapsed||0;let write=0;
+  for(let i=0;i<events.length;i++){
+    const event=events[i];
+    if(event.due>now){events[write++]=event;continue}
+    if(!S.towers.includes(event.source))continue;
+    if(event.kind==='blast')r5CannonArea(event.source,event.x,event.y,event.raw,event.radius,null);
+    else if(event.kind==='salvo'){
+      const target=findTarget(event.source,event.source.range*(1+getBuff(event.source).range),true);
+      if(target)r5CannonFire(event.source,target,.40,false);
+    }
+  }
+  events.length=write;
+};
 
 </script>
 </body>
