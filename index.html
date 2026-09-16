@@ -1989,7 +1989,7 @@ if (S.selectedBuild) showBuildInfo(S.selectedBuild);
  */
 const perf = {
   positions: new WeakMap(), updating: false, combat: false,
-  grid: null, support: [], buffs: new WeakMap(),
+  grid: null, support: [], supportRows: [], supportState: null, buffs: new WeakMap(),
   sprites: new Map(), mapLayer: null, shop: null, numericAt: -Infinity,
   uiState: null, draws: {mapBuilds: 0, spriteBuilds: 0}
 };
@@ -1998,7 +1998,8 @@ function perfPosition(e) {
   let p = perf.positions.get(e);
   if (!p || p.t !== e.t || p.path !== path) {
     const xy = pointAt(e.t);
-    p = {x: xy.x, y: xy.y, t: e.t, path};
+    if(p){p.x=xy.x;p.y=xy.y;p.t=e.t;p.path=path}
+    else p = {x: xy.x, y: xy.y, t: e.t, path};
     perf.positions.set(e, p);
   }
   return p;
@@ -2024,16 +2025,16 @@ function perfBuildGrid() {
     const p = perfPosition(e), key = Math.floor(p.x / size) + ':' + Math.floor(p.y / size);
     let bucket = buckets.get(key);
     if (!bucket) buckets.set(key, bucket = []);
-    bucket.push({e, order});
+    const entry={e,order};bucket.push(entry);
     const band = Math.floor(e.t * 100);
     let segment = progress.get(band);
     if (!segment) progress.set(band, segment = []);
-    segment.push({e, order});
+    segment.push(entry);
     let refs = ids.get(e.r6Id);
     if (!refs) ids.set(e.r6Id, refs = []);
     refs.push(e);
   }
-  return perf.grid = {size, buckets, ids, progress, path, enemies: S.enemies, count: S.enemies.length};
+  return perf.grid = {size, buckets, ids, progress, queries:new Map(), path, enemies: S.enemies, count: S.enemies.length};
 }
 
 function perfBeginCombat() {
@@ -2043,46 +2044,51 @@ function perfBeginCombat() {
 
 // Outside the combat phase (e.g. a click/awakening), use the live array.
 // During combat, local candidates retain original array order for splash/chain hits.
-function perfNearby(x, y, radius) {
-  if (!perf.combat || !Number.isFinite(radius) || radius < 0) return S.enemies;
+function perfQuery(x, y, radius) {
+  if (!perf.combat || !Number.isFinite(radius) || radius < 0) return null;
   let grid = perf.grid;
   if (!grid || grid.path !== path || grid.enemies !== S.enemies || grid.count !== S.enemies.length) grid = perfBuildGrid();
   const pad = Number.EPSILON * 16 * Math.max(1, Math.abs(x), Math.abs(y), radius);
   const x0 = Math.floor((x - radius - pad) / grid.size), x1 = Math.floor((x + radius + pad) / grid.size);
   const y0 = Math.floor((y - radius - pad) / grid.size), y1 = Math.floor((y + radius + pad) / grid.size);
   // Global/very wide attacks are cheaper as a linear pass and must stay global.
-  if ((x1 - x0 + 1) * (y1 - y0 + 1) > Math.max(16, grid.buckets.size * 2)) return S.enemies;
+  if ((x1 - x0 + 1) * (y1 - y0 + 1) > Math.max(16, grid.buckets.size * 2)) return null;
+  const key=x0+':'+x1+':'+y0+':'+y1;
+  const cached=grid.queries.get(key);if(cached)return cached;
   const hits = [];
   for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
     const bucket = grid.buckets.get(x + ':' + y);
     if (bucket) for (const entry of bucket) hits.push(entry);
   }
-  hits.sort((a, b) => a.order - b.order);
-  return hits.map(entry => entry.e);
+  const query={entries:hits,ordered:null};grid.queries.set(key,query);return query;
+}
+function perfNearby(x,y,radius){
+  const query=perfQuery(x,y,radius);if(!query)return S.enemies;
+  return query.ordered||(query.ordered=query.entries.slice().sort((a,b)=>a.order-b.order).map(entry=>entry.e));
 }
 
 findTarget = function(t, range, livingOnly = false) {
   const mode = t.targetMode || 'front';
-  const priority = ['protein', 'carb', 'fat', 'boss'].includes(mode);
+  const priority = mode==='protein'||mode==='carb'||mode==='fat'||mode==='boss';
   let preferred = null, fallback = null;
-  const match = e => mode === 'protein' ? e.kind === 'protein' :
-    mode === 'carb' ? e.kind === 'carb' : mode === 'fat' ? e.kind === 'fat' : e.boss;
-  const better = (a, b) => {
-    if (!a) return b;
-    if (mode === 'back') return b.t < a.t ? b : a;
-    if (mode === 'strong') return b.hp > a.hp ? b : a;
-    if (mode === 'weak') return b.hp < a.hp ? b : a;
-    return b.t > a.t ? b : a;
-  };
-  for (const e of perfNearby(t.x, t.y, range)) {
+  let preferredValue=0,fallbackValue=0,preferredOrder=Infinity,fallbackOrder=Infinity;
+  const byHp=mode==='strong'||mode==='weak',ascending=mode==='back'||mode==='weak';
+  const query=perfQuery(t.x,t.y,range),entries=query?query.entries:S.enemies;
+  for(let i=0;i<entries.length;i++){
+    const e=query?entries[i].e:entries[i],order=query?entries[i].order:i;
     // v1.1 intentionally leaves hp<=0 pending until its death-resolution phase.
     if (e.dead || e.digesting || (livingOnly && e.hp <= 0)) continue;
     const p = perfPosition(e);
     if (!perfWithin(p.x - t.x, p.y - t.y, range)) continue;
-    if (priority) {
-      if (match(e)) preferred = better(preferred, e);
-      else fallback = better(fallback, e);
-    } else preferred = better(preferred, e);
+    const match=!priority||(mode==='boss'?e.boss:e.kind===mode),value=byHp?e.hp:e.t;
+    // Buckets need no sorting for a single target. Resolve ties by original order.
+    if(match){
+      if(!preferred||(ascending?value<preferredValue:value>preferredValue)||(value===preferredValue&&order<preferredOrder)){
+        preferred=e;preferredValue=value;preferredOrder=order;
+      }
+    }else if(!fallback||value>fallbackValue||(value===fallbackValue&&order<fallbackOrder)){
+      fallback=e;fallbackValue=value;fallbackOrder=order;
+    }
   }
   return preferred || fallback;
 };
@@ -2106,19 +2112,17 @@ r9PancreasNeighbors = function(primary) {
   if (!perf.combat) return perfOriginalNeighbors(primary);
   const grid = perf.grid || perfBuildGrid();
   const gapLimit = (2 * gridSize) / Math.max(1, r9PathLength());
-  const hits = [], pad = Number.EPSILON * 16;
+  const pad = Number.EPSILON * 16;
+  let front=null,back=null,frontGap=Infinity,backGap=Infinity,frontOrder=Infinity,backOrder=Infinity;
   for (let band = Math.floor((primary.t - gapLimit - pad) * 100);
        band <= Math.floor((primary.t + gapLimit + pad) * 100); band++) {
     const entries = grid.progress.get(band);
-    if (entries) for (const entry of entries) hits.push(entry);
-  }
-  hits.sort((a, b) => a.order - b.order);
-  let front = null, back = null, frontGap = Infinity, backGap = Infinity;
-  for (const {e} of hits) {
+    if(entries)for(const {e,order} of entries){
     if (e === primary || e.dead || e.digesting || e.hp <= 0) continue;
     const gap = e.t - primary.t;
-    if (gap > 0 && gap <= gapLimit && gap < frontGap) { front = e; frontGap = gap; }
-    else if (gap < 0 && -gap <= gapLimit && -gap < backGap) { back = e; backGap = -gap; }
+    if (gap > 0 && gap <= gapLimit && (gap < frontGap||(gap===frontGap&&order<frontOrder))) { front = e; frontGap = gap;frontOrder=order; }
+    else if (gap < 0 && -gap <= gapLimit && (-gap < backGap||(-gap===backGap&&order<backOrder))) { back = e; backGap = -gap;backOrder=order; }
+    }
   }
   return [front, back].filter(Boolean);
 };
@@ -2137,13 +2141,29 @@ resolveDeath = function(e) {
 };
 
 const perfOriginalBuff = getBuff;
+function perfRefreshSupport(){
+  let changed=perf.supportState!==S,index=0;
+  for(const t of S.towers)if(t.type==='probiotic'){
+    let row=perf.supportRows[index];
+    if(!row||row.t!==t||row.x!==t.x||row.y!==t.y||row.range!==t.range||row.level!==t.level){
+      changed=true;row={t,x:t.x,y:t.y,range:t.range,level:t.level};perf.supportRows[index]=row;
+    }
+    perf.support[index++]=t;
+  }
+  if(index!==perf.support.length)changed=true;
+  perf.support.length=perf.supportRows.length=index;perf.supportState=S;
+  if(changed)perf.buffs=new WeakMap();
+}
 getBuff = function(t) {
   if (!perf.combat) return perfOriginalBuff(t);
   const activeBuff = S.globalBuff > 0, activeAcid = S.globalAcid > 0;
-  const cached = perf.buffs.get(t);
-  if (cached && cached.activeBuff === activeBuff && cached.activeAcid === activeAcid) return cached.value;
+  const key=(activeBuff?1:0)|(activeAcid?2:0);
+  let cached = perf.buffs.get(t);
+  if(cached&&(cached.x!==t.x||cached.y!==t.y||cached.type!==t.type))cached=null;
+  if(cached&&cached.values[key])return cached.values[key];
   let source = null, rate = 0, range = 0, damage = 0, boss = 0;
-  if (r5TowerCanReceiveSupport(t)) for (const o of perf.support) {
+  if(cached)source=cached.source;
+  else if (r5TowerCanReceiveSupport(t)) for (const o of perf.support) {
     if (!perfWithin(o.x - t.x, o.y - t.y, o.range)) continue;
     if (!source || o.level > source.level) source = o;
   }
@@ -2155,7 +2175,8 @@ getBuff = function(t) {
   if (activeBuff) { rate += 1; damage += 1; }
   if (activeAcid) damage += .25;
   const value = {rate, range, damage, boss, source};
-  perf.buffs.set(t, {activeBuff, activeAcid, value});
+  if(!cached){cached={x:t.x,y:t.y,type:t.type,source,values:[]};perf.buffs.set(t,cached)}
+  cached.values[key]=value;
   return value;
 };
 
@@ -2178,8 +2199,7 @@ r6PruneKnockMap = function(t) {
 const perfOriginalUpdate = update;
 update = function(dt) {
   perf.updating = true; perf.combat = false; perf.grid = null;
-  perf.buffs = new WeakMap();
-  perf.support = S.towers.filter(t => t.type === 'probiotic');
+  perfRefreshSupport();
   try { return perfOriginalUpdate(dt); }
   finally { perf.combat = false; perf.updating = false; perf.grid = null; }
 };
@@ -2275,9 +2295,9 @@ drawEnemies = function() {
     }
     ctx.filter = 'none';
     ctx.drawImage(cache.surface, -cache.half, -cache.half, cache.surface.width / dpr, cache.surface.height / dpr);
-    perfWriteStyle(ctx, cache.style);
     ctx.filter = 'none';
     if (e.boss && e.bossBadge > 0) {
+      ctx.textAlign=cache.style.textAlign;ctx.textBaseline=cache.style.textBaseline;
       ctx.font = '900 9px system-ui'; ctx.fillStyle = e.spicy ? '#ff6961' : '#ffcf6b';
       ctx.fillText('BOSS', 0, -r - 9);
     }
@@ -3045,6 +3065,75 @@ r5ProcessCannonEvents=function(){
     }
   }
   events.length=write;
+};
+
+/* Cache unchanged tower artwork and draw each obscured-tower outline once.
+ * King animation, selection, farm pulses and every combat effect remain live.
+ */
+const fullMapRender={sprites:new Map(),style:null,geometry:null,builds:0,outlineDraws:0};
+const fullMapFusionTypes=new Set(['carbCrusher','proteinCrusher','fatCrusher','fusionSerum']);
+function fullMapTowerSprite(t){
+  const key=t.type+':'+t.level+':'+TOWER_DEFS[t.type].color+':'+TOWER_DEFS[t.type].icon;
+  let sprite=fullMapRender.sprites.get(key);if(sprite)return sprite;
+  const half=32,{surface,context}=perfSurface(half*2,half*2);
+  perfWriteStyle(context,perfReadStyle(ctx));context.globalAlpha=1;context.translate(half,half);
+  perfWithContext(context,()=>{
+    if(fullMapFusionTypes.has(t.type))r3Crusher(t);else r4TowerCore(ctx,t.type,t.level);
+    drawTowerGauge(t);
+  });
+  sprite={surface,half};
+  if(fullMapRender.sprites.size>=128)fullMapRender.sprites.delete(fullMapRender.sprites.keys().next().value);
+  fullMapRender.sprites.set(key,sprite);fullMapRender.builds++;return sprite;
+}
+drawTowers=function(){
+  const style=dpr+':'+ctx.font+':'+ctx.lineCap+':'+ctx.lineJoin;
+  if(fullMapRender.style!==style){fullMapRender.style=style;fullMapRender.sprites.clear()}
+  for(const t of S.towers){
+    ctx.save();ctx.translate(t.x,t.y);
+    if(t===S.selectedTower){
+      ctx.strokeStyle='rgba(157,230,255,.42)';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(0,0,t.range,0,TAU);ctx.stroke();
+      ctx.strokeStyle='#9de6ff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,0,24,0,TAU);ctx.stroke();
+    }
+    if(t.type==='atp'&&S.running&&t.farm>0){
+      ctx.strokeStyle='rgba(255,214,107,.42)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,0,23+t.farm*2,0,TAU);ctx.stroke();
+    }
+    if(t.type==='digestionKing'){r3Crusher(t);drawTowerGauge(t)}
+    else{const sprite=fullMapTowerSprite(t);ctx.drawImage(sprite.surface,-sprite.half,-sprite.half,sprite.surface.width/dpr,sprite.surface.height/dpr)}
+    ctx.restore();
+  }
+};
+function fullMapTowerGeometry(){
+  let g=fullMapRender.geometry,dirty=!g||g.towers!==S.towers||g.count!==S.towers.length||g.gridSize!==gridSize;
+  if(!dirty)for(let i=0;i<S.towers.length;i++){
+    const t=S.towers[i],row=g.rows[i];if(row.t!==t||row.x!==t.x||row.y!==t.y){dirty=true;break}
+  }
+  if(!dirty)return g;
+  const size=Math.max(32,gridSize*2),buckets=new Map(),rows=[];
+  for(let i=0;i<S.towers.length;i++){
+    const t=S.towers[i],key=Math.floor(t.x/size)+':'+Math.floor(t.y/size);
+    let bucket=buckets.get(key);if(!bucket)buckets.set(key,bucket=[]);
+    bucket.push(i);rows.push({t,x:t.x,y:t.y});
+  }
+  return fullMapRender.geometry={size,buckets,rows,towers:S.towers,count:S.towers.length,gridSize,covered:new Uint32Array(S.towers.length)};
+}
+drawXrayTowers=function(){
+  const g=fullMapTowerGeometry();g.covered.fill(0);fullMapRender.outlineDraws=0;
+  for(const e of S.enemies){
+    if(!e.boss)continue;
+    const p=perfPosition(e),radius=29*e.size+25;
+    const x0=Math.floor((p.x-radius)/g.size),x1=Math.floor((p.x+radius)/g.size);
+    const y0=Math.floor((p.y-radius)/g.size),y1=Math.floor((p.y+radius)/g.size);
+    for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){
+      const bucket=g.buckets.get(x+':'+y);if(!bucket)continue;
+      for(const i of bucket){const t=S.towers[i];if(perfWithin(p.x-t.x,p.y-t.y,radius,false))g.covered[i]++}
+    }
+  }
+  ctx.save();ctx.lineWidth=2;ctx.setLineDash([3,3]);
+  for(let i=0;i<S.towers.length;i++)if(g.covered[i]){
+    const t=S.towers[i];ctx.globalAlpha=1-Math.pow(.1,g.covered[i]);ctx.strokeStyle=TOWER_DEFS[t.type].color;
+    ctx.beginPath();ctx.arc(t.x,t.y,25,0,TAU);ctx.stroke();fullMapRender.outlineDraws++;
+  }
+  ctx.restore();
 };
 
 </script>
