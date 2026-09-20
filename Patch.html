@@ -1452,7 +1452,7 @@ r5LobbyMala=function(c,x,y,r,phase){const bob=Math.abs(Math.sin(phase))*r*.09,le
 
 function r7GuideTowerCard(key,fact){const d=TOWER_DEFS[key];return `<div class="guideTower"><canvas class="r7GuideTowerPreview" data-tower="${key}" width="42" height="34" aria-hidden="true"></canvas><div><b style="color:${d.color}">${d.name}</b><div class="guideSmall">${d.desc}</div><div class="guideSmall">${fact}</div></div></div>`}
 function r7GuideBossVisual(key){const d=ENEMY_DEFS[key],food=r7BossFood(d);return `<span class="guideBossVisual">${food}${d.spicy?'<i>🌶️</i>':''}</span>`}
-openGuide=function(){const basics=['mouth','amylase','pepsin','lipase'],advanced=['carbEnzyme','proteinEnzyme','bile','teeth','pancreas','digestCannon'],support=['colon','atp','probiotic'],fusion=['carbCrusher','proteinCrusher','fatCrusher','fusionSerum','digestionKing'];const facts={mouth:'실제 입에서는 씹기와 침이 소화의 시작을 돕습니다. 게임의 Lv6 각성은 창작 능력입니다.',amylase:'침 속 아밀레이스는 탄수화물 분해를 시작합니다.',pepsin:'위의 펩신은 산성 환경에서 단백질 분해를 돕습니다.',lipase:'지방 분해에는 라이페이스가 관여합니다.',carbEnzyme:'게임용 전문화 효소입니다.',proteinEnzyme:'트립신은 소장에서 단백질 분해에 관여합니다.',bile:'쓸개즙은 효소가 아니라 지방을 잘게 퍼뜨리는 데 도움을 줍니다.',teeth:'씹기는 음식의 표면적을 넓혀 소화를 돕습니다.',pancreas:'이자액에는 여러 소화 효소가 들어 있습니다.',digestCannon:'소화 캐논과 10단계 소화 공성포는 게임의 창작형 범위 공격입니다.',colon:'대장은 수분 흡수와 배설 과정에 관여하며, 기절은 게임 효과입니다.',atp:'마이토콘드리아는 영양소에서 얻은 물질로 생체 에너지 공급을 돕습니다.',probiotic:'유산균은 장내 환경과 연결한 게임의 지원 타워입니다.',carbCrusher:'Lv5 재료를 융합하는 게임 전용 합성 타워입니다.',proteinCrusher:'Lv5 재료를 융합하는 게임 전용 합성 타워입니다.',fatCrusher:'Lv5 재료를 융합하는 게임 전용 합성 타워입니다.',fusionSerum:'여러 효소의 작용을 상징한 게임 전용 합성 타워입니다.',digestionKing:'네 합성 타워가 하나가 된 궁극의 게임 전용 타워입니다.'};openModal('🧠 상세 게임 설명',`<section class="guideSection"><h3>1. 게임의 의의와 목표</h3><p><b>귀여운 영양소 악당을 소화 효소 타워로 분해하고, 소화기관을 지켜내세요!</b> 영양소가 출구 밖으로 나가기 전에 처리하며, 소화와 영양소 분해 과정을 게임으로 익힙니다.</p></section><section class="guideSection"><h3>2. 모든 타워</h3><div class="guideTowerList">${[...basics,...advanced,...support,...fusion].map(key=>r7GuideTowerCard(key,facts[key])).join('')}</div><p class="guideSmall">실제 과학 기능과 범위 공격·합성·완전 소화 같은 게임 창작 능력은 구분해 이해하세요. 입 Lv6 각성 안내는 건설 후 Lv5 정보창에서만 나타납니다.</p></section><section class="guideSection"><h3>3. 일반 영양소와 특수 개체</h3><p>하늘색 육각형은 탄수화물(포도당 → 엿당 → 녹말), 연보라 사각형은 단백질(아미노산 → 펩타이드 → 단백질), 노란 물방울은 지방(지방산 → 지방산 묶음 → 지방 덩어리)입니다. 상위 단계일수록 느리지만 더 튼튼하며, 쓰러지면 하위 영양소로 분해됩니다.</p><p>굴과 매운 굴은 빠른 특수 개체입니다. 햄버거는 녹말·단백질·지방 덩어리로 분해됩니다. 실제 소화는 훨씬 복잡하지만, 게임에서는 학습을 위해 단순화했습니다.</p></section><section class="guideSection"><h3>4. 보스</h3>${['hamburger','oysterBoss','spicyHamburger','pizza','spicyOysterBoss','spicyPizza','chicken','spicyChicken','malatang','spicyMalatang','gluttonKing'].map(key=>{const d=ENEMY_DEFS[key];const split=key==='hamburger'?'녹말·단백질·지방 덩어리':key.includes('oysterBoss')?'펩타이드':key.includes('pizza')?'햄버거':key.includes('chicken')?'피자':key.includes('malatang')?'치킨':'여러 하위 보스와 영양소';return `<div class="guideBoss">${r7GuideBossVisual(key)}<span><b style="color:${d.color}">${d.name}</b> · ${d.speed>=70?'빠르지만 잡기 어려움':'느리지만 매우 튼튼함'} · 분해: ${split}</span></div>`}).join('')}<p class="guideSmall">매운 버전은 위쪽 고추와 불꽃 눈으로 구분되며 더 빠른 위협입니다.</p></section><section class="guideSection"><h3>5. 소화불량</h3><p>필드에 오래 남은 영양소일수록 부담이 커집니다. 각 영양소는 출현 뒤 <b>6초</b>에 걸쳐 단계 점수의 최대치에 도달하고, 분해된 자식은 부모의 경과 시간을 이어받습니다. 마이토콘드리아는 개당 10점을 더합니다. 100점 뒤 짧은 유예가 지나면 타워 피해가 40% 감소합니다.</p></section><section class="guideSection"><h3>6. 장염 라운드</h3><p>장염은 <b>30라운드부터 20라운드마다</b> 발생합니다. 소화관 운동이 빨라지므로 유산균과 감속 타워를 준비하세요.</p></section><section class="guideSection"><h3>7. 리더보드</h3><p>학교 이름으로 코드를 발급받고 학교 코드로 TOP 5를 조회합니다. 같은 학생은 개인 최고 성적만 표시하며 이름은 가운데 글자를 0으로 가립니다. 샌드박스 기록은 성적 등록 대상이 아닙니다.</p></section><section class="guideSection"><h3>8. 핵심 조작</h3><div class="guideRule">타워 카드 선택 → 빈 격자 건설 · 선택 타워에서 업그레이드·Lv5 합성·판매 · 타겟 우선순위 버튼으로 표적 변경 · 소형/중형/대형은 생명 -1/-2/-4, 보스가 출구를 통과하면 즉시 패배 · 일시정지와 1·2·4배속을 활용하세요.</div></section>`);document.querySelectorAll('.r7GuideTowerPreview').forEach(canvas=>r3DrawTowerPreview(canvas,canvas.dataset.tower))};ui.guide.onclick=openGuide;
+openGuide=function(){const basics=['mouth','amylase','pepsin','lipase'],advanced=['carbEnzyme','proteinEnzyme','bile','teeth','pancreas','digestCannon'],support=['colon','atp','probiotic'],fusion=['carbCrusher','proteinCrusher','fatCrusher','fusionSerum','digestionKing'];const facts={mouth:'실제 입에서는 씹기와 침이 소화의 시작을 돕습니다. 게임의 Lv6 각성은 창작 능력입니다.',amylase:'침 속 아밀레이스는 탄수화물 분해를 시작합니다.',pepsin:'위의 펩신은 산성 환경에서 단백질 분해를 돕습니다.',lipase:'지방 분해에는 라이페이스가 관여합니다.',carbEnzyme:'게임용 전문화 효소입니다.',proteinEnzyme:'트립신은 소장에서 단백질 분해에 관여합니다.',bile:'쓸개즙은 효소가 아니라 지방을 잘게 퍼뜨리는 데 도움을 줍니다.',teeth:'씹기는 음식의 표면적을 넓혀 소화를 돕습니다.',pancreas:'이자액에는 여러 소화 효소가 들어 있습니다.',digestCannon:'소화 캐논과 10단계 소화 공성포는 게임의 창작형 범위 공격입니다.',colon:'대장은 수분 흡수와 배설 과정에 관여하며, 기절은 게임 효과입니다.',atp:'마이토콘드리아는 영양소에서 얻은 물질로 생체 에너지 공급을 돕습니다.',probiotic:'유산균은 장내 환경과 연결한 게임의 지원 타워입니다.',carbCrusher:'Lv5 재료를 융합하는 게임 전용 합성 타워입니다.',proteinCrusher:'Lv5 재료를 융합하는 게임 전용 합성 타워입니다.',fatCrusher:'Lv5 재료를 융합하는 게임 전용 합성 타워입니다.',fusionSerum:'여러 효소의 작용을 상징한 게임 전용 합성 타워입니다.',digestionKing:'네 합성 타워가 하나가 된 궁극의 게임 전용 타워입니다.'};openModal('🧠 상세 게임 설명',`<section class="guideSection"><h3>1. 게임의 의의와 목표</h3><p><b>귀여운 영양소 악당을 소화 효소 타워로 분해하고, 소화기관을 지켜내세요!</b> 영양소가 출구 밖으로 나가기 전에 처리하며, 소화와 영양소 분해 과정을 게임으로 익힙니다.</p></section><section class="guideSection"><h3>2. 모든 타워</h3><div class="guideTowerList">${[...basics,...advanced,...support,...fusion].map(key=>r7GuideTowerCard(key,facts[key])).join('')}</div><p class="guideSmall">실제 과학 기능과 범위 공격·합성·완전 소화 같은 게임 창작 능력은 구분해 이해하세요. 입 Lv6 각성 안내는 건설 후 Lv5 정보창에서만 나타납니다.</p></section><section class="guideSection"><h3>3. 일반 영양소와 특수 개체</h3><p>하늘색 육각형은 탄수화물(포도당 → 엿당 → 녹말), 연보라 사각형은 단백질(아미노산 → 펩타이드 → 단백질), 노란 물방울은 지방(지방산 → 지방산 묶음 → 지방 덩어리)입니다. 상위 단계일수록 느리지만 더 튼튼하며, 쓰러지면 하위 영양소로 분해됩니다.</p><p>굴과 매운 굴은 빠른 특수 개체입니다. 햄버거는 녹말·단백질·지방 덩어리로 분해됩니다. 실제 소화는 훨씬 복잡하지만, 게임에서는 학습을 위해 단순화했습니다.</p></section><section class="guideSection"><h3>4. 보스</h3>${['hamburger','spicyHamburger','oysterBoss','spicyOysterBoss','pizza','spicyPizza','chicken','spicyChicken','malatang','spicyMalatang','gluttonKing'].map(key=>{const d=ENEMY_DEFS[key];const split=key==='hamburger'?'녹말·단백질·지방 덩어리':key.includes('oysterBoss')?'펩타이드':key.includes('pizza')?'햄버거':key.includes('chicken')?'피자':key.includes('malatang')?'치킨':'여러 하위 보스와 영양소';return `<div class="guideBoss">${r7GuideBossVisual(key)}<span><b style="color:${d.color}">${d.name}</b> · ${d.speed>=70?'빠르지만 잡기 어려움':'느리지만 매우 튼튼함'} · 분해: ${split}</span></div>`}).join('')}<p class="guideSmall">매운 버전은 위쪽 고추와 불꽃 눈으로 구분되며 더 빠른 위협입니다.</p></section><section class="guideSection"><h3>5. 소화불량</h3><p>필드에 오래 남은 영양소일수록 부담이 커집니다. 각 영양소는 출현 뒤 <b>6초</b>에 걸쳐 단계 점수의 최대치에 도달하고, 분해된 자식은 부모의 경과 시간을 이어받습니다. 마이토콘드리아는 개당 10점을 더합니다. 100점 뒤 짧은 유예가 지나면 타워 피해가 40% 감소합니다.</p></section><section class="guideSection"><h3>6. 장염 라운드</h3><p>장염은 <b>30라운드부터 20라운드마다</b> 발생합니다. 소화관 운동이 빨라지므로 유산균과 감속 타워를 준비하세요.</p></section><section class="guideSection"><h3>7. 리더보드</h3><p>학교 이름으로 코드를 발급받고 학교 코드로 TOP 5를 조회합니다. 같은 학생은 개인 최고 성적만 표시하며 이름은 가운데 글자를 0으로 가립니다. 샌드박스 기록은 성적 등록 대상이 아닙니다.</p></section><section class="guideSection"><h3>8. 핵심 조작</h3><div class="guideRule">타워 카드 선택 → 빈 격자 건설 · 선택 타워에서 업그레이드·Lv5 합성·판매 · 타겟 우선순위 버튼으로 표적 변경 · 소형/중형/대형은 생명 -1/-2/-4, 보스가 출구를 통과하면 즉시 패배 · 일시정지와 1·2·4배속을 활용하세요.</div></section>`);document.querySelectorAll('.r7GuideTowerPreview').forEach(canvas=>r3DrawTowerPreview(canvas,canvas.dataset.tower))};ui.guide.onclick=openGuide;
 openCodex=function(){r3Pause();const order=['glucose','maltose','starch','amino','peptide','protein','fatty','fatStage3','fatblob','oyster','spicyOyster','hamburger','spicyHamburger','oysterBoss','spicyOysterBoss','pizza','spicyPizza','chicken','spicyChicken','malatang','spicyMalatang','gluttonKing'];ui.codexBody.innerHTML=`<div class="small"><b>시각 규칙</b> · 하늘색 육각형=탄수화물 · 연보라 사각형=단백질 · 노란 물방울=지방. 매운 보스는 음식 위쪽의 🌶️과 불꽃 눈으로 구분합니다.<br><b>분해</b> · 햄버거→녹말+단백질+지방 덩어리 · 피자→햄버거×2 · 치킨→피자×2 · 마라탕→치킨×2</div><div class="codexGrid">${order.map(key=>{const d=ENEMY_DEFS[key],visual=d.boss?r7GuideBossVisual(key):(d.spicy?`<span class="guideBossVisual">${r7BossFood(d)}<i>🌶️</i></span>`:d.emoji||'');return `<div class="codexItem"><b style="color:${d.color}">${visual} ${d.name}</b><div class="small">HP ${d.hp.toLocaleString()} · ${d.boss?'보스':d.special?'특수':'일반'} · 기본 속도 ${d.speed}</div></div>`}).join('')}</div>`;ui.codexWrap.classList.add('open')};
 
 /* Compact mode keeps the map/panel relationship rather than stacking them. */
@@ -2440,14 +2440,14 @@ function perfToggle(el, name, on) {
 }
 refreshBuildButtons = function() {
   if (!perf.shop) perf.shop = [...ui.grid.querySelectorAll('.towerBtn[data-key]')];
-  let atp = 0, cannon = 0;
-  for (const t of S.towers) { if (t.type === 'atp') atp++; else if (t.type === 'digestCannon') cannon++; }
+  let atp = 0, cannon = 0, villusOne = 0;
+  for (const t of S.towers) { if (t.type === 'atp') atp++; else if (t.type === 'digestCannon') cannon++; else if(t.type==='villus'&&t.level===1)villusOne++; }
   for (const button of perf.shop) {
     const type = button.dataset.key, d = TOWER_DEFS[type];
-    const limited = type === 'atp' ? atp >= 3 : type === 'digestCannon' ? cannon >= 3 : false;
+    const limited = type === 'atp' ? atp >= 3 : type === 'digestCannon' ? cannon >= 3 : type==='villus'?villusOne>=2:false;
     const locked = limited || (!S.sandbox && S.gold < d.cost);
     perfSet(button, 'disabled', locked);
-    perfSet(button, 'title', limited ? r5LimitText(type) : locked ? '생체 에너지가 부족합니다.' : '');
+    perfSet(button, 'title', limited ? (type==='villus'?'Lv1 융털을 이미 최대 수량(2개) 보유 중입니다.':r5LimitText(type)) : locked ? '생체 에너지가 부족합니다.' : '');
     perfToggle(button, 'locked', locked);
     perfToggle(button, 'sel', !locked && type === S.selectedBuild && S.selectedTower === null);
   }
@@ -3313,12 +3313,12 @@ const ABSORB_XP=[0,25000,100000,250000,600000,1200000,2200000,3800000,6000000,90
 const ABSORB_STATS={
   capillary:{damage:[12,20,32,50,76,110,155,215,290,390],range:[2.4,2.5,2.6,2.7,2.8,2.9,3,3.1,3.3,3.5],rate:[.18,.18,.18,.18,.18,.18,.18,.18,.18,.18]},
   lacteal:{damage:[80,120,180,270,400,580,820,1150,1600,2200],range:[3,3.1,3.2,3.3,3.4,3.5,3.6,3.7,3.8,4],rate:[2.1,2.05,2,1.95,1.9,1.85,1.8,1.75,1.7,1.65]},
-  villus:{damage:[950,1550,2500,4000,6400,10000,15500,23500,35500,52000],range:[3,3.5,4.3,5.1,6,7.1,8.3,9.5,10.7,12],rate:[.9,.87,.84,.81,.78,.75,.72,.69,.65,.6]}
+  villus:{damage:[950,1550,2200,2850,3550,4250,5050,5950,7050,8300],range:[3,3.5,4.3,5.1,6,7.1,8.3,9.5,10.7,12],rate:[.9,.87,.84,.81,.78,.75,.72,.69,.65,.6]}
 };
 Object.assign(TOWER_DEFS,{
   capillary:{name:'모세혈관',short:'빠른 단일 흡수',group:'흡수',icon:'🩸',color:'#ff779c',cost:950,damage:12,range:2.4,rate:.18,type:'attack',desc:'설치 이후 전 맵 실제 피해로 자동 성장 · 최대 Lv10. 모세혈관 Lv8 + 암죽관 Lv8 → 융털.',awaken:'전 맵 피해로 성장'},
   lacteal:{name:'암죽관',short:'느린 범위 흡수',group:'흡수',icon:'💧',color:'#83efd0',cost:1300,damage:80,range:3,rate:2.1,type:'attack',desc:'1.1타일 범위 흡수 · 설치 이후 전 맵 실제 피해로 자동 성장 · 최대 Lv10. 모세혈관 Lv8 + 암죽관 Lv8 → 융털.',awaken:'전 맵 피해로 성장'},
-  villus:{name:'융털',short:'후방 특화 합성',group:'합성',icon:'🌿',color:'#ffe3a1',cost:0,damage:950,range:3,rate:.9,type:'attack',desc:'뒤쪽 배치와 출구에 가까운 적에게 추가 피해. 같은 레벨 2개를 수동 합성해 성장 · 최대 Lv10 · 보유 제한 없음.',awaken:'Lv5 긴급 흡수 강화 · Lv7 저체력 흡수 · Lv10 장거리 흡수'}
+  villus:{name:'융털',short:'후방 특화 합성',group:'합성',icon:'🌿',color:'#ffe3a1',cost:0,damage:950,range:3,rate:.9,type:'attack',desc:'뒤쪽에 설치해 출구로 향하는 적 한 마리를 흡수합니다. 같은 레벨 2개를 수동 합성해 성장. 보유 제한: Lv1~9는 각 레벨당 최대 2개, Lv10 융털은 1개만 보유할 수 있습니다.',awaken:'Lv5 긴급 흡수 강화 · Lv7 저체력 흡수 · Lv10 장거리 흡수'}
 });
 function absorbCommit(e){
   if(!e||e.deploying)return;
@@ -3365,7 +3365,7 @@ createTower=function(type,...args){
 function absorbClamp(v){return Math.max(0,Math.min(1,v))}
 function absorbRearBonus(t){return absorbClamp((t.row-2)/12)*(.8+.2*(t.level-1)/9)}
 function absorbVillusMultiplier(t,e){
-  const progress=absorbClamp((e.t-.35)/.65)*(.45+.45*(t.level-1)/9);
+  const progress=villusProgressBonus(t,e);
   const ratio=e.hp/Math.max(1,e.maxHp),low=t.level<7?0:ratio<=.33?(t.level===10?.50:.30):ratio<=.66?(t.level===10?.25:.15):0;
   return 1+absorbRearBonus(t)+progress+low;
 }
@@ -3410,6 +3410,8 @@ function absorbMaterials(t){
   return other?[t,other]:null;
 }
 function absorbFuse(t){
+  if(!S.towers.includes(t)||t.type==='villus'&&t.level>=10)return;
+  const reason=villusLimitReason(t.type==='villus'?t.level+1:1);if(reason){setMsg(reason);absorbInfoRefresh();return}
   const pair=t.type==='villus'?absorbClosestPair(t.level):absorbMaterials(t);if(!pair)return;
   const level=t.type==='villus'?t.level+1:1,anchor=t.type==='villus'?(pair[0].row>=pair[1].row?pair[0]:pair[1]):t;
   const merged=createTower('villus',anchor.x,anchor.y);absorbSetLevel(merged,level);
@@ -3422,6 +3424,7 @@ const absorbUpgrade=upgradeTower;
 upgradeTower=function(t){
   if(!ABSORB_TYPES.has(t.type))return absorbUpgrade(t);
   if(!S.sandbox||!S.towers.includes(t)||t!==S.selectedTower||t.level>=10)return;
+  if(t.type==='villus'&&villusLimitReason(t.level+1)){setMsg(villusLimitReason(t.level+1));absorbInfoRefresh();return}
   absorbSetLevel(t,t.level+1);showTowerInfo(t);
 };
 const absorbInfo=showTowerInfo;
@@ -3435,9 +3438,9 @@ showTowerInfo=function(t){
     row('피해',t.damage.toLocaleString())+row('공격 간격',(t.rate/1.5).toFixed(2)+'초')+row('사거리',t.rangeTiles.toFixed(1)+'타일')+
     (v?row('후방 배치 추가 피해','+'+Math.round(absorbRearBonus(t)*100)+'%'):'')+
     `<p>${d.desc}</p><div class="targetBox"><div class="targetTitle">🎯 타겟 우선순위</div><div class="targetBtns">${Object.entries(modes).map(([m,label])=>`<button class="targetBtn ${t.targetMode===m?'active':''}" data-target="${m}">${label}</button>`).join('')}</div></div>`+
-    (v?`<div class="awaken">끝단 추가 피해 최대 +${Math.round((.45+.45*(t.level-1)/9)*100)}% · 각 피해 보너스 합연산<br>긴급 흡수: 모든 융털 공속 +${t.level>=5?25:20}%, 6초 지속 / 공용 18초 주기${t.level>=7?`<br>남은 HP 66% / 33% 이하: +${t.level===10?'25% / 50%':'15% / 30%'} 피해`:''}</div><p>합성 시 같은 레벨 중 가장 가까운 두 융털을 사용하며, 둘 중 더 뒤쪽 위치에 남습니다.</p>`:
+    (v?`<div class="awaken">${villusSkillDescription(t)}</div><p>합성 시 같은 레벨 중 가장 가까운 두 융털을 사용하며, 둘 중 더 뒤쪽 위치에 남습니다.</p>`:
       `<div class="awaken" id="absorbGrowth"></div><p>모세혈관 Lv8 + 암죽관 Lv8 → 융털 Lv1. 선택한 재료 위치에 생성됩니다.</p>`)+
-    `<button class="upgrade" id="absorbFuse">${v?`융털 Lv${Math.min(10,t.level+1)} 합성`:'융털 제작'}</button>`+
+    `<button class="upgrade" id="absorbFuse">${v?`융털 Lv${Math.min(10,t.level+1)} 합성`:'융털 제작'}</button><p class="cool" id="villusLimitFeedback"></p>`+
     (S.sandbox?`<button class="upgrade" id="upgBtn" ${t.level>=10?'disabled':''}>샌드박스 Lv${Math.min(10,t.level+1)}로 성장</button>${v?'<p>일반 게임에서는 같은 레벨의 융털 2개를 합성해야 다음 레벨로 올라갑니다.</p>':''}`:'');
   ui.info.querySelectorAll('[data-target]').forEach(b=>b.onclick=()=>{t.targetMode=b.dataset.target;showTowerInfo(t)});
   document.getElementById('absorbFuse').onclick=()=>absorbFuse(t);
@@ -3447,7 +3450,12 @@ showTowerInfo=function(t){
 function absorbInfoRefresh(){
   const t=S.selectedTower;if(!ABSORB_TYPES.has(t?.type))return;
   const button=document.getElementById('absorbFuse');
-  if(button)perfSet(button,'disabled',t.type==='villus'?t.level>=10||S.towers.filter(x=>x.type==='villus'&&x.level===t.level).length<2:!absorbMaterials(t));
+  const v=t.type==='villus',reason=villusLimitReason(v?t.level+1:1);
+  const missing=v?S.towers.filter(x=>x.type==='villus'&&x.level===t.level).length<2:!absorbMaterials(t);
+  const message=v&&t.level>=10?'최종 단계입니다.':reason||(missing?'합성 재료가 부족합니다.':'합성할 수 있습니다.');
+  if(button){perfSet(button,'disabled',v&&t.level>=10||!!reason||missing);perfSet(button,'title',message)}
+  const feedback=document.getElementById('villusLimitFeedback');if(feedback)perfText(feedback,message);
+  const up=document.getElementById('upgBtn');if(v&&up){perfSet(up,'disabled',t.level>=10||!!reason);perfSet(up,'title',t.level>=10?'최종 단계입니다.':reason||'샌드박스 직접 강화')}
   const growth=document.getElementById('absorbGrowth');
   if(growth)perfText(growth,t.level===10?'Lv10 성장 완료':`설치 이후 실제 피해 ${Math.floor((S.absorbDamage||0)-t.growthStart).toLocaleString()} / ${ABSORB_XP[t.level].toLocaleString()} → Lv${t.level+1}`);
 }
@@ -3469,6 +3477,7 @@ buildTowerPanel=function(){
 };
 const absorbCore=r4TowerCore;
 r4TowerCore=function(c,type,level,scale=1){
+  if(type==='villus')return villusDrawCore(c,level,scale);
   if(!ABSORB_TYPES.has(type))return absorbCore(c,type,level,scale);
   c.save();c.scale(scale,scale);c.lineCap='round';c.lineJoin='round';
   c.fillStyle='#152f40';c.strokeStyle=TOWER_DEFS[type].color;c.lineWidth=2;c.beginPath();c.arc(0,0,13,0,TAU);c.fill();c.stroke();
@@ -3492,7 +3501,7 @@ buildTowerPanel();
 
 /* Phase two is kept outside S.enemies until the single shared arrival deadline.
  * Rendering reuses the same cached HP-state sprites as ordinary enemies. */
-ENEMY_DEFS.lastBanquet={...ENEMY_DEFS.gluttonKing,name:'최후의 만찬',emoji:'🍽️',hp:ENEMY_DEFS.gluttonKing.hp*10,unlockRound:110,size:2.05,color:'#b263b8',children:[]};
+ENEMY_DEFS.lastBanquet={...ENEMY_DEFS.gluttonKing,name:'최후의 만찬',emoji:'🍽️',hp:ENEMY_DEFS.gluttonKing.hp*20,unlockRound:110,size:2.05,color:'#b263b8',children:[]};
 const banquetEnteritis=isEnteritisRound;
 isEnteritisRound=function(round){return round!==110&&banquetEnteritis(round)};
 const banquetEntries=makeRoundEntries;
@@ -3512,20 +3521,25 @@ function banquetSegments(){
 }
 function banquetCreatePhase(e){
   const lanes=banquetSegments().horizontals,last=lanes.at(-1),wave=e.wave||S.round;
+  banquetSetFloor(e);
   const group={origin:e.t,start:S.elapsed,end:S.elapsed+1,items:[],wave};
-  const put=(type,t)=>{const child=enemy(type,{wave,enteritis:e.enteritis,spicy:false});child.t=t;child.deploying=group;group.items.push(child)};
-  const limit=(last.start+last.end)/2;
-  // 150 positions cover earlier bends and only the first half of the last row.
+  const put=(type,t)=>{const child=enemy(type,{wave,enteritis:e.enteritis,spicy:false});child.banquetWave=wave;child.t=t;child.deploying=group;group.items.push(child)};
+  const middle=(last.start+last.end)/2;
+  const limit=e.t<middle-.05?middle:e.t+(1-e.t)*.8;
+  // Keep every arrival ahead of the death position, even near the exit.
   const kinds=['starch','protein','fatblob','maltose','peptide','fatStage3'];
-  for(let i=0;i<150;i++){const t=.012+(limit-.012)*i/149;put(t>=last.start?kinds[i%3]:kinds[i%kinds.length],t)}
-  const extra=Math.max(0,wave-110)*2;
-  for(const [type,laneIndex,base] of [['gluttonKing',0,8],['malatang',1,8],['chicken',2,10]]){
-    const lane=lanes[laneIndex],a=pointAt(lane.start),b=pointAt(lane.end),length=Math.hypot(b.x-a.x,b.y-a.y),count=base+extra;
-    const space=Math.min(29*ENEMY_DEFS[type].size*.4/length,(1-.06)/Math.max(1,count-1));
-    for(let i=0;i<count;i++)put(type,lane.start+(lane.end-lane.start)*(.02+i*space));
+  for(let i=0;i<150;i++){const t=e.t+(limit-e.t)*i/149,oldPosition=.012+(middle-.012)*i/149;put(oldPosition>=last.start?kinds[i%3]:kinds[i%kinds.length],t)}
+  const count=10+Math.max(0,wave-110)*2;
+  let length=0;for(let i=1;i<path.length;i++)length+=Math.hypot(path[i].x-path[i-1].x,path[i].y-path[i-1].y);
+  const layout=[];let next=e.t;
+  for(const [type,anchor] of [['gluttonKing',e.t],['malatang',lanes[2].start],['chicken',lanes[3].start]]){
+    const start=Math.max(anchor,next),step=29*ENEMY_DEFS[type].size*.4/Math.max(1,length);
+    layout.push({type,start,step});next=start+step*(count-1)+.004;
   }
+  const tail=layout.at(-1),end=tail.start+tail.step*(count-1),scale=Math.min(1,(limit-e.t)/Math.max(1e-9,end-e.t));
+  for(const {type,start,step} of layout)for(let i=0;i<count;i++)put(type,e.t+(start+step*i-e.t)*scale);
   (S.banquetDeployments||(S.banquetDeployments=[])).push(group);
-  setMsg(`최후의 만찬 2페이즈 · 치킨 ${10+extra} · 마라탕 ${8+extra} · 폭식의 왕 ${8+extra}`);
+  setMsg(`최후의 만찬 2페이즈 · 폭식의 왕 ${count} · 마라탕 ${count} · 치킨 ${count}`);
   return group;
 }
 function banquetAdvance(){
@@ -3599,7 +3613,7 @@ r8ShowRoundIntro=function(round,options){
   if(round<110)return banquetIntro(round,options);
   setMsg(`라운드 ${round} · 최후의 만찬 1마리 · 처치 후 대규모 2페이즈`);
 };
-function banquetClear(){S.banquetDeployments=[];S.cannonEvents=[];S.shots=[]}
+function banquetClear(){S.banquetDeployments=[];S.banquetFloors=null;S.cannonEvents=[];S.shots=[]}
 const banquetClearButton=ui.clearNutrients.onclick;
 ui.clearNutrients.onclick=function(){if(S.sandbox)banquetClear();return banquetClearButton()};
 const banquetSandboxRound=r3SandboxRound;
@@ -3611,11 +3625,11 @@ document.querySelector('.sandboxBosses').appendChild(banquetButton);
 const banquetGuide=openGuide;
 openGuide=function(){
   banquetGuide();const section=document.createElement('section');section.className='guideSection';
-  section.innerHTML='<h3>흡수 타워와 최후의 만찬</h3><p>모세혈관은 빠른 단일 공격, 암죽관은 느린 범위 공격을 합니다. 각 타워를 설치한 뒤 전 맵에서 실제로 줄어든 체력으로 Lv10까지 성장합니다. 초과 피해와 설치 전 피해는 제외합니다. 모세혈관 Lv8 + 암죽관 Lv8을 선택한 재료 위치에서 융털로 합성할 수 있습니다.</p><p>융털은 같은 레벨 두 개를 수동 합성해 성장합니다. 가장 가까운 두 개 중 뒤쪽에 남으며, 개수 제한이 없습니다. 뒤쪽 배치·경로 진행도·Lv7 저체력 보너스는 합산됩니다. 마지막 가로 구간에 적이 오면 모든 융털에 6초 공속 보너스가 발동하며 18초 공용 주기를 사용합니다.</p><p>110라운드부터 최후의 만찬 1마리만 먼저 등장합니다. 체력은 기존 보스와 같은 라운드당 1.5% 복리 증가 규칙을 따릅니다. 처치하면 1게임초 동안 적들이 펼쳐지며 이동 중에는 공격과 감속·넉백을 받지 않습니다. 110라운드의 2페이즈는 치킨 10, 마라탕 8, 폭식의 왕 8이며 이후 라운드마다 각각 2마리씩 증가합니다. 110라운드는 장염에서 제외됩니다.</p>';
+  section.innerHTML='<h3>흡수 타워</h3><p>모세혈관은 빠른 단일 공격, 암죽관은 느린 범위 공격을 합니다. 각 타워를 설치한 뒤 전 맵에서 실제로 줄어든 체력으로 Lv10까지 성장합니다. 초과 피해와 설치 전 피해는 제외합니다. 모세혈관 Lv8 + 암죽관 Lv8을 선택한 재료 위치에서 융털로 합성할 수 있습니다.</p><p>'+TOWER_DEFS.villus.desc+'</p><p>'+villusSkillDescription({level:10,row:14,rangeTiles:12})+'</p><div class="guideBoss"><span aria-label="미지의 보스" style="font:bold 64px Georgia;color:#e9a3ea;width:80px;text-align:center">?</span><b>???: 식사의 끝에서 기다리고 있다.</b></div>';
   ui.modalBody.appendChild(section);
 };ui.guide.onclick=openGuide;
 const banquetCodex=openCodex;
-openCodex=function(){banquetCodex();const card=document.createElement('div');card.className='codexItem';card.innerHTML=`<b style="color:#e9a3ea">🍽️ 최후의 만찬</b><div class="small">기본 HP ${ENEMY_DEFS.lastBanquet.hp.toLocaleString()} · 110라운드부터 1마리 · 처치 후 2페이즈</div>`;ui.codexBody.querySelector('.codexGrid').appendChild(card)};ui.codex.onclick=openCodex;
+openCodex=function(){banquetCodex();const card=document.createElement('div');card.className='codexItem';card.innerHTML='<div style="font:bold 64px Georgia;color:#e9a3ea;text-align:center">?</div><b>???: 식사의 끝에서 기다리고 있다.</b>';ui.codexBody.querySelector('.codexGrid').appendChild(card)};ui.codex.onclick=openCodex;
 
 /* Leaderboard progress is independent of the round-start button.
  * One counter per outstanding wave, updated only on enqueue/spawn/removal.
@@ -3692,6 +3706,194 @@ r3SubmitScore=async function(){
   if(S.sandbox||recordCompletedRound()===0)return;
   return recordSubmit();
 };
+
+/* Limits are checked at user mutation boundaries. Damage/effect state is O(1)
+ * per hit; absorption particles are drawn procedurally, never queued. */
+function villusLimitReason(level){
+  if(level>10)return '최종 단계입니다.';
+  const cap=level===10?1:2,count=S.towers.filter(t=>t.type==='villus'&&t.level===level).length;
+  return count>=cap?(level===10?'Lv10 융털은 1개만 보유할 수 있습니다.':`Lv${level} 융털을 이미 최대 수량(2개) 보유 중입니다.`):'';
+}
+function villusProgressBonus(t,e){
+  const end=banquetSegments().horizontals.at(-1).end;
+  return absorbClamp((e.t-.35)/(end-.35))*(.45+.45*(t.level-1)/9);
+}
+function villusSkillDescription(t){
+  const lane=banquetSegments().horizontals[1],start=Math.round((.35-lane.start)/(lane.end-lane.start)*100);
+  const rear=Math.round((.8+.2*(t.level-1)/9)*100),end=Math.round((.45+.45*(t.level-1)/9)*100);
+  return `<b>후방 배치</b>: 첫 가로길 높이에서 +0%, 아래쪽에 지을수록 증가하여 마지막 가로길 높이부터 +${rear}%.<br>`+
+    `<b>끝단 흡수</b>: 적이 두 번째 가로길의 약 ${start}% 지점(전체 경로 35%)을 지나면 점차 증가, 마지막 세로길에 들어서면 최대 +${end}%. Lv10 최대 +90%.<br>`+
+    `<b>사거리</b>: 현재 ${t.rangeTiles.toFixed(1)}타일, 합성 단계에 따라 3 → 12타일로 증가.<br>`+
+    `<b>저체력 흡수</b>: ${t.level<7?'Lv7부터 활성화. ':''}Lv7~9는 적의 남은 HP 66% 이하에서 +15%, 33% 이하에서 +30%. Lv10은 각각 +25% / +50%. 두 수치는 중복되지 않습니다.<br>`+
+    `<b>긴급 흡수</b>: 마지막 가로길에 살아 있는 적이 진입하면 모든 융털의 공격속도가 6게임초 동안 +${t.level>=5?25:20}%. 발동 시작부터 18게임초 공용 주기(Lv5부터 +25%).<br>`+
+    `위 피해 보너스는 합산되며 일반 영양소와 보스 한 마리에 적용됩니다. 흡수선은 범위 피해를 주지 않습니다.`;
+}
+function villusDrawCore(c,level,scale=1){
+  const tier=level===10?4:level>=7?3:level>=4?2:1;
+  c.save();c.scale(scale,scale);c.lineCap='round';c.lineJoin='round';
+  c.fillStyle=tier===4?'#354c4c':'#152f40';c.strokeStyle=tier===4?'#fff2ac':'#ffe3a1';c.lineWidth=1.7;
+  c.beginPath();c.arc(0,0,13,0,TAU);c.fill();c.stroke();
+  if(tier>=2){c.strokeStyle='rgba(151,255,213,.45)';c.lineWidth=tier===4?2:1;c.beginPath();c.arc(0,0,19,0,TAU);c.stroke()}
+  for(let i=1;i<tier;i++)for(const side of [-1,1]){
+    const x=side*(5+i*2.4),y=5-i*2;
+    c.fillStyle=i%2?'#86e6c0':'#c7efd4';c.beginPath();c.ellipse(x,y,2.4,7+i*.5,side*.45,0,TAU);c.fill();
+    c.strokeStyle='#348f8c';c.lineWidth=.8;c.beginPath();c.moveTo(x,y+5);c.lineTo(x-side*2,y-4);c.stroke();
+  }
+  c.fillStyle=tier===4?'#fff1b7':'#ffe3a1';c.beginPath();c.moveTo(-6,11);c.bezierCurveTo(-10,-18,10,-18,6,11);c.closePath();c.fill();
+  c.strokeStyle='#dc698b';c.lineWidth=1.8;c.beginPath();c.moveTo(-3.5,10);c.lineTo(-3.5,-3);c.quadraticCurveTo(0,-11,3.5,-3);c.lineTo(3.5,10);c.stroke();
+  c.strokeStyle='#359f82';c.lineWidth=2;c.beginPath();c.moveTo(0,11);c.lineTo(0,-4);c.stroke();
+  for(let i=0;i<tier;i++){c.fillStyle='#f5fff1';c.beginPath();c.arc(0,4-i*3,1,0,TAU);c.fill()}
+  if(tier===4){
+    c.fillStyle='#fff4b3';for(let i=0;i<4;i++){c.save();c.rotate(i*TAU/4);c.beginPath();c.moveTo(0,-24);c.lineTo(2,-20);c.lineTo(0,-17);c.lineTo(-2,-20);c.closePath();c.fill();c.restore()}
+    c.fillStyle='#ffffff';c.beginPath();c.arc(0,-8,2,0,TAU);c.fill();
+  }c.restore();
+}
+const villusBuildRefresh=refreshBuildButtons;
+refreshBuildButtons=function(){
+  villusBuildRefresh();
+  for(const type of ['atp','digestCannon']){const card=ui.grid.querySelector(`[data-key="${type}"]`);if(card)perfText(card.querySelector('.towerTag'),r5Limited(type)?'최대 3개 보유 중':TOWER_DEFS[type].short)}
+  const b=ui.grid.querySelector('[data-key="villus"]');if(!b)return;
+  const reason=villusLimitReason(1);perfSet(b,'disabled',!!reason);perfSet(b,'title',reason);
+  perfText(b.querySelector('.towerTag'),reason?'Lv1 최대 2개 보유 중':TOWER_DEFS.villus.short);
+};
+const villusPlace=placeAt;
+placeAt=function(...args){if(S.selectedBuild==='villus'){const reason=villusLimitReason(1);if(reason){setMsg(reason);refreshBuildButtons();return}}return villusPlace(...args)};
+for(const type of ['atp','digestCannon'])TOWER_DEFS[type].desc+=' 최대 3개까지 보유할 수 있습니다.';
+for(const type of ['carbCrusher','proteinCrusher','fatCrusher','fusionSerum'])TOWER_DEFS[type].desc+=' 보유 제한: 최대 1개. 합성에 사용되어 사라진 경우 다시 제작할 수 있습니다.';
+TOWER_DEFS.digestionKing.desc+=' 보유 제한: 최대 1개.';
+const villusLimitedInfo=showTowerInfo;
+showTowerInfo=function(t){
+  villusLimitedInfo(t);
+  if(['atp','digestCannon'].includes(t.type)&&!ui.info.textContent.includes('최대 3개')){
+    const note=document.createElement('p');note.className='cool';note.textContent='보유 제한: 최대 3개까지 보유할 수 있습니다.';ui.info.appendChild(note);
+  }
+  for(const button of ui.info.querySelectorAll('[data-fuse]'))if(r3FusionStatus(button.dataset.fuse,t).exists){button.textContent='최대 1개 보유 중';button.title='합성 재료로 사용되어 사라지면 다시 제작할 수 있습니다.'}
+};
+const villusShot=addShot;
+addShot=function(t,e,...args){
+  if(t.type!=='villus')return villusShot(t,e,...args);
+  Math.random(); // Retain the previous single decorative RNG draw per attack.
+  if(!cadenceVisuals)return;
+  const state=t.villusShot||(t.villusShot={age:0,life:0,target:null,tx:0,ty:0}),p=perfPosition(e);
+  state.life=.26;state.target=e;state.tx=p.x;state.ty=p.y;
+};
+const villusUpdate=update;
+update=function(dt){
+  if(S.paused||S.gameOver)return;
+  for(const t of S.towers){const v=t.villusShot;if(v?.life>0){v.age+=dt;v.life=Math.max(0,v.life-dt);if(!v.life)v.target=null}}
+  return villusUpdate(dt);
+};
+const villusDrawShots=drawShots;
+drawShots=function(){
+  villusDrawShots();ctx.save();
+  for(const t of S.towers){
+    const v=t.villusShot;if(!v||v.life<=0)continue;
+    if(v.target&&!v.target.dead){const p=perfPosition(v.target);v.tx=p.x;v.ty=p.y}
+    const tier=t.level===10?4:t.level>=7?3:t.level>=4?2:1;
+    const dx=t.x-v.tx,dy=t.y-v.ty,len=Math.hypot(dx,dy)||1,nx=-dy/len,ny=dx/len;
+    const fade=Math.min(1,v.life/.08),strands=tier>=3?3:1,count=tier*2;
+    ctx.globalAlpha=fade*.65;ctx.strokeStyle=tier===4?'#fff3b0':'#99f8cf';ctx.lineWidth=tier===4?3.5:1+tier*.3;
+    for(let i=0;i<strands;i++){
+      const offset=(i-(strands-1)/2)*7;
+      ctx.beginPath();ctx.moveTo(v.tx,v.ty);ctx.quadraticCurveTo((v.tx+t.x)/2+nx*offset,(v.ty+t.y)/2+ny*offset,t.x,t.y);ctx.stroke();
+    }
+    ctx.globalAlpha=fade;ctx.fillStyle='#fffbd4';
+    for(let i=0;i<count;i++){
+      const f=(v.age*3+i/count)%1,wave=tier>=3?Math.sin(f*TAU*2+i)*5*Math.sin(f*Math.PI):0;
+      ctx.beginPath();ctx.arc(v.tx+dx*f+nx*wave,v.ty+dy*f+ny*wave,1.2+tier*.35,0,TAU);ctx.fill();
+    }
+    ctx.globalAlpha=fade*.25;ctx.fillStyle='#cfffdc';ctx.beginPath();ctx.arc(t.x,t.y,5+tier*2,0,TAU);ctx.fill();
+    if(tier>=3){ctx.strokeStyle='#fff4be';ctx.lineWidth=1;ctx.beginPath();ctx.arc(t.x,t.y,8+(v.age*32)%14,0,TAU);ctx.stroke()}
+  }ctx.restore();
+};
+
+/* Origin wave is separate from enemy.wave: ordinary split children intentionally
+ * use their unlock round for HP. Keep that balance while inheriting the floor. */
+let banquetV2Parent=null;
+const banquetAncestry=new WeakMap();
+function banquetOrigin(e){return e.banquetWave??e.recordWave??banquetAncestry.get(e)??e.wave}
+function banquetClampFloor(e){
+  const floor=S.banquetFloors?.get(banquetOrigin(e));
+  if(floor!==undefined&&e.t<floor){e.t=floor;perf.grid=null}
+}
+function banquetSetFloor(e){
+  const wave=banquetOrigin(e),floors=S.banquetFloors||(S.banquetFloors=new Map());
+  floors.set(wave,Math.max(floors.get(wave)||0,e.t));
+  for(const other of S.enemies)banquetClampFloor(other);
+  for(const group of S.banquetDeployments||[])for(const other of group.items)banquetClampFloor(other);
+}
+const banquetV2Enemy=enemy;
+enemy=function(type,options){
+  const e=banquetV2Enemy(type,options);
+  if(type==='lastBanquet'){e.hp=e.maxHp=Math.round(ENEMY_DEFS.lastBanquet.hp*Math.pow(1.10,Math.max(0,e.wave-110)));e.absorbHP=e.hp}
+  if(banquetV2Parent)banquetAncestry.set(e,banquetOrigin(banquetV2Parent));
+  return e;
+};
+const banquetV2Death=resolveDeath;
+resolveDeath=function(e){
+  const previous=banquetV2Parent,start=S.enemies.length;banquetV2Parent=e;
+  try{return banquetV2Death(e)}finally{banquetV2Parent=previous;for(let i=start;i<S.enemies.length;i++)banquetClampFloor(S.enemies[i])}
+};
+const banquetV2Spawn=spawnOne;
+spawnOne=function(...args){const start=S.enemies.length,result=banquetV2Spawn(...args);for(let i=start;i<S.enemies.length;i++)banquetClampFloor(S.enemies[i]);return result};
+for(const button of document.querySelectorAll('[data-spawn]')){
+  const spawn=button.onclick;button.onclick=function(...args){const start=S.enemies.length,result=spawn.apply(this,args);for(let i=start;i<S.enemies.length;i++)banquetClampFloor(S.enemies[i]);return result};
+}
+const banquetV2Enqueue=enqueueRound;
+enqueueRound=function(...args){if(S.banquetFloors)S.banquetFloors=null;return banquetV2Enqueue(...args)};
+const banquetV2Backtrack=r5Backtrack;
+r5Backtrack=function(e,...args){
+  if(e.deploying)return;
+  if(e.type==='lastBanquet'){
+    if(!e.dead&&e.hp>0&&(e.banquetStaggerReady||0)<=S.elapsed){e.stun=Math.max(e.stun||0,.25*1.5);e.banquetStaggerReady=S.elapsed+3}
+    return;
+  }
+  const result=banquetV2Backtrack(e,...args);banquetClampFloor(e);return result;
+};
+// These decorations are drawn once into a small reusable canvas.
+let banquetDebrisSprite=null;
+function banquetDebris(){
+  if(banquetDebrisSprite)return banquetDebrisSprite;
+  const canvas=document.createElement('canvas');canvas.width=120;canvas.height=90;const c=canvas.getContext('2d');c.translate(60,45);c.scale(2,2);
+  c.fillStyle='#883c47';c.beginPath();c.ellipse(0,5,18,8,.2,0,TAU);c.fill();
+  c.save();c.rotate(-.25);c.fillStyle='#7d513b';c.strokeStyle='#f2d09b';c.lineWidth=1.5;c.fillRect(-16,-9,32,12);c.strokeRect(-16,-9,32,12);
+  c.strokeStyle='#c18b5c';c.lineWidth=3;c.beginPath();c.moveTo(-12,-9);c.lineTo(-16,-18);c.moveTo(12,-9);c.lineTo(15,-18);c.stroke();c.restore();
+  c.fillStyle='#fff0d2';c.beginPath();c.ellipse(10,9,7,4,-.4,0,TAU);c.fill();c.strokeStyle='#b4d9de';c.lineWidth=1.3;c.beginPath();c.moveTo(-17,5);c.lineTo(-23,14);c.moveTo(-17,5);c.lineTo(-19,1);c.moveTo(-17,5);c.lineTo(-15,1);c.stroke();
+  c.fillStyle='#f2aa54';for(const [x,y] of [[-7,9],[19,0],[0,12]]){c.fillRect(x,y,4,3)}
+  return banquetDebrisSprite=canvas;
+}
+const banquetV2DrawEnemies=drawEnemies;
+drawEnemies=function(){
+  const result=banquetV2DrawEnemies();
+  if(S.banquetFloors?.size){
+    const sprite=banquetDebris();ctx.save();
+    for(const t of S.banquetFloors.values()){
+      const p=pointAt(t),a=pointAt(Math.max(0,t-.001)),b=pointAt(Math.min(1,t+.001)),angle=Math.atan2(b.y-a.y,b.x-a.x);
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(angle);ctx.strokeStyle='#ffdf8a';ctx.lineWidth=2;ctx.setLineDash([4,3]);ctx.beginPath();ctx.moveTo(0,-22);ctx.lineTo(0,22);ctx.stroke();ctx.setLineDash([]);ctx.restore();
+      // Draw above the crowd: bosses can otherwise entirely cover the boundary.
+      ctx.drawImage(sprite,p.x-30,p.y-34,60,45);ctx.fillStyle='rgba(20,15,32,.9)';ctx.fillRect(p.x-31,p.y+14,62,15);
+      ctx.font='bold 9px system-ui';ctx.textAlign='center';ctx.fillStyle='#fff2bb';ctx.fillText('임시 시작점',p.x,p.y+25);
+    }ctx.restore();
+  }
+  return result;
+};
+const banquetV2Body=perfPaintEnemyBody;
+perfPaintEnemyBody=function(e,r,face){
+  if(e.type!=='lastBanquet')return banquetV2Body(e,r,face);
+  ctx.fillStyle=e.color;ctx.strokeStyle='#ffe6b5';ctx.lineWidth=3;drawEnemyShape(ctx,e,r);ctx.save();
+  ctx.fillStyle='#edca8b';ctx.beginPath();ctx.ellipse(0,r*.45,r*.88,r*.25,0,0,TAU);ctx.fill();ctx.strokeStyle='#fff2cf';ctx.lineWidth=2;ctx.stroke();
+  // Broad silhouettes, then a handful of readable food icons; cached at 3 HP states.
+  ctx.fillStyle='#a75132';ctx.beginPath();ctx.moveTo(-r*.8,r*.38);ctx.quadraticCurveTo(-r*.66,-r*.28,0,-r*.82);ctx.quadraticCurveTo(r*.6,-r*.3,r*.83,r*.38);ctx.closePath();ctx.fill();
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  for(const [food,x,y,s] of [['🍔',-.45,.05,.46],['🍕',.4,.05,.48],['🍗',-.27,-.33,.42],['🥟',.23,-.36,.36],['🍜',0,.3,.5],['🥩',-.64,.34,.31],['🧀',.64,.31,.32],['🍣',0,-.62,.33]]){
+    ctx.font=`${Math.round(r*s)}px serif`;ctx.fillText(food,r*x,r*y);
+  }
+  ctx.strokeStyle='#ffda83';ctx.lineWidth=r*.035;for(let i=0;i<3;i++){ctx.beginPath();ctx.moveTo(-r*.18,r*(.02+i*.065));ctx.bezierCurveTo(0,-r*.04,r*.1,r*.19,r*.27,r*(.03+i*.065));ctx.stroke()}
+  ctx.fillStyle='#f5efe0';for(const [x,y] of [[-.55,-.14],[.5,-.18],[-.38,.43],[.4,.42]]){ctx.beginPath();ctx.ellipse(r*x,r*y,r*.07,r*.035,.4,0,TAU);ctx.fill()}
+  ctx.fillStyle='#ffdf79';ctx.beginPath();ctx.moveTo(-r*.25,-r*.71);ctx.lineTo(-r*.3,-r*.97);ctx.lineTo(-r*.08,-r*.82);ctx.lineTo(0,-r*1.03);ctx.lineTo(r*.1,-r*.82);ctx.lineTo(r*.3,-r*.97);ctx.lineTo(r*.25,-r*.71);ctx.closePath();ctx.fill();
+  ctx.restore();if(face)drawCartoonFace(e,r);
+};
+buildTowerPanel();
 
 backgroundInstall();
 </script>
