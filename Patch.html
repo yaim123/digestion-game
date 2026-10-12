@@ -2,6 +2,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,7 +22,7 @@
 #legend{position:absolute;z-index:3;left:9px;bottom:9px;padding:7px 9px;border-radius:8px;background:rgba(23,19,40,.88);border:1px solid #6b5c7c;color:#e7d9ef;font-size:9px;pointer-events:none}#sandboxTools{display:none;position:absolute;z-index:4;right:10px;bottom:10px;width:240px;max-height:min(68dvh,560px);overflow:auto;padding:8px;border:1px solid #68c9c2;border-radius:10px;background:rgba(10,35,42,.94);font-size:10px}#sandboxTools.show{display:grid;gap:5px}.sandboxHead{font-weight:900;color:#9bf4e4}.sandboxBtn{border:1px solid #4c8d8d;border-radius:7px;padding:6px;background:#153746;color:#ecfffb;font-size:9px;font-weight:800;cursor:pointer}.sandboxSpawn{display:grid;grid-template-columns:1fr 1fr;gap:4px}.sandboxBosses{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px}.sandboxLabel{font-size:9px;color:#b9f8ed;font-weight:800;margin-top:2px}
 #overlay,#modalLayer,#scoreModal{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;background:rgba(3,5,18,.76);padding:18px}#overlay.show,#modalLayer.open,#scoreModal.open{display:flex}.card,.modalCard{background:#191a33;border:1px solid #86769b;border-radius:16px;padding:22px;max-width:560px;width:min(560px,94vw);max-height:86dvh;overflow:auto;text-align:center}.card h2,.modalCard h2{margin:0 0 8px}.restart{padding:11px 18px;background:#ff8dc1;border:0;border-radius:10px;font-weight:900;cursor:pointer}.modalCard{text-align:left}.modalHead{display:flex;justify-content:space-between;gap:10px;align-items:center}.modalHead h2{font-size:18px}.closeBtn{border:1px solid #74648d;background:#2b2949;color:#fff;border-radius:8px;padding:6px 9px;cursor:pointer}.modalText{color:#d8dcec;font-size:12px;line-height:1.6}.modalActions{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}.modalBtn{font-size:11px}.modalBtn.primary{background:#c4558e}.leaderList{display:grid;gap:7px;margin-top:12px}.leaderItem{display:grid;grid-template-columns:34px 1fr auto;gap:8px;align-items:center;border:1px solid #504c6c;background:#20203a;border-radius:10px;padding:8px;font-size:11px}.leaderItem.top{border-color:#ffd166;background:#493b20}.leaderScore{color:#ffd166;font-weight:900}.formGrid{display:grid;gap:8px;margin-top:10px}.formGrid label{font-size:10px;color:#bbc5dc}.formGrid input{width:100%;padding:9px;border:1px solid #65617f;border-radius:8px;background:#111426;color:#fff}.scoreName{font-size:13px;color:#ffd166;font-weight:900}.choiceActions{display:flex;gap:8px;justify-content:center;margin-top:14px}
 #codex{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,7,13,.74);z-index:8;padding:18px}#codex.open{display:flex}.codexCard{width:min(760px,94%);max-height:84%;overflow:auto;background:#1b1c38;border:1px solid #75618b;border-radius:16px;padding:16px}.codexHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.codexHead h2{margin:0;font-size:17px}.codexGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.codexItem{border:1px solid #504d70;border-radius:9px;padding:8px;background:#232342}.codexItem b{font-size:12px}.codexItem .small{font-size:9px;color:#c2cae0;line-height:1.4;margin-top:3px}.codexItem .split{margin-top:6px;padding:6px;border-radius:7px;background:#15162d;border:1px solid #41415e;font-size:9px;color:#e2e7f8}.codexItem .split strong{color:#ffe27c}.nutrientGlyph{display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:4px;border:1px solid rgba(255,255,255,.75);background:var(--c);position:relative}.nutrientGlyph.carb{clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0 50%)}.nutrientGlyph.protein{border-radius:3px}.nutrientGlyph.fat{border-radius:70% 35% 70% 70%;transform:rotate(45deg) scale(.82)}.nutrientGlyph.special{border-radius:55% 55% 45% 45%;background:linear-gradient(180deg,#e7fffb,#7cb4b5)}.targetBox{margin-top:8px;padding:7px;border-radius:8px;background:#15162d;border:1px solid #41415e}.targetTitle{font-size:9px;color:#b9bdd1;margin-bottom:5px;font-weight:800}.targetBtns{display:flex;flex-wrap:wrap;gap:4px}.targetBtn{border:1px solid #5b5779;background:#252440;color:#e9eafa;border-radius:7px;padding:4px 6px;font-size:9px;font-weight:800;cursor:pointer}.targetBtn.active{border-color:#ff9fcd;background:#663b5a}.targetHint{font-size:9px;color:#abb5ca;margin-top:4px}
-@media(max-width:1050px){#app{grid-template-columns:minmax(0,1fr) 330px}.towerDesc{display:none}#message{max-width:40%}}@media(max-width:780px){body{overflow:auto}#app.gameVisible{display:flex;flex-direction:column;height:auto;min-height:100dvh}#gameWrap{height:68dvh;min-height:440px}#panel{min-height:450px;border-left:0;border-top:1px solid #504360}.lobbyCenter{top:44%}.lobbyTitle{font-size:50px}.codexGrid{grid-template-columns:1fr}#message{order:20;margin-left:0;max-width:100%;flex-basis:100%}.stat{padding:5px 7px}.ctrl{padding:6px 7px;font-size:10px}}
+@media(max-width:1050px){#app{grid-template-columns:minmax(0,1fr) 330px}.towerDesc{display:none}#message{max-width:40%}}@media(max-width:599px){body{overflow:auto}#app.gameVisible{display:flex;flex-direction:column;height:auto;min-height:100dvh}#gameWrap{height:68dvh;min-height:440px}#panel{min-height:450px;border-left:0;border-top:1px solid #504360}.lobbyCenter{top:44%}.lobbyTitle{font-size:50px}.codexGrid{grid-template-columns:1fr}#message{order:20;margin-left:0;max-width:100%;flex-basis:100%}.stat{padding:5px 7px}.ctrl{padding:6px 7px;font-size:10px}}
 /* Cumulative balancing and readability overrides */
 .titleWrap{position:relative;display:inline-block}.titlePepper{position:absolute;top:-27px;left:50%;transform:translateX(-50%) rotate(-18deg);font-size:25px;filter:drop-shadow(1px 2px 0 #7c294c)}.lobbyTitle{white-space:nowrap}.towerBtn{overflow:hidden}.towerDesc{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}.shopGroup{grid-column:1/-1;color:#ffd1e5;font-size:10px;font-weight:900;letter-spacing:.08em;padding:6px 2px 0;border-bottom:1px solid rgba(255,190,220,.25)}.indigestionMeter{width:68px;height:7px;overflow:hidden;border-radius:99px;background:#3a2733;border:1px solid #784957;margin-top:3px}.indigestionMeter i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffbd68,#ff5969);transition:width .15s linear}.settingsRange{width:100%;accent-color:#ff78b5}.settingsValue{display:block;text-align:right;color:#ffd166;font-weight:900;margin-top:4px}
 /* Latest balance pass: the map stays square; infrequent controls live in Settings. */
@@ -35,7 +36,7 @@
    when the usable viewport is genuinely narrow. */
 .lobbySub{width:max-content;max-width:calc(100vw - 24px);margin:0 auto 20px;white-space:nowrap;font-size:clamp(7.5px,2.75vw,13px);line-height:1.2;letter-spacing:-.025em}
 .guideSection{padding:9px 0;border-top:1px solid rgba(160,175,214,.22)}.guideSection:first-child{border-top:0;padding-top:0}.guideSection h3{font-size:13px;margin:0 0 5px;color:#ffd4e7}.guideSection p{margin:5px 0}.guideTowerList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.guideTower{display:grid;grid-template-columns:38px minmax(0,1fr);gap:5px;align-items:center;padding:6px;border:1px solid #4d4b70;border-radius:8px;background:#20203a;font-size:9px;line-height:1.35}.guideTower canvas{width:38px;height:31px}.guideTower b{font-size:10px}.guideSmall{font-size:9px;color:#c9d2e8}.guideBoss{display:flex;gap:6px;align-items:center;padding:5px 0;font-size:10px}.guideBossVisual{position:relative;display:inline-block;min-width:24px;font-size:20px;text-align:center}.guideBossVisual i{position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-size:10px;font-style:normal}.guideRule{padding:7px;border-radius:8px;background:#15162d;border:1px solid #41415e;font-size:9px;line-height:1.45}
-@media(max-width:780px){
+@media(max-width:599px){
   body.r7Compact{overflow:hidden}
   #app.gameVisible{position:fixed;inset:0 auto auto 0;display:grid!important;grid-template-columns:minmax(0,1fr) 250px;width:calc(100vw / var(--r7-scale,1));height:calc(100dvh / var(--r7-scale,1));min-height:0;transform:scale(var(--r7-scale,1));transform-origin:top left}
   #app.gameVisible #gameWrap{height:auto;min-height:0}
@@ -136,6 +137,80 @@ body.mobileLandscape #mlDetailScroll #sellBtn:disabled{display:none}
 body:not(.mobileLandscape) #app.gameVisible #towerGrid{flex:1 1 0;min-height:0;max-height:none;overflow:auto}
 body:not(.mobileLandscape) #app.gameVisible #info{flex:0 1 auto;min-height:0;max-height:29%}
 #bottomPanel{flex-shrink:0}
+
+/* Readable PC/tablet panel. Compact phone layouts retain their own rules. */
+@media(min-width:600px) and (min-height:541px){
+  #app.gameVisible{--panel-base:clamp(300px,29vw,420px);--panel-extra:min(calc(var(--panel-base)*.12),max(0px,calc(100vw - var(--panel-base) - 100dvh)));grid-template-columns:minmax(0,1fr) calc(var(--panel-base) + var(--panel-extra));height:100dvh}
+  #panel h1{font-size:20px;padding:14px 14px 6px}
+  #towerGrid{grid-auto-rows:max-content;align-content:start}
+  .towerBtn{min-height:150px;height:max-content;padding:10px;gap:3px}
+  .towerBtn>*{flex-shrink:0}
+  .towerName{font-size:14px}.towerTag{font-size:11px}.towerMeta{font-size:12px}
+  .towerDesc{font-size:12px;line-height:1.5;display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important}
+  .towerBtn .towerPreview{width:48px;height:39px}
+  #app.gameVisible #info{font-size:13px;min-height:0;max-height:42vh;flex:0 1 auto;padding:12px;overflow:auto}
+  .infoTitle{font-size:16px}.upgrade .uhead{font-size:13px}.upgrade .ucost{font-size:12px}
+  .awaken,.fusionBox,.targetTitle,.targetHint,.targetBtn{font-size:12px}
+  .targetBtn{min-height:34px;padding:6px 9px}.sellBtn{font-size:14px;min-height:42px}
+  .sellBtn small{font-size:11px}.shopGroup{font-size:12px}
+}
+
+
+/* Readability changes are confined to UI elements, never the game canvas. */
+#message .bossIntroName{font-size:1.2em;font-weight:900;color:#ffe08a;background:#55421e;padding:1px 4px;border-radius:4px}
+.infoEmpty{margin:0;color:#c6d2e5;line-height:1.6}
+#modalLayer.settingsOpen .modalCard{width:min(650px,94vw);max-width:650px;max-height:90dvh;padding:24px}
+#modalLayer.settingsOpen .modalHead h2{font-size:24px}
+#modalLayer.settingsOpen .modalText{font-size:16px;line-height:1.6}
+#modalLayer.settingsOpen .closeBtn{font-size:15px;min-height:44px;min-width:44px}
+#modalLayer.settingsOpen .settingsValue{font-size:16px}
+#modalLayer.settingsOpen .settingsRange{height:36px;cursor:pointer}
+#modalLayer.settingsOpen .cool{font-size:13px;text-align:left;line-height:1.5}
+.settingsAudio{display:grid;gap:8px;margin:18px 0;padding:16px;border:1px solid #66698a;border-radius:10px;background:#12192a}
+.settingsAudio label{font-weight:800}
+.settingsBgmRow{display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid #444c67;padding-top:12px;margin-top:4px}
+#settingsBgmToggle{min-width:100px;min-height:44px;padding:8px 18px;border-radius:8px;border:1px solid #919ab5;background:#343c52;color:#fff;font-weight:900;cursor:pointer}
+#settingsBgmToggle[aria-pressed="true"]{border-color:#99dec7;background:#236452}
+#modalLayer.settingsOpen .modalActions{gap:10px;margin-top:18px}
+#modalLayer.settingsOpen .modalBtn{font-size:15px;min-height:44px;padding:10px 16px;font-weight:800}
+#modalLayer.settingsOpen #r6Home{width:100%;min-height:50px;background:#753448;border:1px solid #de8d9e;color:#fff;font-size:17px}
+#modalLayer.settingsOpen #r6Back{width:100%}
+@media(min-width:600px) and (min-height:541px){
+ #message{font-size:14px;font-weight:700;line-height:1.5;padding:9px 12px;background:#11192eee;border-color:#8998bd;max-width:100%}
+}
+@media(min-width:1100px) and (min-height:541px){
+ .towerName{font-size:15px}.towerTag{font-size:12px}.towerMeta{font-size:13px}.towerDesc{font-size:13px;line-height:1.5}
+ .towerBtn{padding:11px;gap:4px}
+}
+@media(max-width:599px),(max-height:540px){
+ #modalLayer.settingsOpen .modalCard{padding:14px;max-height:92dvh}
+ #modalLayer.settingsOpen .modalHead h2{font-size:20px}
+ #modalLayer.settingsOpen .modalText{font-size:14px}
+ #modalLayer.settingsOpen .modalBtn{font-size:14px}
+ #modalLayer.settingsOpen #r6Home{font-size:15px}
+ .settingsAudio{padding:12px;margin:12px 0;gap:5px}
+}
+
+
+.settingsExit{margin-top:22px;padding-top:16px;border-top:1px solid #60647e}
+#modalLayer.settingsOpen .settingsExit #r6Home{background:#3b354e;border-color:#958ba9}
+@media(min-width:1280px) and (min-height:700px){
+ #topbar{gap:4px 7px}
+ #topbar .stat{padding:5px 10px;min-height:50px}
+ #topbar .stat small{font-size:12px;font-weight:700;line-height:1.2}
+ #topbar .stat b{font-size:20px;line-height:1.1;margin-top:2px}
+ #topbar .badStat{min-width:165px}
+ #topbar .ctrl{font-size:12px;min-height:34px;padding:6px 10px}
+ #topbar #message{padding:6px 9px}
+ #topbar .indigestionEffect{font-size:10px}
+}
+
+
+#sandboxTools .sandboxHead{display:flex;align-items:center;justify-content:space-between;gap:5px}
+#sandboxMinimize{flex:none;min-width:30px;height:30px;padding:0;border:1px solid #75bcb8;border-radius:6px;background:#214550;color:#fff;font-size:20px;font-weight:800;cursor:pointer;touch-action:manipulation}
+#sandboxTools.isMinimized>:not(.sandboxHead){display:none!important}
+#sandboxTools.isMinimized{max-height:none;overflow:hidden}
+
 </style>
 </head>
 <body>
@@ -194,7 +269,7 @@ function idleAudioCheck(){
 }
 function idleAudioActivity(event){
   if(backgroundIsHidden())return;
-  if(event?.target instanceof Element&&event.target.closest('#lobbyBgmBtn,#gameBgmBtn'))return;
+  if(event?.target instanceof Element&&event.target.closest('#lobbyBgmBtn,#gameBgmBtn,#settingsBgmToggle'))return;
   idleAudioCheck();
   // Lobby inactivity resets on input; round waiting counts until a round starts.
   if(idleAudio.mode==='lobby'||idleAudio.sleeping)idleAudioWake();
@@ -317,7 +392,13 @@ try{bgmEnabled=localStorage.getItem('nutritionTdBgm')!=='off';masterVolume=safeV
 function setAudioVolume(track,value){const a=audio[track];if(!a)return 0;const volume=safeVolume(value,0);try{a.volume=volume}catch(error){window.__nutritionAudioError=`${track}-volume-${error?.name||'error'}`}return volume}
 function applyVolume(){masterVolume=safeVolume(masterVolume,.3);setAudioVolume('main',masterVolume);setAudioVolume('game',masterVolume)}
 applyVolume();
-function syncBgmButtons(){for(const b of [ui.lobbyBgm,ui.gameBgm])if(b)b.textContent=bgmEnabled?'🎵 BGM ON':'🔇 BGM OFF'}
+function syncBgmButtons(){
+  for(const b of [ui.lobbyBgm,ui.gameBgm])if(b)b.textContent=bgmEnabled?'🎵 BGM ON':'🔇 BGM OFF';
+  const toggle=document.getElementById('settingsBgmToggle');
+  if(toggle){toggle.textContent=bgmEnabled?'ON':'OFF';toggle.setAttribute('aria-pressed',String(bgmEnabled))}
+  const status=document.getElementById('r6BgmState');
+  if(status)status.textContent=!bgmEnabled?'배경음악이 꺼져 있습니다.':masterVolume<=0?'BGM은 ON이며, 음량이 0%입니다.':'현재 라운드에 맞는 배경음악을 사용합니다.';
+}
 function pauseAudio(track){const a=audio[track];a.pause();a.currentTime=0}
 function switchBgm(track){pauseAudio(track==='main'?'game':'main');if(!bgmEnabled)return;const a=audio[track];a.play().catch(()=>{});bgmStarted=true;syncBgmButtons()}
 function toggleBgm(){if(!bgmStarted&&bgmEnabled){switchBgm(ui.lobby.classList.contains('hidden')?'game':'main');return}bgmEnabled=!bgmEnabled;try{localStorage.setItem('nutritionTdBgm',bgmEnabled?'on':'off')}catch(_){};if(!bgmEnabled){audio.main.pause();audio.game.pause()}else switchBgm(ui.lobby.classList.contains('hidden')?'game':'main');syncBgmButtons()}
@@ -389,7 +470,8 @@ function buildMap(){
 }
 function distToPathRaw(x,y){let best={d:99999,t:0};for(let i=0;i<path.length-1;i++){let a=path[i],b=path[i+1],vx=b.x-a.x,vy=b.y-a.y,wx=x-a.x,wy=y-a.y,c=(wx*vx+wy*vy)/(vx*vx+vy*vy),u=Math.max(0,Math.min(1,c)),px=a.x+u*vx,py=a.y+u*vy,d=Math.hypot(x-px,y-py);if(d<best.d)best={d,t:(i+u)/(path.length-1)}}return best}
 function pointAt(t){t=Math.max(0,Math.min(1,t));const f=t*(path.length-1),i=Math.floor(f),q=f-i,a=path[i],b=path[Math.min(path.length-1,i+1)];return{x:a.x+(b.x-a.x)*q,y:a.y+(b.y-a.y)*q}}
-function roundMult(){return {speed:(1+0.018*(S.round-1))*1.15}}
+function contentRound(round){return round>=110?round-1:round}
+function roundMult(){return {speed:(1+0.018*(contentRound(S.round)-1))*1.15}}
 function spiceSpeedMult(){return 1}
 function addSpice(){/* Legacy hook intentionally inert: spicy is per-nutrient only. */}
 
@@ -450,7 +532,7 @@ function createTower(type,x,y){const d=TOWER_DEFS[type];return {type,x,y,level:1
 function sellSelected(){const t=S.selectedTower;if(!t)return;S.gold+=Math.floor(t.spent*.7);const c=cells.find(z=>Math.hypot(z.x-t.x,z.y-t.y)<1);if(c)c.used=false;S.towers=S.towers.filter(a=>a!==t);recomputeFusion();buildTowerPanel();S.selectedTower=null;ui.sell.disabled=true;showBuildInfo(S.selectedBuild||'mouth');setMsg('타워를 판매했습니다.');}
 function triggerFusionArrival(t){S.shake=1.2;for(let i=0;i<28;i++){const a=i/28*TAU;S.fx.push({kind:'goldSpark',x:t.x,y:t.y,vx:Math.cos(a)*(75+i%4*18),vy:Math.sin(a)*(75+i%4*18),r:3,life:.65,color:i%2?'#ffd166':'#fff3b0'})}triggerAlert('🔩 토탈 디스트로이어 강림!','#ffd166')}
 
-function enemy(type,options={}){const d=ENEMY_DEFS[type],boss=d.boss===true,wave=options.wave??S.round,firstWave=Math.max(0,wave-(d.unlockRound||wave)),maxHp=Math.max(1,Math.round(boss?d.hp*Math.pow(1.025,firstWave):d.hp+(wave-1)*(d.hpPerRound||2))),spicy=options.spicy??d.spicy===true,needsInheritedBoost=spicy&&!d.spicy;return {type,name:needsInheritedBoost?`매운 ${d.name}`:d.name,emoji:d.emoji,hp:maxHp,maxHp,speed:d.speed*(needsInheritedBoost?1.12:1),color:d.color,kind:d.kind,tier:d.tier,children:d.children.slice(),t:0,slow:0,stun:0,armor:d.tier>=3?Math.min(25,d.tier*3):0,dead:false,deathResolved:false,boss,blocked:0,size:d.size||1,special:d.special||null,spicy,bossBadge:0,wave,enteritis:options.enteritis??S.enteritis,enteritisPurify:0,vulnerable:0,emulsified:0,lastHitType:null}}
+function enemy(type,options={}){const d=ENEMY_DEFS[type],boss=d.boss===true,wave=options.wave??S.round,firstWave=Math.max(0,contentRound(wave)-(d.unlockRound===111&&type==='lastBanquet'?110:(d.unlockRound||contentRound(wave)))),maxHp=Math.max(1,Math.round(boss?d.hp*Math.pow(1.025,firstWave):d.hp+(contentRound(wave)-1)*(d.hpPerRound||2))),spicy=options.spicy??d.spicy===true,needsInheritedBoost=spicy&&!d.spicy;return {type,name:needsInheritedBoost?`매운 ${d.name}`:d.name,emoji:d.emoji,hp:maxHp,maxHp,speed:d.speed*(needsInheritedBoost?1.12:1),color:d.color,kind:d.kind,tier:d.tier,children:d.children.slice(),t:0,slow:0,stun:0,armor:d.tier>=3?Math.min(25,d.tier*3):0,dead:false,deathResolved:false,boss,blocked:0,size:d.size||1,special:d.special||null,spicy,bossBadge:0,wave,enteritis:options.enteritis??S.enteritis,enteritisPurify:0,vulnerable:0,emulsified:0,lastHitType:null}}
 function r4Pick(list){return list[Math.floor(Math.random()*list.length)]}
 function r4Entries(types,count,r,options={}){const a=[];for(let i=0;i<count;i++)a.push({type:r4Pick(types),wave:r,enteritis:!!options.enteritis,spicy:!!options.spicy,delay:options.delay??.28});return a}
 function r4Mixed(r,count,types,spicyTypes=[]){const a=[];const spicyCount=spicyTypes.length?Math.max(1,Math.round(count*.3)):0;for(let i=0;i<count-spicyCount;i++)a.push({type:r4Pick(types),wave:r,enteritis:isEnteritisRound(r),delay:.28});for(let i=0;i<spicyCount;i++)a.push({type:r4Pick(spicyTypes),wave:r,enteritis:isEnteritisRound(r),spicy:true,delay:.32});return a}
@@ -642,9 +724,9 @@ function update(dt){if(S.gameOver||S.paused)return;const dtt=dt*S.speed;if(!S.ru
   let shotWrite=0;for(const s of S.shots){s.ttl-=dtt;if(s.ttl>0)S.shots[shotWrite++]=s}S.shots.length=shotWrite;let fxWrite=0;for(const f of S.fx){f.life-=dtt;f.x+=f.vx*dtt;f.y+=f.vy*dtt;if(f.life>0)S.fx[fxWrite++]=f}S.fx.length=fxWrite;updateIndigestion(dtt);
 }
 
-function setMsg(t){S.messageTimer=3;ui.msg.textContent=t}
+function setMsg(t){if(S.courseNotice&&S.elapsed<S.courseNotice.until&&t!==S.courseNotice.text)return;S.messageTimer=3;ui.msg.textContent=t}
 
-function openModal(title,html){ui.modalTitle.textContent=title;ui.modalBody.innerHTML=html;ui.modal.classList.add('open');ui.modal.setAttribute('aria-hidden','false')}
+function openModal(title,html){ui.modalTitle.textContent=title;ui.modalBody.innerHTML=html;ui.modal.classList.toggle('settingsOpen',title==='⚙️ 설정');ui.modal.classList.add('open');ui.modal.setAttribute('aria-hidden','false')}
 function openSettings(){openModal('⚙️ 설정',`<p>배경음악과 효과음에 함께 적용되는 마스터 볼륨입니다.</p><label for="volumeRange">🔊 볼륨</label><input id="volumeRange" class="settingsRange" type="range" min="0" max="100" value="${Math.round(masterVolume*100)}"><output id="volumeValue" class="settingsValue">${Math.round(masterVolume*100)}%</output>`);const range=document.getElementById('volumeRange'),value=document.getElementById('volumeValue');range.oninput=()=>{masterVolume=Number(range.value)/100;applyVolume();value.textContent=`${range.value}%`;try{localStorage.setItem('nutritionTdVolume',masterVolume)}catch(_){}}}
 function closeModal(){ui.modal.classList.remove('open');ui.modal.setAttribute('aria-hidden','true')}
 function readLeaderboard(){try{const data=JSON.parse(localStorage.getItem('nutritionTdLeaderboard')||'[]');return Array.isArray(data)?data:[]}catch(_){return []}}
@@ -739,7 +821,7 @@ Object.assign(TOWER_DEFS,{carbEnzyme:{...TOWER_DEFS.carbEnzyme,cost:500,range:2.
 function r5Limited(type){return (type==='atp'||type==='digestCannon')&&S.towers.filter(t=>t.type===type).length>=3}function r5LimitText(type){return type==='atp'?'마이토콘드리아는 최대 3개입니다.':'소화 캐논은 최대 3개입니다.'}function r5ShownCost(t){return t.type==='digestCannon'?CANNON_STAGES[t.level-1]?.cost||0:t.level<5?upgradeCost(t):0}
 /* Actual encounter data: fixed first appearances use these base values; only later
    appearances receive the small, one-time wave multiplier in enemy(). */
-Object.assign(ENEMY_DEFS,{oyster:{...ENEMY_DEFS.oyster,children:['peptide'],speed:132},spicyOyster:{...ENEMY_DEFS.spicyOyster,children:['peptide'],speed:150},hamburger:{...ENEMY_DEFS.hamburger,hp:15000,speed:24,unlockRound:20},oysterBoss:{...ENEMY_DEFS.oysterBoss,hp:18000,speed:85,unlockRound:32,children:['peptide','peptide']},spicyHamburger:{...ENEMY_DEFS.spicyHamburger,hp:15000,speed:25,unlockRound:34},pizza:{...ENEMY_DEFS.pizza,hp:90000,speed:19,unlockRound:40},spicyOysterBoss:{...ENEMY_DEFS.spicyOysterBoss,hp:18000,speed:90,unlockRound:42,children:['peptide','peptide']},spicyPizza:{...ENEMY_DEFS.spicyPizza,hp:90000,speed:21,unlockRound:52},chicken:{...ENEMY_DEFS.chicken,hp:400000,speed:15,unlockRound:60},spicyChicken:{...ENEMY_DEFS.spicyChicken,hp:400000,speed:17,unlockRound:72},malatang:{...ENEMY_DEFS.malatang,hp:1500000,speed:10,unlockRound:80},spicyMalatang:{...ENEMY_DEFS.spicyMalatang,hp:1500000,speed:12,unlockRound:92},gluttonKing:{name:'폭식의 왕 — 무한리필 뷔페',emoji:'🍽️',hp:3500000,speed:8.5,tier:9,color:'#e7b969',kind:'boss',boss:true,fixedHp:true,unlockRound:100,size:1.52,children:['malatang','spicyMalatang','chicken','spicyChicken','pizza','spicyPizza','oysterBoss','spicyOysterBoss','hamburger','spicyHamburger']}});
+Object.assign(ENEMY_DEFS,{oyster:{...ENEMY_DEFS.oyster,children:['peptide'],speed:132},spicyOyster:{...ENEMY_DEFS.spicyOyster,children:['peptide'],speed:150},hamburger:{...ENEMY_DEFS.hamburger,hp:15000,speed:24,unlockRound:20},oysterBoss:{...ENEMY_DEFS.oysterBoss,hp:18000,speed:85,unlockRound:32,children:['peptide','peptide']},spicyHamburger:{...ENEMY_DEFS.spicyHamburger,hp:15000,speed:25,unlockRound:34},pizza:{...ENEMY_DEFS.pizza,hp:90000,speed:19,unlockRound:40},spicyOysterBoss:{...ENEMY_DEFS.spicyOysterBoss,hp:18000,speed:90,unlockRound:42,children:['peptide','peptide']},spicyPizza:{...ENEMY_DEFS.spicyPizza,hp:90000,speed:21,unlockRound:52},chicken:{...ENEMY_DEFS.chicken,hp:400000,speed:15,unlockRound:60},spicyChicken:{...ENEMY_DEFS.spicyChicken,hp:400000,speed:17,unlockRound:72},malatang:{...ENEMY_DEFS.malatang,hp:1500000,speed:10,unlockRound:80},spicyMalatang:{...ENEMY_DEFS.spicyMalatang,hp:1500000,speed:12,unlockRound:92},gluttonKing:{name:'폭식의 왕',emoji:'🍽️',hp:3500000,speed:8.5,tier:9,color:'#e7b969',kind:'boss',boss:true,fixedHp:true,unlockRound:100,size:1.52,children:['malatang','spicyMalatang','chicken','spicyChicken','pizza','spicyPizza','oysterBoss','spicyOysterBoss','hamburger','spicyHamburger']}});
 BOSS_SCHEDULE.splice(0,BOSS_SCHEDULE.length,{round:20,type:'hamburger',announce:true},{round:32,type:'oysterBoss',announce:true},{round:34,type:'spicyHamburger',announce:true},{round:40,type:'pizza',announce:true},{round:42,type:'spicyOysterBoss',announce:true},{round:52,type:'spicyPizza',announce:true},{round:60,type:'chicken',announce:true},{round:72,type:'spicyChicken',announce:true},{round:80,type:'malatang',announce:true},{round:92,type:'spicyMalatang',announce:true},{round:100,type:'gluttonKing',announce:true});
 createInitialState=function(sandbox=false){return {round:1,gold:sandbox?999999:250,lives:20,enemies:[],towers:[],shots:[],fx:[],spawnQueue:[],spawnTimer:0,activeWaves:[],running:false,paused:false,speed:1,autoStart:false,autoTimer:0,skillCD:0,globalStun:0,globalBuff:0,globalAcid:0,selectedBuild:'mouth',selectedTower:null,gameOver:false,roundReady:true,hasStartedOnce:false,elapsed:0,last:performance.now(),messageTimer:0,discount:0,indigestionScore:0,indigestionGrace:0,indigestion:false,enteritis:false,alert:null,hover:{x:0,y:0},shake:0,roulette:null,score:0,kills:0,sandbox,sandboxSpicySpawn:false,seenBosses:{},seenNotices:{}}};
 buildMap=function(){const mapPx=Math.max(180,Math.min(W-18,H-18)),o={x:(W-mapPx)/2,y:(H-mapPx)/2};gridSize=mapPx/18;const p=(c,r)=>({x:o.x+(c+.5)*gridSize,y:o.y+(r+.5)*gridSize});const nodes=[{x:o.x-gridSize*.5,y:p(0,2).y},p(16,2),p(16,5),p(1,5),p(1,8),p(16,8),p(16,11),p(1,11),p(1,14),p(16,14),p(16,17),{x:p(16,17).x,y:o.y+18.32*gridSize}];path=[];for(let s=0;s<nodes.length-1;s++){const a=nodes[s],b=nodes[s+1],n=Math.max(2,Math.ceil(Math.hypot(b.x-a.x,b.y-a.y)/(gridSize*.2)));for(let i=0;i<n;i++){const q=i/n;path.push({x:a.x+(b.x-a.x)*q,y:a.y+(b.y-a.y)*q})}}path.push(nodes.at(-1));cells=[];trackCells=[];for(let r=0;r<18;r++)for(let c=0;c<18;c++){const z={...p(c,r),size:gridSize,col:c,row:r,used:false};(distToPathRaw(z.x,z.y).d<gridSize*.43?trackCells:cells).push(z)}};
@@ -784,7 +866,7 @@ function r4DrawMalaFood(c,r){c.fillStyle='#7c2631';c.beginPath();c.ellipse(0,4,r
 function r4DrawGluttonFood(c,r){c.fillStyle='#f8e5bc';c.beginPath();c.ellipse(0,2,r*.7,r*.43,0,0,TAU);c.fill();for(const p of [[-.32,-.12,'#e88b52'],[.25,-.13,'#ffd463'],[-.05,.18,'#6cba72'],[.4,.16,'#bd6fdb']]){c.fillStyle=p[2];c.beginPath();c.arc(p[0]*r,p[1]*r,r*.13,0,TAU);c.fill()}}
 drawEnemies=function(){for(const e of S.enemies){const p=e.digesting?{x:e.digestX,y:e.digestY}:perfPosition(e);ctx.save();ctx.translate(p.x,p.y);const digestScale=e.digesting?Math.max(.25,e.digesting/(e.boss?5:3.5)):1;ctx.scale(digestScale,digestScale);const r=(e.boss?29:10.5+e.tier*2.35)*e.size,ratio=e.hp/e.maxHp;if(e.boss&&ratio<=.33)ctx.filter='grayscale(1) brightness(.67)';else if(e.boss&&ratio<=.66)ctx.filter='grayscale(.6) brightness(.85)';ctx.fillStyle=e.color;ctx.strokeStyle=e.stun>0?'#64e6ff':'rgba(255,255,255,.72)';ctx.lineWidth=e.boss?3:1.7;drawEnemyShape(ctx,e,r);if(e.type==='oysterBoss'||e.type==='spicyOysterBoss')r4DrawOysterFood(ctx,r);else if(e.type==='malatang'||e.type==='spicyMalatang')r4DrawMalaFood(ctx,r);else if(e.type==='gluttonKing')r4DrawGluttonFood(ctx,r);else if(e.boss){ctx.font=`${Math.round(25+e.size*7)}px serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(e.emoji,0,0)}if(e.special==='oyster'&&!e.boss)r4DrawOysterFood(ctx,r*.78);drawCartoonFace(e,r);ctx.filter='none';if(e.boss&&e.bossBadge>0){ctx.font='900 9px system-ui';ctx.fillStyle=e.spicy?'#ff6961':'#ffcf6b';ctx.fillText('BOSS',0,-r-9)}if(e.spicy){ctx.font='14px serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('🌶️',r*.52,-r*.72)}if(e.stun>0){ctx.strokeStyle='#64e6ff';ctx.lineWidth=3;ctx.beginPath();ctx.arc(0,0,r+7,0,TAU);ctx.stroke()}ctx.restore()}};
 drawFusionLinks=function(){const t=S.selectedTower;if(!t||t.level!==5||ui.modal.classList.contains('open')||ui.codexWrap.classList.contains('open'))return;const rel=new Set(Object.values(R3_FUSION).filter(r=>r.requires.includes(t.type)).flatMap(r=>r.requires));if(!rel.size)return;ctx.save();ctx.strokeStyle='rgba(151,220,255,.38)';ctx.lineWidth=1.5;ctx.setLineDash([5,4]);for(const o of S.towers)if(o!==t&&o.level===5&&rel.has(o.type)){ctx.beginPath();ctx.moveTo(t.x,t.y);ctx.lineTo(o.x,o.y);ctx.stroke()}ctx.restore()};
-function r3Pause(){if(r3ModalPaused===null){r3ModalPaused=S.paused;S.paused=true}}openModal=function(title,html){r3Pause();ui.modalTitle.textContent=title;ui.modalBody.innerHTML=html;ui.modal.classList.add('open')};closeModal=function(){ui.modal.classList.remove('open');if(r3ModalPaused!==null){S.paused=r3ModalPaused;r3ModalPaused=null}if(r3ModalReturn){const f=r3ModalReturn;r3ModalReturn=null;f()}};
+function r3Pause(){if(r3ModalPaused===null){r3ModalPaused=S.paused;S.paused=true}}openModal=function(title,html){r3Pause();ui.modal.classList.toggle('settingsOpen',title==='⚙️ 설정');ui.modalTitle.textContent=title;ui.modalBody.innerHTML=html;ui.modal.classList.add('open')};closeModal=function(){ui.modal.classList.remove('open');if(r3ModalPaused!==null){S.paused=r3ModalPaused;r3ModalPaused=null}if(r3ModalReturn){const f=r3ModalReturn;r3ModalReturn=null;f()}};
 applyVolume=function(){audio.main.volume=masterVolume;audio.game.volume=masterVolume};function r3Fade(track,target,d=.9){const a=audio[track],start=a.volume,token=++r3AudioTickets[track],at=performance.now();if(target>0&&masterVolume>0)a.play().then(()=>bgmStarted=true).catch(()=>{});const tick=now=>{if(token!==r3AudioTickets[track])return;const p=Math.min(1,(now-at)/(d*1000));a.volume=start+(target-start)*p;if(p<1)backgroundQueueFrame('fade-'+track,tick);else if(target===0){a.pause();a.currentTime=0}};backgroundQueueFrame('fade-'+track,tick)}switchBgm=function(track){const other=track==='main'?'game':'main';r3Fade(other,0,.85);if(bgmEnabled&&masterVolume>0)r3Fade(track,masterVolume,1)};try{const saved=localStorage.getItem('nutritionTdVolume');masterVolume=saved===null?.3:Math.max(0,Math.min(1,Number(saved)))}catch(_){masterVolume=.3}applyVolume();
 openSettings=function(){openModal('⚙️ 설정',`<p>🔊 BGM 음량</p><input id="r3Vol" class="settingsRange" type="range" min="0" max="100" value="${Math.round(masterVolume*100)}"><output id="r3VolOut" class="settingsValue">${Math.round(masterVolume*100)}%</output><div class="modalActions"><button id="r3Codex" class="modalBtn">📖 영양소 도감</button><button id="r3Restart" class="modalBtn">↻ 게임 재시작</button><button id="r3Home" class="modalBtn">⌂ 게임 포기하고 로비로</button><button id="r3ClearProfile" class="modalBtn">저장된 학교/학생 정보 지우기</button><button id="r3Back" class="modalBtn primary">게임으로 돌아가기</button></div>`);const v=document.getElementById('r3Vol');v.oninput=()=>{masterVolume=Number(v.value)/100;applyVolume();document.getElementById('r3VolOut').textContent=`${v.value}%`;try{localStorage.setItem('nutritionTdVolume',masterVolume)}catch(_){}};document.getElementById('r3Codex').onclick=()=>{r3ModalReturn=openSettings;closeModal();openCodex()};document.getElementById('r3Restart').onclick=()=>r3Confirm('현재 진행 상황이 초기화됩니다. 게임을 재시작하시겠습니까?',restartGame);document.getElementById('r3Home').onclick=()=>r3Confirm('현재 진행 상황이 사라집니다. 게임을 포기하고 로비로 이동하시겠습니까?',returnToLobby);document.getElementById('r3ClearProfile').onclick=()=>{try{localStorage.removeItem('nutritionTdProfile')}catch(_){}};document.getElementById('r3Back').onclick=closeModal};function r3Confirm(text,fn){ui.modalBody.innerHTML=`<p>${text}</p><div class="modalActions"><button id="r3Yes" class="modalBtn primary">예</button><button id="r3No" class="modalBtn">아니오</button></div>`;let used=false;document.getElementById('r3Yes').onclick=()=>{if(used)return;used=true;closeModal();fn()};document.getElementById('r3No').onclick=openSettings}
 enterGame=function(sandbox=false){S=createInitialState(sandbox);ui.lobby.classList.add('hidden');ui.app.classList.add('gameVisible');ui.sandboxTools.classList.toggle('show',sandbox);ui.overlay.classList.remove('show');resize();buildTowerPanel();showBuildInfo('mouth');switchBgm('game');setMsg(sandbox?'🧪 샌드박스: 원하는 라운드를 입력한 뒤 시작하세요.':'빈 격자에 타워를 설치하고 소화관을 방어하세요.')};returnToLobby=function(){S=createInitialState();ui.app.classList.remove('gameVisible');ui.lobby.classList.remove('hidden');ui.sandboxTools.classList.remove('show');ui.scoreModal.classList.remove('open');closeModal();closeCodex();switchBgm('main')};restartGame=function(){const sandbox=S.sandbox;S=createInitialState(sandbox);cells.forEach(c=>c.used=false);ui.overlay.classList.remove('show');ui.pause.textContent='❚❚ 일시정지';ui.speed.textContent='▶ 1배속';ui.sandboxTools.classList.toggle('show',sandbox);buildTowerPanel();showBuildInfo('mouth');setMsg('새 게임이 준비되었습니다. ▶ 라운드 시작을 눌러주세요.')};
@@ -799,7 +881,7 @@ const r3BaseCodex=openCodex,r3BaseCloseCodex=closeCodex,r3BaseDeal=deal,r3BaseAw
 openCodex=function(){r3Pause();r3BaseCodex()};closeCodex=function(){r3BaseCloseCodex();if(r3ModalPaused!==null){S.paused=r3ModalPaused;r3ModalPaused=null}if(r3ModalReturn){const f=r3ModalReturn;r3ModalReturn=null;f()}};ui.codexClose.onclick=closeCodex;
 deal=function(e,raw,t){r3BaseDeal(e,raw,t);if(t.type==='digestionKing'){const p=perfPosition(e);S.shots.push({kind:'kingBeam',x:t.x,y:t.y,tx:p.x,ty:p.y,ttl:.21,color:'#ffd166'});S.fx.push({kind:'ring',x:p.x,y:p.y,vx:0,vy:0,r:7,life:.22,color:'#fff0b4'});let linked=0;for(const o of S.enemies)if(o!==e&&!o.dead&&!o.digesting&&linked<5){const q=perfPosition(o);if(Math.hypot(q.x-t.x,q.y-t.y)<t.range){o.hp-=raw*.14*r8FusionBossMultiplier(t,o);S.shots.push({kind:'kingBeamThin',x:t.x,y:t.y,tx:q.x,ty:q.y,ttl:.16,color:'#ffb449'});linked++}}}};awakenTower=function(t){r3BaseAwaken(t);if(t.type==='digestionKing'){for(const e of S.enemies)e.hp-=Math.max(120,e.maxHp*.18)*r8FusionBossMultiplier(t,e);burst(t.x,t.y,'#ffd166',18)}};
 function r3Profile(){try{return JSON.parse(localStorage.getItem('nutritionTdProfile')||'{}')}catch(_){return {}}}function r3SaveProfile(v){try{localStorage.setItem('nutritionTdProfile',JSON.stringify(v))}catch(_){}}async function r3Api(action,payload={}){const r=await fetch(LEADERBOARD_API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify({action,...payload})});if(!r.ok)throw Error('server');return r.json()}function r3Mask(name){return name.length<2?name:name[0]+'○'.repeat(name.length-1)}
-openLeaderboard=function(){const p=r3Profile();openModal('🏆 리더보드 및 학교 코드 발급',`<div class="formGrid"><label>학교 코드<input id="r3SchoolCode" maxlength="5" value="${p.schoolCode||''}" placeholder="A7K2P"></label><label>학교명<input id="r3SchoolName" maxlength="30" value="${p.schoolName||''}" placeholder="새봄중학교"></label></div><div class="modalActions"><button id="r3LoadBoard" class="modalBtn primary">학교 TOP 5 조회</button><button id="r3IssueCode" class="modalBtn">학교 코드 발급</button></div><div id="r3BoardOut" class="leaderList"></div><p class="cool">서버 연결 실패와 기록 없음은 별도로 표시됩니다.</p>`);document.getElementById('r3LoadBoard').onclick=r3LoadBoard;document.getElementById('r3IssueCode').onclick=r3IssueCode};async function r3LoadBoard(){const code=document.getElementById('r3SchoolCode').value.replace(/\s/g,'').toUpperCase(),out=document.getElementById('r3BoardOut');out.textContent='조회 중…';try{const d=await r3Api('leaderboard',{schoolCode:code,limit:5});if(!d.valid){out.textContent='유효하지 않은 학교 코드입니다.';return}r3SaveProfile({...r3Profile(),schoolCode:code,schoolName:d.schoolName});const rows=d.scores||[];out.innerHTML=rows.length?rows.slice(0,5).map((r,i)=>`<div class="leaderItem ${i===0?'top':''}"><b>${i?(i+1)+'위':'👑 1위'}</b><span>${r.studentNumber||''} · ${r3Mask(r.studentName||'학생')}<br>R${r.round}</span><span class="leaderScore">${Number(r.score).toLocaleString()}점</span></div>`).join(''):'아직 이 학교에 등록된 성적이 없습니다.'}catch(_){out.textContent='리더보드 서버에 연결할 수 없습니다.'}}async function r3IssueCode(){const name=document.getElementById('r3SchoolName').value.trim(),out=document.getElementById('r3BoardOut');if(!name){out.textContent='학교명을 입력하세요.';return}out.textContent='학교 코드 확인 중…';try{const d=await r3Api('issueSchoolCode',{schoolName:name,normalizedSchoolName:name.replace(/\s+/g,' ').toLowerCase()});if(!d.schoolCode)throw Error();r3SaveProfile({...r3Profile(),schoolCode:d.schoolCode,schoolName:d.schoolName||name});document.getElementById('r3SchoolCode').value=d.schoolCode;out.innerHTML=`<div class="leaderItem top"><b>🏫</b><span>${d.existing?'이미 발급된 학교 코드':'학교 코드 발급 완료'}<br>${d.schoolName||name}</span><span class="leaderScore">${d.schoolCode}</span></div>`}catch(_){out.textContent='리더보드 서버에 연결할 수 없습니다.'}}
+let r3LoadBoard;
 openScoreRegistration=function(){if(S.sandbox){ui.overlay.classList.add('show');ui.overTitle.textContent='샌드박스 종료';ui.overText.innerHTML='<button class="restart" id="r3SandboxRetry">🔄 재시작</button> <button class="restart" id="r3SandboxHome">⌂ 메인 화면</button>';document.getElementById('r3SandboxRetry').onclick=restartGame;document.getElementById('r3SandboxHome').onclick=returnToLobby;return}const p=r3Profile(),card=ui.scoreModal.querySelector('.modalCard');card.innerHTML=`<div class="modalHead"><h2>🏁 성적 등록</h2></div><p class="modalText">완료 라운드 ${recordCompletedRound()} · 점수 ${S.score.toLocaleString()}점</p><div class="formGrid"><label>학교 코드<input id="r3ResultCode" maxlength="5" value="${p.schoolCode||''}"></label><label>학교명<input id="r3ResultSchool" maxlength="30" value="${p.schoolName||''}"></label><label>학번<input id="r3ResultNo" maxlength="12" value="${p.studentNumber||''}"></label><label>이름<input id="r3ResultName" maxlength="20" value="${p.studentName||''}"></label><label><input id="r3Remember" type="checkbox" ${p.remember!==false?'checked':''}> 이 기기에 정보 기억하기</label></div><p id="r3ResultError" class="cool"></p><div class="modalActions"><button id="r3SubmitScore" class="modalBtn primary">성적 등록</button><button id="r3SkipScore" class="modalBtn">건너뛰기</button></div>`;ui.scoreModal.classList.add('open');document.getElementById('r3SubmitScore').onclick=r3SubmitScore;document.getElementById('r3SkipScore').onclick=()=>{ui.scoreModal.classList.remove('open');returnToLobby()}};async function r3SubmitScore(){const code=document.getElementById('r3ResultCode').value.replace(/\s/g,'').toUpperCase(),schoolName=document.getElementById('r3ResultSchool').value.trim(),studentNumber=document.getElementById('r3ResultNo').value.trim(),studentName=document.getElementById('r3ResultName').value.trim(),out=document.getElementById('r3ResultError');if(!/^[A-Z0-9]{5}$/.test(code)||!schoolName||!studentNumber||!studentName){out.textContent='학교 코드, 학교명, 학번, 이름을 확인하세요.';return}try{const d=await r3Api('submitScore',{recordId:`${Date.now()}-${Math.random().toString(36).slice(2)}`,schoolCode:code,schoolName,studentNumber,studentName,round:recordCompletedRound(),score:S.score,mode:'normal'});if(!d.ok)throw Error();if(document.getElementById('r3Remember').checked)r3SaveProfile({schoolCode:code,schoolName,studentNumber,studentName,remember:true});out.textContent='✅ 학교 리더보드에 등록되었습니다.'}catch(_){out.textContent='리더보드 서버에 연결할 수 없습니다.'}}
 openGuide=function(){openModal('🧠 게임 설명',`<p><b>자유 설치:</b> 소화관을 제외한 18×18 정사각형 격자에 타워를 놓습니다. 빈 곳 또는 Esc로 선택을 해제합니다.</p><p><b>효소 대응표:</b> 아밀레이스·탄수 효소→탄수화물, 위산/펩신·단백질 효소→단백질, 쓸개즙·라이페이스→지방입니다.</p><p><b>라이프:</b> 소형 -1, 중형 -2, 대형 -4이며 보스가 출구를 통과하면 즉시 패배합니다.</p><p><b>Lv6 입:</b> 마라탕 계열을 제외한 가장 큰 보스 또는 영양소를 하위 분해 없이 완전 소화합니다.</p>`)};openCodex=function(){r3Pause();const order=['glucose','maltose','starch','amino','peptide','protein','fatty','fatStage3','fatblob','oyster','spicyOyster','hamburger','oysterBoss','spicyHamburger','pizza','spicyOysterBoss','spicyPizza','chicken','spicyChicken','malatang','spicyMalatang'];ui.codexBody.innerHTML=`<div class="small"><b>시각 규칙</b> · 탄수화물=하늘색 육각형 · 단백질=연보라 사각형 · 지방=노란 물방울 · 단계가 높을수록 조금 더 큽니다.<br><b>매운맛</b> · 0~33% +10%, 34~66% +20%, 67~100% +35% 속도 · 유산균이 감소시킵니다.<br><b>분해</b> · 햄버거→녹말+단백질+지방 덩어리 · 피자→햄버거×2 · 치킨→피자×2 · 마라탕→치킨×2</div><div class="codexGrid">${order.map(k=>{const d=ENEMY_DEFS[k];return `<div class="codexItem"><b>${d.emoji||''} ${d.name}</b><div class="small">HP ${d.hp.toLocaleString()} · ${d.boss?'보스':d.special?'특수':'일반'} · 속도 ${d.speed}</div></div>`}).join('')}</div>`;ui.codexWrap.classList.add('open')};upgradeTower=function(t){if(t!==S.selectedTower||t.level>=5)return;const cost=upgradeCost(t);if(!S.sandbox&&S.gold<cost){setMsg('생체 에너지가 부족하여 강화할 수 없습니다.');return}S.gold-=S.sandbox?0:cost;const m=UPG[t.level-1].mul;t.level++;if(t.level===5){t.damage*=2.5;t.rate/=2.5;t.range*=1.25;awakenTower(t)}else{t.damage*=m;t.rate/=Math.sqrt(m);t.range*=1+(m-.9)*.16}showTowerInfo(t);setMsg(`${TOWER_DEFS[t.type].name}이(가) 성장했습니다.`)};sellSelected=function(){const t=S.selectedTower;if(!t)return;S.gold+=Math.floor(t.spent*.7);const c=cells.find(z=>z.col===t.col&&z.row===t.row);if(c)c.used=false;S.towers=S.towers.filter(x=>x!==t);S.selectedTower=null;ui.sell.disabled=true;showBuildInfo('mouth');setMsg('타워를 판매했습니다.')};rushNextRound=function(){if(S.gameOver||!S.running)return;const next=S.round+1;S.round=next;S.activeWaves.push(next);enqueueRound(next,true);S.gold+=100;setMsg(`⏩ 라운드 ${next} 강제 시작! 생체 에너지 +100`)};drawGhost=function(){if(!S.selectedBuild)return;const d=TOWER_DEFS[S.selectedBuild],c=cells.find(z=>Math.hypot(z.x-S.hover.x,z.y-S.hover.y)<z.size*.52&&!z.used);if(!c)return;ctx.save();ctx.globalAlpha=.14;ctx.fillStyle=d.color;ctx.beginPath();ctx.arc(c.x,c.y,d.range*gridSize,0,TAU);ctx.fill();ctx.restore()};openVersion=function(){openModal('ⓘ 버전 정보','<p><b>영양소 대습격</b> · Classroom Edition</p><p>순수 HTML/CSS/Canvas 단일 파일 버전입니다. 생체 에너지와 소화 효소로 소화관을 방어합니다.</p>')};ui.guide.onclick=openGuide;ui.leader.onclick=openLeaderboard;ui.version.onclick=openVersion;ui.sell.onclick=sellSelected;ui.rush.onclick=rushNextRound;resize();buildTowerPanel();showBuildInfo('mouth');
 drawGhost=function(){if(!S.selectedBuild)return;const d=TOWER_DEFS[S.selectedBuild],near=cells.concat(trackCells).find(z=>Math.hypot(z.x-S.hover.x,z.y-S.hover.y)<z.size*.55),valid=near&&cells.includes(near)&&!near.used;if(!near)return;ctx.save();ctx.globalAlpha=.12;ctx.fillStyle=valid?d.color:'#ff6068';ctx.beginPath();ctx.arc(near.x,near.y,d.range*gridSize,0,TAU);ctx.fill();ctx.globalAlpha=valid ? 0.72 : 0.5;ctx.translate(near.x,near.y);r4TowerCore(ctx,S.selectedBuild,1);ctx.restore()};
@@ -811,7 +893,13 @@ function r3RoundNotice(round){S.seenNotices||={};const notes={1:'초반에는 �
 const r3StartRound=startRound,r3NextRound=nextRound,r3SpawnOne=spawnOne,r3ResolveDeath=resolveDeath;startRound=function(){const wasReady=S.roundReady,wave=S.round;r3StartRound();if(wasReady&&S.running)r3RoundNotice(wave)};nextRound=function(){r3NextRound();r3RoundNotice(S.round)};spawnOne=function(entry){const data=typeof entry==='string'?{type:entry,wave:S.round}:entry;const before=S.enemies.length;r3SpawnOne(data);const e=S.enemies[S.enemies.length-1];if(S.enemies.length>before&&e?.special==='oyster'&&!e.boss){e.speed*=.985+Math.random()*.03;e.t=Math.max(0,e.t-Math.random()*.004)}};resolveDeath=function(e){if(e.dead||e.deathResolved)return;const p=e.special==='oyster'?perfPosition(e):null;r3ResolveDeath(e);if(p)S.fx.push({kind:'split',x:p.x,y:p.y,vx:14,vy:-18,r:2,life:.2,color:'#effffb'});};ui.start.onclick=startRound;
 async function r3SubmitScore(){const code=document.getElementById('r3ResultCode').value.replace(/\s/g,'').toUpperCase(),schoolName=document.getElementById('r3ResultSchool').value.trim(),studentNumber=document.getElementById('r3ResultNo').value.trim(),studentName=document.getElementById('r3ResultName').value.trim(),out=document.getElementById('r3ResultError'),remember=document.getElementById('r3Remember').checked;if(!/^[A-Z0-9]{5}$/.test(code)||!schoolName||!studentNumber||!studentName){out.textContent='학교 코드, 학교명, 학번, 이름을 확인하세요.';return}out.textContent='성적 등록 중…';try{const d=await r3Api('submitScore',{recordId:`${Date.now()}-${Math.random().toString(36).slice(2)}`,schoolCode:code,schoolName,studentNumber,studentName,round:recordCompletedRound(),score:S.score,mode:'normal'});if(!d.ok)throw Error('server');if(remember)r3SaveProfile({schoolCode:code,schoolName,studentNumber,studentName,remember:true});else try{localStorage.removeItem('nutritionTdProfile')}catch(_){};out.innerHTML='✅ 학교 리더보드에 등록되었습니다.<div class="choiceActions"><button id="r3ScoreRetry" class="modalBtn primary">🔄 재도전</button><button id="r3ScoreHome" class="modalBtn">⌂ 메인 화면</button></div>';document.getElementById('r3ScoreRetry').onclick=()=>{ui.scoreModal.classList.remove('open');restartGame()};document.getElementById('r3ScoreHome').onclick=()=>{ui.scoreModal.classList.remove('open');returnToLobby()}}catch(_){out.textContent='리더보드 서버에 연결할 수 없습니다.'}}
 function r3IssueScreen(){openModal('🏫 새 학교 코드 발급',`<div class="formGrid"><label>학교 이름<input id="r3IssueSchool" maxlength="30" placeholder="예: 새봄중학교"></label></div><div id="r3IssueOut" class="cool"></div><div class="modalActions"><button id="r3IssueSubmit" class="modalBtn primary">학교 코드 확인 및 발급</button><button id="r3IssueBack" class="modalBtn">조회 화면으로 돌아가기</button><button id="r3IssueCancel" class="modalBtn">취소</button></div>`);let busy=false;document.getElementById('r3IssueSubmit').onclick=async()=>{if(busy)return;const name=document.getElementById('r3IssueSchool').value.trim(),out=document.getElementById('r3IssueOut');if(!name){out.textContent='학교 이름을 입력하세요.';return}busy=true;out.textContent='학교 코드를 확인하고 있습니다…';try{const d=await r3Api('issueSchoolCode',{schoolName:name,normalizedSchoolName:name.replace(/\s+/g,' ').toLowerCase()});if(!d.schoolCode)throw Error('invalid response');r3SaveProfile({...r3Profile(),schoolCode:d.schoolCode,schoolName:d.schoolName||name});ui.modalBody.innerHTML=`<p>${d.existing?'학교 코드는 이미 발급되어 있습니다.':'학교 코드가 발급되었습니다.'}</p><div class="leaderItem top"><b>🏫</b><span>${d.schoolName||name}</span><span class="leaderScore">${d.schoolCode}</span></div><div class="modalActions"><button id="r3IssueDone" class="modalBtn primary">확인</button></div>`;document.getElementById('r3IssueDone').onclick=openLeaderboard}catch(_){busy=false;out.textContent='리더보드 서버에 연결할 수 없습니다. 다시 시도하세요.'}};document.getElementById('r3IssueBack').onclick=openLeaderboard;document.getElementById('r3IssueCancel').onclick=closeModal}
-openLeaderboard=function(){const p=r3Profile();openModal('🏆 리더보드 및 학교 코드 발급',`<div class="formGrid"><label>학교 코드<input id="r3SchoolCode" maxlength="5" value="${p.schoolCode||''}" placeholder="A7K2P"></label></div><div class="modalActions"><button id="r3LoadBoard" class="modalBtn primary">학교 TOP 5 조회</button><button id="r3IssueCode" class="modalBtn">새 학교 코드 발급</button></div><div id="r3BoardOut" class="leaderList"></div><p class="cool">잘못된 코드, 기록 없음, 서버 연결 실패는 서로 다르게 안내됩니다.</p>`);document.getElementById('r3LoadBoard').onclick=r3LoadBoard;document.getElementById('r3IssueCode').onclick=r3IssueScreen};
+openLeaderboard=function({readOnly=false}={}){
+  const p=r3Profile();
+  openModal(readOnly?'🏆 리더보드 · 조회 전용':'🏆 리더보드 및 학교 코드 발급',`<div class="formGrid"><label>학교 코드<input id="r3SchoolCode" maxlength="5" placeholder="A7K2P"></label></div><div class="modalActions"><button id="r3LoadBoard" class="modalBtn primary">학교 TOP 5 조회</button>${readOnly?'':'<button id="r3IssueCode" class="modalBtn">새 학교 코드 발급</button>'}</div><div id="r3BoardOut" class="leaderList"></div><p class="cool">${readOnly?'현재 게임의 점수나 기록은 등록하지 않습니다.':'잘못된 코드, 기록 없음, 서버 연결 실패는 서로 다르게 안내됩니다.'}</p>`);
+  const code=document.getElementById('r3SchoolCode');code.value=p.schoolCode||'';code.dataset.readOnly=String(readOnly);
+  document.getElementById('r3LoadBoard').onclick=r3LoadBoard;
+  const issue=document.getElementById('r3IssueCode');if(issue)issue.onclick=r3IssueScreen;
+};
 const r3RestartGame=restartGame;restartGame=function(){r3ModalPaused=null;r3ModalReturn=null;r3RestartGame()};
 ui.guide.onclick=openGuide;ui.leader.onclick=openLeaderboard;
 function r3SetHover(e){const p=r7CanvasPoint(e);S.hover.x=p.x;S.hover.y=p.y}canvas.addEventListener('pointermove',r3SetHover,{passive:true});canvas.addEventListener('pointerdown',r3SetHover,{passive:true});
@@ -1120,7 +1208,7 @@ enemy=function(type,options={}){
   const e=r6BaseEnemy(type,options),d=ENEMY_DEFS[type],wave=options.wave??S.round;
   e.r6Id=(S.r6EnemyId=(S.r6EnemyId||0)+1);
   if(!e.boss)return e;
-  const elapsed=Math.max(0,wave-(d.unlockRound||wave));
+  const elapsed=Math.max(0,contentRound(wave)-(d.unlockRound===111&&type==='lastBanquet'?110:(d.unlockRound||contentRound(wave))));
   e.maxHp=Math.max(1,Math.round(d.hp*Math.pow(1.015,elapsed)));e.hp=e.maxHp;
   e.bossSpawnWave=wave;e.bossElapsed=elapsed;e.bossBaseSpeed=d.speed;
   const speed=d.speed*Math.min(1.5,1+.005*elapsed);
@@ -1396,10 +1484,10 @@ function r6DrawMalaFood(c,r){c.fillStyle='#7c2631';c.beginPath();c.ellipse(0,4,r
 function r6DrawGluttonFood(c,r){c.fillStyle='#f8e5bc';c.beginPath();c.ellipse(0,3,r*.74,r*.46,0,0,TAU);c.fill();c.strokeStyle='#b97742';c.lineWidth=2;c.stroke();c.fillStyle='#e5a34d';c.beginPath();c.roundRect(-r*.52,-r*.28,r*.29,r*.11,3);c.fill();c.fillStyle='#733e26';c.fillRect(-r*.52,-r*.17,r*.29,r*.10);c.fillStyle='#f6d669';c.fillRect(-r*.52,-r*.07,r*.29,r*.09);c.fillStyle='#f2c35e';c.beginPath();c.moveTo(r*.02,-r*.30);c.lineTo(r*.50,-r*.08);c.lineTo(r*.12,r*.08);c.closePath();c.fill();c.fillStyle='#c56c43';c.beginPath();c.moveTo(r*.24,r*.06);c.quadraticCurveTo(r*.46,r*.12,r*.39,r*.31);c.quadraticCurveTo(r*.18,r*.35,r*.14,r*.20);c.closePath();c.fill();c.fillStyle='#efc784';c.save();c.translate(-r*.03,r*.22);c.rotate(.28);c.fillRect(-r*.19,-r*.055,r*.38,r*.11);c.restore();c.strokeStyle='#f6e0bd';c.lineWidth=2;c.beginPath();c.moveTo(-r*.05,-r*.02);c.bezierCurveTo(r*.10,r*.05,r*.18,r*.13,r*.29,r*.19);c.stroke();c.fillStyle='#6eaa63';c.beginPath();c.moveTo(-r*.14,r*.05);c.lineTo(r*.05,r*.14);c.lineTo(-r*.04,r*.32);c.lineTo(-r*.23,r*.20);c.closePath();c.fill()}
 
 r3Mask=function(value){const chars=Array.from(String(value||''));if(chars.length<=1)return '0';if(chars.length===2)return chars[0]+'0';return chars[0]+'0'.repeat(chars.length-2)+chars.at(-1)};
-r3LoadBoard=async function(){const input=document.getElementById('r3SchoolCode'),out=document.getElementById('r3BoardOut'),code=input.value.replace(/\s/g,'').toUpperCase();out.textContent='조회 중…';try{const data=await r3Api('leaderboard',{schoolCode:code,limit:5});if(!data.valid){out.textContent='유효하지 않은 학교 코드입니다.';return}r3SaveProfile({...r3Profile(),schoolCode:code,schoolName:r5CanonicalSchoolName(data.schoolName||'')});const rows=r5BestRows(data.scores||[],code).slice(0,5);out.replaceChildren();if(!rows.length){out.textContent='아직 이 학교에 등록된 성적이 없습니다.';return}rows.forEach((row,index)=>{const item=document.createElement('div'),rank=document.createElement('b'),who=document.createElement('span'),score=document.createElement('span');item.className=`leaderItem ${index===0?'top':''}`;if(index===0){rank.style.whiteSpace='nowrap';rank.append('👑',document.createElement('br'),'1등')}else rank.textContent=`${index+1}위`;who.append(`${row.studentNumber||''} · ${r3Mask(row.studentName||'학생')}`,document.createElement('br'),`R${row.round||0}`);score.className='leaderScore';score.textContent=`${Number(row.score||0).toLocaleString()}점`;item.append(rank,who,score);out.append(item)})}catch(_){out.textContent='리더보드 서버에 연결할 수 없습니다.'}};
+r3LoadBoard=async function(){const input=document.getElementById('r3SchoolCode'),out=document.getElementById('r3BoardOut'),code=input.value.replace(/\s/g,'').toUpperCase(),readOnly=input.dataset.readOnly==='true';out.textContent='조회 중…';try{const data=await r3Api('leaderboard',{schoolCode:code,limit:5});if(!data.valid){out.textContent='유효하지 않은 학교 코드입니다.';return}if(!readOnly)r3SaveProfile({...r3Profile(),schoolCode:code,schoolName:r5CanonicalSchoolName(data.schoolName||'')});const rows=r5BestRows(data.scores||[],code).slice(0,5);out.replaceChildren();if(!rows.length){out.textContent='아직 이 학교에 등록된 성적이 없습니다.';return}rows.forEach((row,index)=>{const item=document.createElement('div'),rank=document.createElement('b'),who=document.createElement('span'),score=document.createElement('span');item.className=`leaderItem ${index===0?'top':''}`;if(index===0){rank.style.whiteSpace='nowrap';rank.append('👑',document.createElement('br'),'1등')}else rank.textContent=`${index+1}위`;who.append(`${row.studentNumber||''} · ${r3Mask(row.studentName||'학생')}`,document.createElement('br'),`R${row.round||0}`);score.className='leaderScore';score.textContent=`${Number(row.score||0).toLocaleString()}점`;item.append(rank,who,score);out.append(item)})}catch(_){out.textContent='리더보드 서버에 연결할 수 없습니다.'}};
 
 const R6_SPICY_BOSS={hamburger:'spicyHamburger',oysterBoss:'spicyOysterBoss',pizza:'spicyPizza',chicken:'spicyChicken',malatang:'spicyMalatang',oyster:'spicyOyster'};
-function r6SyncSandboxBossLabels(){document.querySelectorAll('.sandboxBosses [data-spawn]').forEach(button=>{const base=button.dataset.spawn,spicy=S.sandboxSpicySpawn&&R6_SPICY_BOSS[base],actual=spicy||base,d=ENEMY_DEFS[actual];button.textContent=`${spicy?'🌶️ ':''}${d.emoji||''} ${d.name.replace('매운 ','')}`})}
+function r6SyncSandboxBossLabels(){document.querySelectorAll('.sandboxBosses [data-spawn]').forEach(button=>{const base=button.dataset.spawn,spicy=S.sandboxSpicySpawn&&R6_SPICY_BOSS[base],actual=spicy||base,d=ENEMY_DEFS[actual];button.textContent=`${spicy?'🌶️ ':''}${d.emoji||''} ${base==='gluttonKing'?'폭식의 왕':d.name.replace('매운 ','')}`})}
 document.querySelectorAll('[data-spawn]').forEach(button=>button.onclick=()=>{if(!S.sandbox)return;const base=button.dataset.spawn,type=S.sandboxSpicySpawn&&R6_SPICY_BOSS[base]?R6_SPICY_BOSS[base]:base,e=enemy(type,{wave:Math.max(1,S.round),spicy:ENEMY_DEFS[type].spicy===true});e.t=.015;S.enemies.push(e);setMsg(`${e.name}을(를) 소환했습니다.`)});
 ui.sandboxSpice.onclick=()=>{if(!S.sandbox)return;S.sandboxSpicySpawn=!S.sandboxSpicySpawn;ui.sandboxSpice.textContent=`🌶️ 매운 소환 ${S.sandboxSpicySpawn?'ON':'OFF'}`;r6SyncSandboxBossLabels()};
 
@@ -1429,7 +1517,33 @@ applyVolume=function(){masterVolume=r7SafeVolume(masterVolume,.3);r7SetAudioVolu
 r6AttemptPlay=function(track,reason){const a=audio[track];if(!a||!bgmEnabled||masterVolume<=0||r7AudioPending[track]||!a.paused)return;try{r7AudioPending[track]=true;const playing=a.play();if(playing&&typeof playing.then==='function')playing.then(()=>{bgmStarted=true;r6BgmLastFailure=''}).catch(error=>{r6BgmLastFailure=error?.name||reason||'play-failed';r7AudioFailure(`${track}-${reason||'play'}`,error)}).finally(()=>{r7AudioPending[track]=false});else{bgmStarted=true;r7AudioPending[track]=false}}catch(error){r7AudioPending[track]=false;r6BgmLastFailure=error?.name||reason||'play-failed';r7AudioFailure(`${track}-${reason||'play'}`,error)}};
 r6Fade=function(track,target,duration=.9){const a=audio[track];if(!a)return;const token=++r6AudioTickets[track],from=r7SafeVolume(a.volume,0),to=r7SafeVolume(target,0),seconds=Number.isFinite(Number(duration))&&Number(duration)>0?Number(duration):0;if(to>0&&bgmEnabled)r6AttemptPlay(track,'play-rejected');if(seconds===0){r7SetAudioVolume(track,to);if(to===0){try{a.pause();a.currentTime=0}catch(error){r7AudioFailure(`${track}-pause`,error)}}return}const startedAt=performance.now();const tick=now=>{if(token!==r6AudioTickets[track])return;const progress=Math.max(0,Math.min(1,(Number(now)-startedAt)/(seconds*1000)));r7SetAudioVolume(track,from+(to-from)*progress);if(progress<1){backgroundQueueFrame('fade-'+track,tick);return}if(to===0){try{a.pause();a.currentTime=0}catch(error){r7AudioFailure(`${track}-pause`,error)}}};backgroundQueueFrame('fade-'+track,tick)};
 switchBgm=function(track){const active=track==='game'?'game':'main',other=active==='main'?'game':'main';r6Fade(other,0,.85);if(!bgmEnabled||masterVolume<=0){bgmStarted=false;return}bgmStarted=false;r6Fade(active,masterVolume,1)};
-openSettings=function(){const status=!bgmEnabled||masterVolume<=0?'음소거 상태':bgmStarted?'현재 배경음악 재생 중':'브라우저가 자동재생을 막으면 다음 클릭에서 다시 시도합니다.';openModal('⚙️ 설정',`<p>🔊 BGM 음량</p><input id="r6Vol" class="settingsRange" type="range" min="0" max="100" value="${Math.round(r7SafeVolume(masterVolume,.3)*100)}"><output id="r6VolOut" class="settingsValue">${Math.round(r7SafeVolume(masterVolume,.3)*100)}%</output><p class="cool" id="r6BgmState">${status}</p><div class="modalActions"><button id="r6Codex" class="modalBtn">📖 영양소 도감</button><button id="r6Restart" class="modalBtn">↻ 게임 재시작</button><button id="r6Home" class="modalBtn">⌂ 게임 포기하고 로비로</button><button id="r6ClearProfile" class="modalBtn">저장된 학교/학생 정보 지우기</button><button id="r6Back" class="modalBtn primary">게임으로 돌아가기</button></div>`);const volume=document.getElementById('r6Vol');volume.oninput=()=>{masterVolume=r7SafeVolume(Number(volume.value)/100,.3);applyVolume();document.getElementById('r6VolOut').textContent=`${Math.round(masterVolume*100)}%`;try{localStorage.setItem('nutritionTdVolume',String(masterVolume))}catch(_){};if(masterVolume>0)r6RetryBgm()};document.getElementById('r6Codex').onclick=()=>{r3ModalReturn=openSettings;closeModal();openCodex()};document.getElementById('r6Restart').onclick=()=>r3Confirm('현재 진행 상황이 초기화됩니다. 게임을 재시작하시겠습니까?',restartGame);document.getElementById('r6Home').onclick=()=>r3Confirm('현재 진행 상황이 사라집니다. 게임을 포기하고 로비로 이동하시겠습니까?',returnToLobby);document.getElementById('r6ClearProfile').onclick=()=>{try{localStorage.removeItem('nutritionTdProfile')}catch(_){}};document.getElementById('r6Back').onclick=closeModal};ui.settings.onclick=openSettings;
+// Transfer the existing pause snapshot without reopening Settings or resuming a frame.
+function settingsOpenPage(open){
+  r3ModalReturn=null;ui.modal.classList.remove('open','settingsOpen');open();
+}
+openSettings=function(){
+  openModal('⚙️ 설정',`<section class="settingsAudio" aria-label="오디오 설정">
+    <label for="r6Vol">🔊 BGM 음량</label>
+    <input id="r6Vol" class="settingsRange" type="range" min="0" max="100" value="${Math.round(r7SafeVolume(masterVolume,.3)*100)}">
+    <output id="r6VolOut" for="r6Vol" class="settingsValue">${Math.round(r7SafeVolume(masterVolume,.3)*100)}%</output>
+    <div class="settingsBgmRow"><span id="settingsBgmLabel">BGM</span><button id="settingsBgmToggle" type="button" aria-labelledby="settingsBgmLabel settingsBgmToggle" aria-pressed="${bgmEnabled}">${bgmEnabled?'ON':'OFF'}</button></div>
+    <p class="cool" id="r6BgmState"></p>
+  </section><div class="modalActions"><button id="r6Codex" class="modalBtn">📖 영양소 도감</button><button id="r6Restart" class="modalBtn">↻ 게임 재시작</button><button id="r6Leaderboard" class="modalBtn">🏆 리더보드 보기</button><button id="r6Back" class="modalBtn primary">게임으로 돌아가기</button></div><div class="settingsExit"><button id="r6Home" class="modalBtn">⌂ 게임 끝내고 메인화면으로 돌아가기</button></div>`);
+  const volume=document.getElementById('r6Vol');
+  volume.oninput=()=>{
+    masterVolume=r7SafeVolume(Number(volume.value)/100,.3);
+    for(const track of Object.keys(audio))++r6AudioTickets[track];
+    applyVolume();document.getElementById('r6VolOut').textContent=`${Math.round(masterVolume*100)}%`;
+    try{localStorage.setItem('nutritionTdVolume',String(masterVolume))}catch(_){}
+    if(bgmEnabled&&masterVolume>0)r6RetryBgm();syncBgmButtons();
+  };
+  document.getElementById('settingsBgmToggle').onclick=()=>toggleBgm();syncBgmButtons();
+  document.getElementById('r6Codex').onclick=()=>settingsOpenPage(openCodex);
+  document.getElementById('r6Restart').onclick=()=>r3Confirm('현재 진행 상황이 초기화됩니다. 게임을 재시작하시겠습니까?',restartGame);
+  document.getElementById('r6Home').onclick=()=>r3Confirm('현재 진행 상황이 사라집니다. 게임을 포기하고 로비로 이동하시겠습니까?',returnToLobby);
+  document.getElementById('r6Leaderboard').onclick=()=>settingsOpenPage(openLeaderboard);
+  document.getElementById('r6Back').onclick=closeModal;
+};ui.settings.onclick=openSettings;
 
 /* S.elapsed now means real game seconds at UI 1×.  compatElapsed is deliberately
    isolated for old authored numeric values, preserving the prior real-time balance. */
@@ -1447,7 +1561,7 @@ r5CannonBossTarget=function(t,range){r6PruneKnockMap(t);const counts=r6KnockMap(
 r5CannonKick=function(t,target){const counts=r6KnockMap(t),used=counts.get(target.r6Id)||0,now=S.compatElapsed||0;r5CannonFire(t,target,t.level>=10?2:1.5,false);if(used<2&&(target.knockImmuneUntil||0)<=now){const huge=['malatang','spicyMalatang','gluttonKing','lastBanquet'].includes(target.type);r5Backtrack(target,t.level>=10?(huge?3:5):(huge?1:3));target.knockImmuneUntil=now+10;counts.set(target.r6Id,used+1)}t.cannonKickCD=8};
 r5ProcessCannonEvents=function(){const events=S.cannonEvents||[],now=S.compatElapsed||0;let write=0;for(let i=0;i<events.length;i++){const event=events[i];if(event.due>now){events[write++]=event;continue}if(!S.towers.includes(event.source))continue;if(event.kind==='blast')r5CannonArea(event.source,event.x,event.y,event.raw,event.radius,null);else if(event.kind==='salvo'){const target=findTarget(event.source,event.source.range*(1+getBuff(event.source).range));if(target)r5CannonFire(event.source,target,.40,false)}}events.length=write};
 r5UpdateCannon=function(t,buff,legacyDt){t.cannonKickCD=Math.max(0,(t.cannonKickCD||0)-legacyDt);r6PruneKnockMap(t);const range=t.range*(1+buff.range);if(t.level>=9&&t.cannonKickCD<=0){const boss=r5CannonBossTarget(t,range);if(boss){r5CannonKick(t,boss);t.cool=Math.max(.1,t.rate/(1+buff.rate));return}}if(t.cool>0)return;const target=findTarget(t,range);if(!target)return;t.cool=Math.max(.1,t.rate/(1+buff.rate));t.cannonShots=(t.cannonShots||0)+1;r5CannonFire(t,target,1,true);if(t.level>=7&&t.cannonShots%4===0){const q=S.cannonEvents||(S.cannonEvents=[]),now=S.compatElapsed||0;q.push({kind:'salvo',due:now+.12,source:t});q.push({kind:'salvo',due:now+.24,source:t})}};
-update=function(dt){if(S.gameOver||S.paused)return;const cannonShotStart=S.shots.length,cannonFxStart=S.fx.length;const gameDt=Math.max(0,Number(dt)||0)*Math.max(1,Number(S.speed)||1),legacyDt=r7ToLegacySeconds(gameDt);S.elapsed+=gameDt;S.compatElapsed=(S.compatElapsed||0)+legacyDt;S.skillCD=Math.max(0,S.skillCD-legacyDt);S.globalStun=Math.max(0,S.globalStun-legacyDt);S.globalBuff=Math.max(0,S.globalBuff-legacyDt);S.globalAcid=Math.max(0,S.globalAcid-legacyDt);S.discount=Math.max(0,S.discount-legacyDt/45*.2);S.shake=Math.max(0,S.shake-legacyDt);if(S.roulette&&(S.roulette.timer-=legacyDt)<=0)S.roulette=null;if(S.alert&&(S.alert.timer-=legacyDt)<=0)S.alert=null;if(!S.running&&S.autoStart&&S.roundReady&&(S.autoTimer-=legacyDt)<=0)startRound();if(S.running){S.gold+=2*legacyDt;S.spawnTimer-=gameDt;if(S.spawnQueue.length&&S.spawnTimer<=0){const entry=S.spawnQueue.shift();spawnOne(entry);S.spawnTimer+=Math.max(.25,entry.delay??.25)}}for(const e of S.enemies){if(e.dead)continue;e.fieldAge=(e.fieldAge||0)+gameDt;e.stun=Math.max(0,e.stun-legacyDt);e.slow=Math.max(0,e.slow-legacyDt);e.blocked=Math.max(0,(e.blocked||0)-legacyDt);e.splitFlash=Math.max(0,(e.splitFlash||0)-legacyDt);e.bossBadge=Math.max(0,(e.bossBadge||0)-legacyDt);e.vulnerable=Math.max(0,(e.vulnerable||0)-legacyDt);e.emulsified=Math.max(0,(e.emulsified||0)-legacyDt);e.enteritisPurify=Math.max(0,(e.enteritisPurify||0)-legacyDt);if(e.digesting){e.digesting-=legacyDt;const mouth=e.digestSource;e.digestX+=(mouth.x-e.digestX)*Math.min(1,legacyDt*2.3);e.digestY+=(mouth.y-e.digestY)*Math.min(1,legacyDt*2.3);if(e.digesting<=0)r3CompleteDigestion(e);continue}if(S.globalStun>0){if(e.boss)r4ApplySlow(e,.8,S.globalStun,'medicine');else e.stun=Math.max(e.stun,S.globalStun)}if(e.stun>0||e.blocked>0)continue;const purified=e.enteritisPurify>0||purifiedByProbiotic(e),enteritisSpeed=e.enteritis&&!purified?1.5:1;e.t+=e.speed*roundMult().speed*enteritisSpeed*r4SlowMultiplier(e)*legacyDt/7600;if(e.t>=1){recordEnemyEscaped(e);e.dead=true;e.deathResolved=true;if(!S.sandbox){S.lives-=lifeLoss(e);if(S.lives<=0)return gameOver()}}}banquetAdvance();absorbBeforeCombat();perfBeginCombat();for(const t of S.towers){const d=TOWER_DEFS[t.type],buff=getBuff(t);t.cool-=legacyDt;if(t.type==='atp'){if(S.running){t.farm+=legacyDt;if(t.farm>=4){t.farm=0;S.gold+=28*(1+(t.level-1)*.55)*(t.level===5?3:1);burst(t.x,t.y,'#ffe27c',7)}}continue}if(t.type==='mouth'&&t.level===6){cadenceDigestStep(t,legacyDt);continue}if(t.type==='digestCannon'){r5UpdateCannon(t,buff,legacyDt);continue}if(t.type==='digestionKing'){kingAttackStep(t,buff);continue}cadenceAttackStep(t,buff,d);}r5ProcessCannonEvents();for(const e of S.enemies)if(!e.dead&&e.hp<=0)resolveDeath(e);let ew=0;for(const e of S.enemies)if(!e.dead)S.enemies[ew++]=e;S.enemies.length=ew;let sw=0;for(let si=0;si<S.shots.length;si++){const s=S.shots[si];if(si<cannonShotStart)s.ttl-=legacyDt;if(s.ttl>0)S.shots[sw++]=s}S.shots.length=sw;let fw=0;for(let fi=0;fi<S.fx.length;fi++){const f=S.fx[fi];if(fi<cannonFxStart)f.life-=legacyDt;f.x+=f.vx*legacyDt;f.y+=f.vy*legacyDt;if(f.life>0)S.fx[fw++]=f}S.fx.length=fw;perf.combat=false;if(S.running&&!(S.banquetDeployments||[]).length&&!S.spawnQueue.length&&!S.enemies.length&&!(S.cannonEvents||[]).length)nextRound();updateIndigestion(gameDt)};
+update=function(dt){if(S.gameOver||S.paused)return;const cannonShotStart=S.shots.length,cannonFxStart=S.fx.length;const gameDt=Math.max(0,Number(dt)||0)*Math.max(1,Number(S.speed)||1),legacyDt=r7ToLegacySeconds(gameDt);S.elapsed+=gameDt;S.compatElapsed=(S.compatElapsed||0)+legacyDt;S.skillCD=Math.max(0,S.skillCD-legacyDt);S.globalStun=Math.max(0,S.globalStun-legacyDt);S.globalBuff=Math.max(0,S.globalBuff-legacyDt);S.globalAcid=Math.max(0,S.globalAcid-legacyDt);S.discount=Math.max(0,S.discount-legacyDt/45*.2);S.shake=Math.max(0,S.shake-legacyDt);if(S.roulette&&(S.roulette.timer-=legacyDt)<=0)S.roulette=null;if(S.alert&&(S.alert.timer-=legacyDt)<=0)S.alert=null;if(!S.running&&S.autoStart&&S.roundReady&&(S.autoTimer-=legacyDt)<=0)startRound();if(S.banquetPrompt||S.paused)return;if(S.running){S.gold+=2*legacyDt;S.spawnTimer-=gameDt;if(S.spawnQueue.length&&S.spawnTimer<=0){const entry=S.spawnQueue.shift();spawnOne(entry);S.spawnTimer+=Math.max(.25,entry.delay??.25)}}for(const e of S.enemies){if(e.dead)continue;e.fieldAge=(e.fieldAge||0)+gameDt;e.stun=Math.max(0,e.stun-legacyDt);e.slow=Math.max(0,e.slow-legacyDt);e.blocked=Math.max(0,(e.blocked||0)-legacyDt);e.splitFlash=Math.max(0,(e.splitFlash||0)-legacyDt);e.bossBadge=Math.max(0,(e.bossBadge||0)-legacyDt);e.vulnerable=Math.max(0,(e.vulnerable||0)-legacyDt);e.emulsified=Math.max(0,(e.emulsified||0)-legacyDt);e.enteritisPurify=Math.max(0,(e.enteritisPurify||0)-legacyDt);if(e.digesting){e.digesting-=legacyDt;const mouth=e.digestSource;e.digestX+=(mouth.x-e.digestX)*Math.min(1,legacyDt*2.3);e.digestY+=(mouth.y-e.digestY)*Math.min(1,legacyDt*2.3);if(e.digesting<=0)r3CompleteDigestion(e);continue}if(S.globalStun>0){if(e.boss)r4ApplySlow(e,.8,S.globalStun,'medicine');else e.stun=Math.max(e.stun,S.globalStun)}if(e.stun>0||e.blocked>0)continue;const purified=e.enteritisPurify>0||purifiedByProbiotic(e),enteritisSpeed=e.enteritis&&!purified?1.5:1;e.t+=e.speed*roundMult().speed*enteritisSpeed*r4SlowMultiplier(e)*legacyDt/7600;if(e.t>=1){recordEnemyEscaped(e);e.dead=true;e.deathResolved=true;if(!S.sandbox){S.lives-=lifeLoss(e);if(S.lives<=0)return gameOver()}}}banquetAdvance();absorbBeforeCombat();perfBeginCombat();for(const t of S.towers){const d=TOWER_DEFS[t.type],buff=getBuff(t);t.cool-=legacyDt;if(t.type==='atp'){if(S.running){t.farm+=legacyDt;if(t.farm>=4){t.farm=0;S.gold+=28*(1+(t.level-1)*.55)*(t.level===5?3:1);burst(t.x,t.y,'#ffe27c',7)}}continue}if(t.type==='mouth'&&t.level===6){cadenceDigestStep(t,legacyDt);continue}if(t.type==='digestCannon'){r5UpdateCannon(t,buff,legacyDt);continue}if(t.type==='digestionKing'){kingAttackStep(t,buff);continue}cadenceAttackStep(t,buff,d);}r5ProcessCannonEvents();labProcessProjectiles();for(const e of S.enemies)if(!e.dead&&e.hp<=0)resolveDeath(e);let ew=0;for(const e of S.enemies)if(!e.dead)S.enemies[ew++]=e;S.enemies.length=ew;let sw=0;for(let si=0;si<S.shots.length;si++){const s=S.shots[si];if(si<cannonShotStart)s.ttl-=legacyDt;if(s.ttl>0)S.shots[sw++]=s}S.shots.length=sw;let fw=0;for(let fi=0;fi<S.fx.length;fi++){const f=S.fx[fi];if(fi<cannonFxStart)f.life-=legacyDt;f.x+=f.vx*legacyDt;f.y+=f.vy*legacyDt;if(f.life>0)S.fx[fw++]=f}S.fx.length=fw;perf.combat=false;if(S.running&&!(S.banquetDeployments||[]).length&&!S.spawnQueue.length&&!S.enemies.length&&!(S.cannonEvents||[]).length&&!(S.labProjectiles||[]).length)nextRound();updateIndigestion(gameDt)};
 
 /* Build / selected-tower text: Lv6 remains a hidden fifth-level upgrade, while
    automatic probiotic growth keeps its own wording. */
@@ -1472,7 +1586,7 @@ openGuide=function(){const basics=['mouth','amylase','pepsin','lipase'],advanced
 openCodex=function(){r3Pause();const order=['glucose','maltose','starch','amino','peptide','protein','fatty','fatStage3','fatblob','oyster','spicyOyster','hamburger','spicyHamburger','oysterBoss','spicyOysterBoss','pizza','spicyPizza','chicken','spicyChicken','malatang','spicyMalatang','gluttonKing'];ui.codexBody.innerHTML=`<div class="small"><b>시각 규칙</b> · 하늘색 육각형=탄수화물 · 연보라 사각형=단백질 · 노란 물방울=지방. 매운 보스는 음식 위쪽의 🌶️과 불꽃 눈으로 구분합니다.<br><b>분해</b> · 햄버거→녹말+단백질+지방 덩어리 · 피자→햄버거×2 · 치킨→피자×2 · 마라탕→치킨×2</div><div class="codexGrid">${order.map(key=>{const d=ENEMY_DEFS[key],visual=d.boss?r7GuideBossVisual(key):(d.spicy?`<span class="guideBossVisual">${r7BossFood(d)}<i>🌶️</i></span>`:d.emoji||'');return `<div class="codexItem"><b style="color:${d.color}">${visual} ${d.name}</b><div class="small">HP ${d.hp.toLocaleString()} · ${d.boss?'보스':d.special?'특수':'일반'} · 기본 속도 ${d.speed}</div></div>`}).join('')}</div>`;ui.codexWrap.classList.add('open')};
 
 /* Compact mode keeps the map/panel relationship rather than stacking them. */
-function r7ApplyCompactLayout(){const narrow=window.innerWidth<=780,root=document.documentElement;document.body.classList.toggle('r7Compact',narrow);if(!narrow){root.style.setProperty('--r7-scale','1');return}const scale=Math.min(1,window.innerWidth/920,window.innerHeight/620);root.style.setProperty('--r7-scale',String(Math.max(.18,scale)))}
+function r7ApplyCompactLayout(){const narrow=window.innerWidth<600,root=document.documentElement;document.body.classList.toggle('r7Compact',narrow);if(!narrow){root.style.setProperty('--r7-scale','1');return}const scale=Math.min(1,window.innerWidth/920,window.innerHeight/620);root.style.setProperty('--r7-scale',String(Math.max(.18,scale)))}
 resize=function(){const oldGrid=gridSize||1;for(const t of S.towers)t.rangeTiles=t.range/oldGrid;const width=Math.max(1,wrap.clientWidth||wrap.getBoundingClientRect().width),height=Math.max(1,wrap.clientHeight||wrap.getBoundingClientRect().height);dpr=Math.min(2,devicePixelRatio||1);W=width;H=height;canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);canvas.style.width=W+'px';canvas.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);buildMap();for(const t of S.towers){const c=cells.find(z=>z.col===t.col&&z.row===t.row);if(c){c.used=true;t.x=c.x;t.y=c.y;t.range=t.rangeTiles*gridSize}}};
 let r7ResizeFrame=0;function r7QueueResize(){cancelAnimationFrame(r7ResizeFrame);r7ResizeFrame=requestAnimationFrame(()=>{r7ApplyCompactLayout();resize()})}window.addEventListener('resize',r7QueueResize);window.addEventListener('orientationchange',r7QueueResize);window.visualViewport?.addEventListener('resize',r7QueueResize);r7ApplyCompactLayout();resize();
 let r7ShopStartY=0,r7ShopMovedAt=-Infinity;ui.grid.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')r7ShopStartY=e.clientY},{passive:true});ui.grid.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse'&&Math.abs(e.clientY-r7ShopStartY)>8)r7ShopMovedAt=performance.now()},{passive:true});ui.grid.addEventListener('click',e=>{if(performance.now()-r7ShopMovedAt<420){e.preventDefault();e.stopImmediatePropagation()}},true);
@@ -1568,9 +1682,10 @@ function r8SubjectParticle(value){
   if(!syllables.length)return '이';
   return ((syllables.at(-1).charCodeAt(0)-0xac00)%28)===0?'가':'이';
 }
-function r8RenderNamedIntro(type,suffix){
+function r8RenderNamedIntro(type,suffix,first=!S.seenNotices?.[`first-${type}`]){
+  if(S.courseNotice&&S.elapsed<S.courseNotice.until)return true;
   const d=ENEMY_DEFS[type];if(!d)return false;
-  const name=document.createElement('strong');name.textContent=d.name;name.style.color='#FFD166';name.style.fontWeight='900';
+  const name=document.createElement('strong');name.textContent=d.name;if(first)name.className='bossIntroName';else name.style.fontWeight='inherit';
   ui.msg.replaceChildren(name,document.createTextNode(suffix===undefined?`${r8SubjectParticle(d.name)} 처음 출현합니다.`:suffix));
   S.messageTimer=0;
   return true;
@@ -1581,9 +1696,9 @@ r5NoticeName=function(type,tail){
   const key=`first-${type}`;
   if(S.seenNotices[key])return false;
   S.seenNotices[key]=true;
-  return r8RenderNamedIntro(type,tail);
+  return r8RenderNamedIntro(type,tail,true);
 };
-function r8RenderIntroText(text){ui.msg.textContent=text;S.messageTimer=0}
+function r8RenderIntroText(text){if(S.courseNotice&&S.elapsed<S.courseNotice.until)return;ui.msg.textContent=text;S.messageTimer=0}
 const R8_FIRST_TYPES={1:'glucose',2:'maltose',4:'starch',6:'amino',7:'peptide',8:'protein',9:'oyster',13:'fatty',14:'fatStage3',15:'fatblob',17:'spicyOyster'};
 const R8_EVENT_TEXT={
   21:'가벼운 영양소가 등장하는 정비 라운드입니다.',28:'빠른 굴이 연속으로 등장합니다.',30:'장염으로 소화관 운동이 빨라집니다.',38:'매운 굴이 연속으로 등장합니다.',
@@ -1606,6 +1721,7 @@ function r8PlannedFirstType(round){
   return R8_FIRST_TYPES[round]||null;
 }
 function r8ShowRoundIntro(round,{sandbox=false,actual=false}={}){
+  if(isEnteritisRound(round)){r8RenderIntroText('장염으로 소화관 운동이 빨라집니다.');return true}
   const first=r8PlannedFirstType(round);
   if(first&&(sandbox||actual)){
     if(sandbox)return r8RenderNamedIntro(first);
@@ -1615,9 +1731,8 @@ function r8ShowRoundIntro(round,{sandbox=false,actual=false}={}){
   const boss=BOSS_SCHEDULE.find(item=>item.round===round);
   if(boss)return r8RenderNamedIntro(boss.type,' 보스가 등장합니다.');
   if(R8_EVENT_TEXT[round]){r8RenderIntroText(R8_EVENT_TEXT[round]);return true}
-  if(round<=5)r8RenderIntroText('탄수화물 영양소가 등장합니다.');
-  else if(round<=12)r8RenderIntroText('탄수화물과 단백질 영양소가 섞여 등장합니다.');
-  else r8RenderIntroText('상위 영양소와 보스가 섞여 등장합니다.');
+  const bossEra=BOSS_SCHEDULE.some(b=>b.round<=round&&ENEMY_DEFS[b.type]?.boss);
+  r8RenderIntroText(bossEra?'상위 영양소와 보스가 섞여 등장합니다.':'상위 영양소가 섞여 등장합니다.');
   return true;
 }
 
@@ -1842,15 +1957,18 @@ deal=function(e,raw,t){
 
 /* Cannon direct hits, splash, delayed blasts and salvos all meet here once. */
 r5CannonArea=function(t,x,y,raw,radius,direct){
-  const radiusPx=radius*gridSize;
+  const radiusPx=radius*gridSize;let lineageDeath=false;
   for(const e of perfNearby(x,y,radiusPx)){
-    if(e.dead||e.digesting||e.hp<=0)continue;
+    if(e.dead||e.digesting||e.feastLocked||e.hp<=0)continue;
     const point=perfPosition(e),distance=Math.hypot(point.x-x,point.y-y);
     if(distance>radiusPx)continue;
     let factor=1;
     if(e!==direct){const near=t.level>=3?.75:.60,far=t.level>=3?.40:.30;factor=near-(near-far)*(distance/radiusPx)}
-    r9Hit(e,raw*factor,t);
+    const bossMultiplier=e.boss?1+.05*Math.max(0,(t.level||1)-1)+labAmp(e)/100:1;
+    e.hp-=r5DamageAmount(e,raw*factor*bossMultiplier,t);e.lastHitType='digestCannon';e.hit=.11;absorbCommit(e);
+    if(e.hp<=0&&(Number.isInteger(e.courseIndex)||e.feastSummonToken))lineageDeath=true;
   }
+  if(lineageDeath)v14RefreshLocks();
   S.fx.push({kind:'cannonBlast',x,y,vx:0,vy:0,r:radiusPx,life:.28,color:'#ffb35e'});
 };
 
@@ -2396,13 +2514,15 @@ function perfPaintEnemyBody(e, r, includeFace) {
 drawEnemies = function() {
   perfDrawEnemies(S.enemies);
 };
+function wideGameArt(){return window.innerWidth>=1280&&window.innerHeight>=700}
 function perfDrawEnemies(enemies) {
+  const visualScale=wideGameArt()?1.15:1;
   for (const e of enemies) {
     const p = e.digesting ? {x: e.digestX, y: e.digestY} : banquetVisiblePosition(e,perfPosition(e));
     ctx.save(); ctx.translate(p.x, p.y);
     const total = e.digestTotal || (e.boss ? 5 : 3.5);
     const ds = e.digesting ? Math.max(.25, e.digesting / total) : 1;
-    ctx.scale(ds, ds);
+    ctx.scale(ds*v15EnemyArtScale(e)*visualScale, ds*v15EnemyArtScale(e)*visualScale);
     const r = (e.boss ? 29 : 10.5 + e.tier * 2.35) * e.size, ratio = e.hp / e.maxHp;
     const filter = e.type==='lastBanquet' ? 'none' : e.boss && ratio <= .33 ? 'grayscale(1) brightness(.67)' :
       e.boss && ratio <= .66 ? 'grayscale(.6) brightness(.85)' : 'none';
@@ -2412,6 +2532,7 @@ function perfDrawEnemies(enemies) {
     if (!cache) {
       const half = Math.ceil(r + 18), {surface, context} = perfSurface(half * 2, half * 2);
       perfWriteStyle(context, perfReadStyle(ctx));
+      context.globalAlpha = 1; // Live opacity must never be baked into shared sprites.
       context.translate(half, half); context.filter = filter;
       // Bake body AND face into each of the three HP appearances once per key.
       // Never replay grayscale/brightness over face paths on the main canvas.
@@ -2456,11 +2577,11 @@ function perfToggle(el, name, on) {
 }
 refreshBuildButtons = function() {
   if (!perf.shop) perf.shop = [...ui.grid.querySelectorAll('.towerBtn[data-key]')];
-  let atp = 0, cannon = 0, villusOne = 0;const fusionOwned=new Set();
-  for (const t of S.towers) { if (t.type === 'atp') atp++; else if (t.type === 'digestCannon') cannon++; else if(t.type==='villus'&&t.level===1)villusOne++;else if(R3_FUSION[t.type])fusionOwned.add(t.type); }
+  let atp = 0, cannon = 0, villusOne = 0, labs = 0;const fusionOwned=new Set();
+  for (const t of S.towers) { if (t.type === 'atp') atp++; else if (t.type === 'digestCannon') cannon++; else if(t.type==='digestionLab') labs++; else if(t.type==='villus'&&t.level===1)villusOne++;else if(R3_FUSION[t.type])fusionOwned.add(t.type); }
   for (const button of perf.shop) {
     const type = button.dataset.key, d = TOWER_DEFS[type];
-    const limited = type === 'atp' ? atp >= 4 : type === 'digestCannon' ? cannon >= 3 : type==='villus'?villusOne>=2:fusionOwned.has(type);
+    const limited = type === 'atp' ? atp >= 4 : type === 'digestCannon' ? cannon >= 3 : type==='digestionLab'?labs>=3:type==='villus'?villusOne>=2:fusionOwned.has(type);
     const locked = limited || (!S.sandbox && S.gold < d.cost);
     perfSet(button, 'disabled', locked);
     perfSet(button, 'title', limited ? (type==='villus'?'Lv1 융털을 이미 최대 수량(2개) 보유 중입니다.':R3_FUSION[type]?'최대 1개 보유 중':r5LimitText(type)) : locked ? '생체 에너지가 부족합니다.' : '');
@@ -2546,7 +2667,7 @@ function mlFormatText(el,value){
 }
 function mlWanted(){
   const w=window.innerWidth,h=window.innerHeight;
-  return matchMedia('(any-pointer: coarse)').matches&&w>h&&h<=540&&w>=560;
+  return w>h&&h<=540&&w>=560;
 }
 function mlSync(){
   if(!ml.active)return;
@@ -2876,7 +2997,7 @@ enqueueRound = function(round = S.round, append = false) {
 const interactionAudio={track:ui.lobby.classList.contains('hidden')?'game':'main',tokens:{main:0,game:0}};
 const interactionSwitchBgm=switchBgm;
 switchBgm=function(track){
-  interactionAudio.track=(track==='game'||track==='feast')?(S.round>=110?'feast':'game'):'main';
+  interactionAudio.track=(track==='game'||track==='feast')?(S.round>=111?'feast':'game'):'main';
   if(idleAudio.mode!==idleAudioMode()){idleAudio.mode=idleAudioMode();idleAudio.sleeping=false;idleAudio.since=performance.now()}
   for(const other of Object.keys(audio))if(other!==interactionAudio.track){++r6AudioTickets[other];++interactionAudio.tokens[other];r7AudioPending[other]=false;audio[other].pause();audio[other].currentTime=0}
   if(bgmEnabled&&masterVolume>0)r6Fade(interactionAudio.track,masterVolume,1);
@@ -2906,7 +3027,7 @@ document.removeEventListener('touchstart',r6RetryBgm);
 document.removeEventListener('keydown',r6RetryBgm);
 function interactionRetryBgm(event){
   idleAudioActivity(event);
-  if(event?.target instanceof Element&&event.target.closest('#lobbyBgmBtn,#gameBgmBtn'))return;
+  if(event?.target instanceof Element&&event.target.closest('#lobbyBgmBtn,#gameBgmBtn,#settingsBgmToggle'))return;
   if(!bgmEnabled||masterVolume<=0)return;
   const track=interactionAudio.track;
   if(audio[track].paused)r6AttemptPlay(track,'user-interaction');
@@ -2922,7 +3043,7 @@ toggleBgm=function(){
       r7AudioPending[track]=false;audio[track].pause();
     }
     bgmStarted=false;
-  }else{idleAudio.sleeping=false;idleAudio.since=performance.now();switchBgm(interactionAudio.track)}
+  }else{idleAudio.sleeping=false;idleAudio.since=performance.now();switchBgm(ui.lobby.classList.contains('hidden')?'game':'main')}
   syncBgmButtons();
 };
 ui.lobbyBgm.onclick=toggleBgm;ui.gameBgm.onclick=toggleBgm;
@@ -3216,6 +3337,7 @@ function fullMapTowerSprite(t){
   fullMapRender.sprites.set(key,sprite);fullMapRender.builds++;return sprite;
 }
 drawTowers=function(){
+  const visualScale=wideGameArt()?1.08:1;
   const style=dpr+':'+ctx.font+':'+ctx.lineCap+':'+ctx.lineJoin;
   if(fullMapRender.style!==style){fullMapRender.style=style;fullMapRender.sprites.clear()}
   for(const t of S.towers){
@@ -3227,8 +3349,9 @@ drawTowers=function(){
     if(t.type==='atp'&&S.running&&t.farm>0){
       ctx.strokeStyle='rgba(255,214,107,.42)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,0,23+t.farm*2,0,TAU);ctx.stroke();
     }
+    ctx.scale(visualScale,visualScale);
     if(t.type==='digestionKing'){r3Crusher(t);drawTowerGauge(t)}
-    else{const sprite=fullMapTowerSprite(t);ctx.drawImage(sprite.surface,-sprite.half,-sprite.half,sprite.surface.width/dpr,sprite.surface.height/dpr)}
+    else{if(t.type==='digestionLab'){const fit=Math.min(1,gridSize*.92/(40*visualScale));ctx.scale(fit,fit)}const sprite=fullMapTowerSprite(t);ctx.drawImage(sprite.surface,-sprite.half,-sprite.half,sprite.surface.width/dpr,sprite.surface.height/dpr)}
     ctx.restore();
   }
 };
@@ -3270,9 +3393,10 @@ drawXrayTowers=function(){
 const defaultSchool={code:'JF9W9',name:'해양중학교'};
 const schoolLeaderboard=openLeaderboard;
 openLeaderboard=function(){
-  schoolLeaderboard();
-  const code=document.getElementById('r3SchoolCode');
-  if(code){code.value=defaultSchool.code;code.title=defaultSchool.name}
+  const readOnly=ui.lobby.classList.contains('hidden');
+  schoolLeaderboard({readOnly});
+  const code=document.getElementById('r3SchoolCode'),saved=r3Profile().schoolCode||'';
+  if(code){code.value=readOnly?saved:(saved||defaultSchool.code);code.title=code.value===defaultSchool.code?defaultSchool.name:''}
 };
 ui.leader.onclick=openLeaderboard;
 const schoolScoreRegistration=openScoreRegistration;
@@ -3332,12 +3456,12 @@ function absorbMaxLevel(type){return type==='villus'?10:5}
 const ABSORB_STATS={
   capillary:{damage:[4,7,11,16,23],range:[2.4,2.5,2.6,2.7,2.8],rate:[.18,.18,.18,.18,.18]},
   lacteal:{damage:[34,50,75,110,160],range:[3,3.1,3.2,3.3,3.4],rate:[2.1,2.025,1.95,1.875,1.8]},
-  villus:{damage:[950,1700,2800,4150,5700,7500,9500,11700,14100,16600],range:[3,3.5,4.3,5.1,6,7.1,8.3,9.5,10.7,12],rate:[.9,.87,.84,.81,.78,.75,.72,.69,.65,.6]}
+  villus:{damage:[752.4,1346.4,2217.6,3286.8,4514.4,5940,7524,9266.4,11167.2,13147.2],range:[3,3.5,4.3,5.1,6,7.1,8.3,9.5,10.7,12],rate:[.9,.87,.84,.81,.78,.75,.72,.69,.65,.6]}
 };
 Object.assign(TOWER_DEFS,{
   capillary:{name:'모세혈관',short:'빠른 단일 흡수',group:'고급',icon:'🩸',color:'#ff779c',cost:300,damage:4,range:2.4,rate:.18,type:'attack',desc:'설치 이후 전 맵 실제 피해로 자동 성장 · 최대 Lv5. Lv5부터 보스 피해 +15%. 모세혈관 Lv5 + 암죽관 Lv5 → 융털.',awaken:'전 맵 피해로 성장'},
   lacteal:{name:'암죽관',short:'느린 범위 흡수',group:'고급',icon:'💧',color:'#83efd0',cost:300,damage:34,range:3,rate:2.1,type:'attack',desc:'1.1타일 범위 흡수 · 전 맵 실제 피해로 자동 성장 · 최대 Lv5. Lv5부터 보스 피해 +15%. 모세혈관 Lv5 + 암죽관 Lv5 → 융털.',awaken:'전 맵 피해로 성장'},
-  villus:{name:'융털',short:'후방 특화 합성',group:'합성',icon:'🌿',color:'#ffe3a1',cost:0,damage:950,range:3,rate:.9,type:'attack',desc:'뒤쪽에 설치해 출구로 향하는 적 한 마리를 흡수합니다. 같은 레벨 2개를 수동 합성해 성장. 보유 제한: Lv1~9는 각 레벨당 최대 2개, Lv10 융털은 1개만 보유할 수 있습니다.',awaken:'Lv5 긴급 흡수 강화 · Lv7 저체력 흡수 · Lv10 장거리 흡수'}
+  villus:{name:'융털',short:'후방 특화 합성',group:'합성',icon:'🌿',color:'#ffe3a1',cost:0,damage:752.4,range:3,rate:.9,type:'attack',desc:'뒤쪽에 설치해 출구로 향하는 적 한 마리를 흡수합니다. 같은 레벨 2개를 수동 합성해 성장. 보유 제한: Lv1~9는 각 레벨당 최대 2개, Lv10 융털은 1개만 보유할 수 있습니다.',awaken:'Lv5 긴급 흡수 강화 · Lv7 저체력 흡수 · Lv10 장거리 흡수'}
 });
 function absorbCommit(e){
   if(!e||e.deploying)return;
@@ -3372,7 +3496,9 @@ resolveDeath=function(e){absorbCommit(e);return absorbDeath(e)};
 awakenTower=function(t){try{return absorbAwaken(t)}finally{absorbFlush()}};
 function absorbSetLevel(t,level){
   const stats=ABSORB_STATS[t.type];if(!stats)return;
+  const previous=t.level;
   t.level=Math.max(1,Math.min(absorbMaxLevel(t.type),level));const i=t.level-1;
+  if(t.type==='villus'&&t.level===10&&previous!==10)t.villusFullReady=S.elapsed+7;
   t.damage=t.damageBase=stats.damage[i];t.rangeTiles=stats.range[i];t.range=t.rangeTiles*gridSize;t.rate=stats.rate[i];
 }
 const absorbCreate=createTower;
@@ -3399,6 +3525,7 @@ function absorbBeforeCombat(){
 }
 const absorbCadence=cadenceAttackStep;
 cadenceAttackStep=function(t,buff,def){
+  if(t.type==='villus'&&t.level===10)v14FullAbsorb(t,buff);
   if(t.type==='villus'&&t.level>=5&&(S.absorbEmergencyUntil||0)>S.elapsed)buff={...buff,rate:buff.rate+.25};
   return absorbCadence(t,buff,def);
 };
@@ -3525,11 +3652,11 @@ buildTowerPanel();
 
 /* Phase two is kept outside S.enemies until the single shared arrival deadline.
  * Rendering reuses the same cached HP-state sprites as ordinary enemies. */
-ENEMY_DEFS.lastBanquet={...ENEMY_DEFS.gluttonKing,name:'최후의 만찬',emoji:'🍽️',hp:ENEMY_DEFS.gluttonKing.hp*20,unlockRound:110,size:2.05,color:'#b263b8',children:[]};
+ENEMY_DEFS.lastBanquet={...ENEMY_DEFS.gluttonKing,name:'최후의 만찬',emoji:'🍽️',hp:ENEMY_DEFS.gluttonKing.hp*20,unlockRound:111,size:2.05,color:'#b263b8',children:[]};
 const banquetEnteritis=isEnteritisRound;
-isEnteritisRound=function(round){return round!==110&&banquetEnteritis(round)};
+isEnteritisRound=function(round){return round===110||round!==111&&banquetEnteritis(contentRound(round))};
 const banquetEntries=makeRoundEntries;
-makeRoundEntries=function(round){return round>=110?[{type:'lastBanquet',wave:round,enteritis:isEnteritisRound(round),spicy:false,delay:.25}]:banquetEntries(round)};
+makeRoundEntries=function(round){return round>=111?[{type:'lastBanquet',wave:round,enteritis:isEnteritisRound(round),spicy:false,delay:.25}]:banquetEntries(round)};
 let banquetPathCache=null;
 function banquetSegments(){
   if(banquetPathCache?.path===path)return banquetPathCache;
@@ -3553,7 +3680,7 @@ function banquetCreatePhase(e){
   // Keep every arrival ahead of the death position, even near the exit.
   const kinds=['starch','protein','fatblob','maltose','peptide','fatStage3'];
   for(let i=0;i<150;i++){const t=e.t+(limit-e.t)*i/149,oldPosition=.012+(middle-.012)*i/149;put(oldPosition>=last.start?kinds[i%3]:kinds[i%kinds.length],t)}
-  const count=10+Math.max(0,wave-110)*2;
+  const count=10+Math.max(0,wave-111)*2;
   let length=0;for(let i=1;i<path.length;i++)length+=Math.hypot(path[i].x-path[i-1].x,path[i].y-path[i-1].y);
   const layout=[];let next=e.t;
   for(const [type,anchor] of [['gluttonKing',e.t],['malatang',lanes[2].start],['chicken',lanes[3].start]]){
@@ -3609,11 +3736,13 @@ perfPaintEnemyBody=function(e,r,face){
   ctx.restore();if(face)drawCartoonFace(e,r);
 };
 function banquetRequireStart(round,action){
-  if(round!==110&&round!==111)return false;
+  if(round!==111&&round!==112&&round!==113)return false;
   if(S.banquetApproved?.[round])return false;
   if(S.banquetPrompt)return true;
   const state=S;S.banquetPrompt={round};
-  openModal('🍽️ 최후의 만찬',`<p style="font-size:18px;line-height:1.7">${round===110?'최후의 만찬을 음미하시오.':'다시 한번 최후의 만찬이 차려졌습니다. 살아남으십시오.'}</p><div class="modalActions"><button id="banquetStart" class="modalBtn primary">만찬 시작</button></div>`);
+  const course=round>=112;
+  const text=round===111?'최후의 만찬을 음미하시오.':round===112?'코스 요리가 시작됩니다. 앞선 접시부터 차례대로 비우십시오.':'천천히 먹는 시간이 끝났습니다. 만찬이 조금씩 가속됩니다.';
+  openModal(course?'코스 요리':'🍽️ 최후의 만찬',`<p style="font-size:18px;line-height:1.7">${text}</p><div class="modalActions"><button id="banquetStart" class="modalBtn primary">${course?'코스 요리 시작':'만찬 시작'}</button></div>`);
   document.getElementById('banquetStart').onclick=()=>{
     if(S!==state||!S.banquetPrompt)return;
     (S.banquetApproved||(S.banquetApproved={}))[round]=true;S.banquetPrompt=null;closeModal();action();
@@ -3628,23 +3757,26 @@ startRound=function(){
   return banquetStartRound();
 };ui.start.onclick=()=>startRound();
 rushNextRound=function(){
-  if(S.gameOver||!S.running||S.round>=109)return;
+  if(S.gameOver||!S.running||S.round>=110)return;
   if(banquetRequireStart(S.round+1,()=>rushNextRound()))return;
   return banquetRush();
 };ui.rush.onclick=()=>rushNextRound();
 const banquetIntro=r8ShowRoundIntro;
 r8ShowRoundIntro=function(round,options){
-  if(round<110)return banquetIntro(round,options);
-  setMsg(`라운드 ${round} · 최후의 만찬 1마리 · 처치 후 대규모 2페이즈`);
+  if(round<111)return banquetIntro(round,options);
+  r8RenderNamedIntro('lastBanquet',' 1마리 · 처치 후 대규모 2페이즈');
 };
 function banquetClear(){S.banquetDeployments=[];S.banquetFloors=null;S.cannonEvents=[];S.shots=[]}
 const banquetClearButton=ui.clearNutrients.onclick;
 ui.clearNutrients.onclick=function(){if(S.sandbox)banquetClear();return banquetClearButton()};
 const banquetSandboxRound=r3SandboxRound;
-r3SandboxRound=function(){const n=Number(document.getElementById('sandboxRoundInput').value);if(S.sandbox&&Number.isInteger(n)&&n>=1&&n<=999)banquetClear();return banquetSandboxRound()};
+r3SandboxRound=function(){const n=Number(document.getElementById('sandboxRoundInput').value);if(S.sandbox&&Number.isInteger(n)&&n>=1&&n<=999){
+  if(S.banquetPrompt){S.banquetPrompt=null;closeModal()}
+  banquetClear();S.seenNotices={};S.seenBosses={};S.banquetApproved={};S.courseNotices=[];S.courseNotice=null;S.alert=null;S.r8IntroPlan=null;
+}return banquetSandboxRound()};
 document.getElementById('sandboxRoundGo').onclick=()=>r3SandboxRound();
 const banquetButton=document.createElement('button');banquetButton.className='sandboxBtn';banquetButton.dataset.spawn='lastBanquet';banquetButton.textContent='🍽️ 최후의 만찬';
-banquetButton.onclick=()=>{if(!S.sandbox)return;const e=enemy('lastBanquet',{wave:Math.max(110,S.round)});e.t=.015;S.enemies.push(e);setMsg('최후의 만찬을 소환했습니다.')};
+banquetButton.onclick=()=>{if(!S.sandbox)return;const e=enemy('lastBanquet',{wave:Math.max(111,S.round)});e.t=.015;S.enemies.push(e);setMsg('최후의 만찬을 소환했습니다.')};
 document.querySelector('.sandboxBosses').appendChild(banquetButton);
 const banquetGuide=openGuide;
 openGuide=function(){
@@ -3741,6 +3873,33 @@ function villusProgressBonus(t,e){
   const end=banquetSegments().horizontals.at(-1).end;
   return absorbClamp((e.t-.35)/(end-.35))*(.45+.45*(t.level-1)/9);
 }
+function v14VillusGold(t,damage,full){
+  const key=full?'villusFullRemainder':'villusGoldRemainder',unit=full?1000:2000;
+  const total=(t[key]||0)+damage,gold=Math.floor(total/unit);
+  t[key]=total-gold*unit;S.gold+=gold;
+  if(full)t.villusFullGold=(t.villusFullGold||0)+gold;
+}
+function v14FullAbsorb(t,buff){
+  if(t.villusFullReady===undefined)t.villusFullReady=S.elapsed+7;
+  if(S.elapsed<t.villusFullReady)return;
+  const targets=t.villusFullTargets||(t.villusFullTargets=[]);targets.length=0;
+  const radius=t.range*(1+(buff.range||0));
+  for(const e of perfNearby(t.x,t.y,radius)){
+    if(e.dead||e.digesting||e.deploying||e.feastLocked||e.hp<=0)continue;
+    const p=perfPosition(e);if(!perfWithin(p.x-t.x,p.y-t.y,radius))continue;
+    targets.push(e);if(targets.length===8)break;
+  }
+  if(!targets.length){t.villusFullReady=S.elapsed+.15;return}
+  t.villusFullReady=S.elapsed+7;t.villusFullLife=.9;t.villusFullGold=0;t.villusFullActive=true;
+  try{for(const e of targets)r9Hit(e,27000,t)}finally{t.villusFullActive=false}
+}
+function v14DrawFullAbsorb(t){
+  if(!(t.villusFullLife>0))return;
+  ctx.save();ctx.globalAlpha=Math.min(1,t.villusFullLife/.2);ctx.strokeStyle='#a5ffe0';ctx.lineWidth=2;ctx.beginPath();
+  for(const e of t.villusFullTargets||[]){const p=perfPosition(e);ctx.moveTo(p.x,p.y);ctx.lineTo(t.x,t.y)}
+  ctx.stroke();ctx.strokeStyle='#fff0b3';ctx.beginPath();ctx.arc(t.x,t.y,22+(1-t.villusFullLife/.9)*8,0,TAU);ctx.stroke();
+  ctx.fillStyle='#fff0a0';ctx.font='bold 12px system-ui';ctx.textAlign='center';ctx.fillText('+'+(t.villusFullGold||0)+'G',t.x,t.y-32-(.9-t.villusFullLife)*12);ctx.restore();
+}
 function villusSkillDescription(t){
   const rear=Math.round((.8+.2*(t.level-1)/9)*100),end=Math.round((.45+.45*(t.level-1)/9)*100);
   const lines=[`<b>후방 배치</b>: 뒤쪽에 설치할수록 피해 증가. 마지막 가로길 높이부터 최대 +${rear}%.`];
@@ -3748,6 +3907,8 @@ function villusSkillDescription(t){
   if(t.level>=5)lines.push('<b>긴급 흡수</b>: 마지막 가로길에 적이 오면 Lv5 이상 융털의 공속 +25%. 6게임초 지속 · 공용 주기 18게임초.');
   if(t.level>=7)lines.push(`<b>저체력 흡수</b>: HP 66% 이하 +${t.level===10?25:15}%, 33% 이하 +${t.level===10?50:30}% 피해.`,`<b>흡수 파동</b>: 주 대상 주변 ${villusSplashRadius(t).toFixed(2)}타일의 가까운 적 최대 2명에게 ${Math.round(villusSplashRatio(t)*100)}% 보조 피해.`);
   const boss=r9TowerBossBonus(t);if(boss>0)lines.push(`보스에게 추가 피해 +${Math.round(boss*100)}%.`);
+  lines.push('<b>피해 흡수 수입</b>: 실제 피해 2,000당 1G. 남은 피해는 이월합니다.');
+  if(t.level===10)lines.push('<b>전면 흡수</b>: 7게임초마다 사거리 내 최대 8명에게 기본 피해 27,000을 1회 적용합니다. 기존 피해 보정 적용. 실제 피해 1,000당 1G.');
   return lines.map(line=>`<p>${line}</p>`).join('');
 }
 function villusDrawCore(c,level,scale=1){
@@ -3802,12 +3963,12 @@ addShot=function(t,e,...args){
 const villusUpdate=update;
 update=function(dt){
   if(S.paused||S.gameOver)return;
-  for(const t of S.towers){const v=t.villusShot;if(v?.life>0){v.age+=dt;v.life=Math.max(0,v.life-dt);if(!v.life)v.target=null}}
+  for(const t of S.towers){if(t.villusFullLife>0){t.villusFullLife=Math.max(0,t.villusFullLife-dt);if(!t.villusFullLife)t.villusFullTargets.length=0}const v=t.villusShot;if(v?.life>0){v.age+=dt;v.life=Math.max(0,v.life-dt);if(!v.life)v.target=null}}
   return villusUpdate(dt);
 };
 const villusDrawShots=drawShots;
 drawShots=function(){
-  villusDrawShots();ctx.save();
+  villusDrawShots();for(const t of S.towers)v14DrawFullAbsorb(t);ctx.save();
   for(const t of S.towers){
     const v=t.villusShot;if(!v||v.life<=0)continue;
     if(v.target&&!v.target.dead){const p=perfPosition(v.target);v.tx=p.x;v.ty=p.y}
@@ -3840,8 +4001,8 @@ const banquetAncestry=new WeakMap();
 function banquetOrigin(e){return e.banquetWave??e.recordWave??banquetAncestry.get(e)??e.wave}
 // Rendered boss circles use 29 * size CSS pixels (not grid tiles). Cache the
 // first forward intersection per leader/path so followers never scan the path.
-function banquetLeaderFloor(leader){
-  const radius=29*(leader.size+Math.max(ENEMY_DEFS.gluttonKing.size,ENEMY_DEFS.malatang.size,ENEMY_DEFS.spicyMalatang.size))+3;
+function banquetLeaderFloor(leader,clearance){
+  const radius=clearance??29*(leader.size+Math.max(ENEMY_DEFS.gluttonKing.size,ENEMY_DEFS.malatang.size,ENEMY_DEFS.spicyMalatang.size))+3;
   const cached=leader.feastSpacing;
   if(cached?.path===path&&cached.t===leader.t&&cached.radius===radius)return cached.floor;
   const center=pointAt(leader.t),n=path.length-1,r2=radius*radius;
@@ -3857,19 +4018,14 @@ function banquetLeaderFloor(leader){
     a=b;start=i/n;
   }
   // Insufficient path before the exit: preserve progress/life-loss timing;
-  // the rendering-only fallback below separates the circles instead.
+  // keep the real path center even when there is no room to separate circles.
   if(floor>=1-1e-6)floor=leader.t;
   const spacing=cached||(leader.feastSpacing={});spacing.path=path;spacing.t=leader.t;spacing.radius=radius;spacing.floor=floor;return floor;
 }
-function banquetVisiblePosition(e,p){
-  if(!e.boss||e.type==='lastBanquet'||e.deploying||e.digesting)return p;
-  const leader=S.feastLeaders?.get(banquetOrigin(e));if(!leader||leader.dead)return p;
-  const c=perfPosition(leader),radius=29*(leader.size+e.size)+3,dx=p.x-c.x,dy=p.y-c.y,d2=dx*dx+dy*dy;
-  if(d2>=radius*radius-1e-6)return p;
-  let ux=dx,uy=dy,length=Math.sqrt(d2);
-  if(length<1e-6){const next=pointAt(Math.min(1,leader.t+.001));ux=next.x-c.x;uy=next.y-c.y;length=Math.hypot(ux,uy)||1;if(!ux&&!uy)uy=1}
-  const visible=e.feastVisible||(e.feastVisible={x:0,y:0});visible.x=c.x+ux/length*radius;visible.y=c.y+uy/length*radius;return visible;
-}
+// Movement/knockback floors already operate on path progress. Never push a
+// sprite sideways to separate circles: that disconnects it from its real target.
+function banquetVisiblePosition(e,p){return p}
+
 function banquetRemainsFloor(e,from){
   const sites=S.gluttonRemains?.get(banquetOrigin(e));if(!sites)return 0;
   let lo=0,hi=sites.length;
@@ -3878,8 +4034,12 @@ function banquetRemainsFloor(e,from){
 }
 function banquetClampFloor(e,from=e.t){
   if(e.type==='lastBanquet')return;
+  if(e.feastPhaseMember){
+    const floor=Math.max(e.feastPhaseFloor||0,banquetRemainsFloor(e,from));
+    if(e.t<floor){e.t=floor;perf.grid=null}return;
+  }
   const leader=S.feastLeaders?.get(banquetOrigin(e));
-  const floor=Math.max(S.banquetFloors?.get(banquetOrigin(e))??0,banquetRemainsFloor(e,from),leader&&!leader.dead?banquetLeaderFloor(leader):0);
+  const floor=Math.max(S.banquetFloors?.get(banquetOrigin(e))??0,banquetRemainsFloor(e,from),leader&&!leader.dead&&e.t<from&&from>=leader.t?banquetLeaderFloor(leader):0);
   if(floor!==undefined&&e.t<floor){e.t=floor;perf.grid=null}
 }
 function banquetSetFloor(e){
@@ -3891,7 +4051,7 @@ function banquetSetFloor(e){
 const banquetV2Enemy=enemy;
 enemy=function(type,options){
   const e=banquetV2Enemy(type,options);
-  if(type==='lastBanquet'){e.hp=e.maxHp=Math.round(ENEMY_DEFS.lastBanquet.hp*Math.pow(1.10,Math.max(0,e.wave-110)));e.absorbHP=e.hp}
+  if(type==='lastBanquet'){e.hp=e.maxHp=Math.round(ENEMY_DEFS.lastBanquet.hp*(e.wave>=112?1.10*(1+.05*(e.wave-112)):1));e.absorbHP=e.hp}
   if(banquetV2Parent)banquetAncestry.set(e,banquetOrigin(banquetV2Parent));
   return e;
 };
@@ -4017,6 +4177,7 @@ function villusSplash(t,primary,raw){
 }
 // Shared with the original round generator: no new probability curve.
 function v12BossSpicyChance(type,round){
+  round=contentRound(round);
   if(type==='malatang'&&round>=105)return Math.min(.95,.4+(round-105)*.015);
   const unlocked=BOSS_SCHEDULE.filter(b=>b.round+5<=round&&b.type!=='gluttonKing').map(b=>b.type)
     .filter(type=>type!=='oysterBoss'||round>=37).filter(type=>type!=='pizza'||round>=45).filter(type=>type.includes('spicy'));
@@ -4033,7 +4194,7 @@ makeRoundEntries=function(round){
   const extras=[];for(let i=existing.length;i<required;i++)extras.push({...sample});entries.splice(at,0,...extras);return entries;
 };
 const v12UI=updateUI;
-updateUI=function(force=false){v12UI(force);if(S.round>=109){perfSet(ui.rush,'disabled',true);perfSet(ui.rush,'title','110라운드부터는 이전 라운드를 모두 처치한 뒤 시작할 수 있습니다.')}};
+updateUI=function(force=false){v12UI(force);if(S.round>=110){perfSet(ui.rush,'disabled',true);perfSet(ui.rush,'title','111라운드부터는 이전 라운드를 모두 처치한 뒤 시작할 수 있습니다.')}};
 ENEMY_DEFS.oysterBoss.name='초밥';ENEMY_DEFS.spicyOysterBoss.name='매운 초밥';
 TOWER_DEFS.villus.desc='모세혈관 Lv5 + 암죽관 Lv5로 최초 제작. 이후 생체 에너지로 Lv10까지 강화합니다. 보유 제한: Lv1~9는 레벨마다 2개, Lv10은 1개.';
 function v12GuideContent(){
@@ -4045,7 +4206,7 @@ function v12GuideContent(){
     list.insertBefore(card,before);r3DrawTowerPreview(card.querySelector('canvas'),key);
   }
   const order=['hamburger','spicyHamburger','oysterBoss','spicyOysterBoss','pizza','spicyPizza','chicken','spicyChicken','malatang','spicyMalatang','gluttonKing'];
-  const features={hamburger:'빵 사이 영양소가 꽉 찼다. 한입으로 끝날 상대는 아니다.',spicyHamburger:'패티에 매운맛을 더했다. 불꽃 눈을 보고 방심하지 말자.',oysterBoss:'한 점이라고 얕보지 말자. 작아 보여도 제법 질기다.',spicyOysterBoss:'와사비 욕심이 지나쳤다. 매운 한 점이 소화관을 달린다.',pizza:'치즈처럼 질기게 버틴다. 식기 전에 처리하자.',spicyPizza:'치즈 아래 매운 소스가 숨어 있다. 식혀도 만만하지 않다.',chicken:'바삭한 겉옷 속에 체력이 꽉 찼다. 두 조각으로 나뉘기 전에 준비하자.',spicyChicken:'불닭의 기세로 달려온다. 물 대신 효소를 준비하자.',malatang:'선배, 마라탕 사주세요. 탕후루는 잡고 나서 생각합시다.',spicyMalatang:'얼얼한 국물까지 남김없이 왔다. 매운맛도 끝까지 소화하자.',gluttonKing:'먹고, 또 먹고, 결국 왕이 되었다. 문제는 너무 많이 먹었다.'};
+  const features={hamburger:'빵 사이 영양소가 꽉 찼다. 한입으로 끝날 상대는 아니다.',spicyHamburger:'패티에 매운맛을 더했다. 불꽃 눈을 보고 방심하지 말자.',oysterBoss:'한 점이라고 얕보지 말자. 작아 보여도 제법 질기다.',spicyOysterBoss:'와사비 욕심이 지나쳤다. 매운 한 점이 소화관을 달린다.',pizza:'치즈처럼 질기게 버틴다. 식기 전에 처리하자.',spicyPizza:'치즈 아래 매운 소스가 숨어 있다. 식혀도 만만하지 않다.',chicken:'바삭한 겉옷 속에 체력이 꽉 찼다. 두 조각으로 나뉘기 전에 준비하자.',spicyChicken:'불닭의 기세로 달려온다. 물 대신 효소를 준비하자.',malatang:'선배, 마라탕 사주세요. 탕후루는 잡고 나서 생각합시다.',spicyMalatang:'탕후루는 커녕 더 맵게 돌아왔다. 끝까지 선배에게 매달려서 탕후루를 받아내자.',gluttonKing:'먹고, 또 먹고, 결국 왕이 되었다. 문제는 너무 많이 먹었다.'};
   const rows=[...ui.modalBody.querySelectorAll('.guideBoss')];
   rows.forEach((row,i)=>{const key=order[i];if(!key)return;const text=row.lastElementChild,split=text.textContent.split(' · 분해: ')[1]||'';text.innerHTML=`<b style="color:${ENEMY_DEFS[key].color}">${key==='gluttonKing'?'폭식의 왕':ENEMY_DEFS[key].name}</b><div>${features[key]}</div><div class="guideSmall">분해: ${split}</div>`});
   const mystery=document.createElement('div');mystery.className='guideBoss';mystery.innerHTML='<span class="guideBossVisual" aria-label="미지의 보스">?</span><span><b>???: </b><div>식사의 끝에서 기다리고 있다.</div></span>';rows.at(-1).after(mystery);
@@ -4131,7 +4292,8 @@ showTowerInfo=function(t){
   v13RefreshPanel();v13SelectionButton();
 };
 const v13BuildInfo=showBuildInfo;
-showBuildInfo=function(key){v13SelectedEnemy=null;v13Panel=null;v13BuildInfo(key);v13SelectionButton()};
+function showUnselectedInfo(){ui.info.innerHTML='<p class="infoEmpty">타워를 선택하면 상세 정보가 표시됩니다.</p>';ui.sell.disabled=true;if(typeof ml!=='undefined')mlSync()}
+showBuildInfo=function(key){v13SelectedEnemy=null;v13Panel=null;if(S.selectedBuild===key)v13BuildInfo(key);else showUnselectedInfo();v13SelectionButton()};
 const v13EnemyInfo=showEnemyInfo;
 showEnemyInfo=function(e){
   v13EnemyInfo(e);v13SelectedEnemy=e.boss?e:null;v13Panel=null;if(!e.boss)return;
@@ -4161,7 +4323,7 @@ canvas.addEventListener('click',event=>{
   // Match the visible draw order: banquet is on top of its summoned bosses.
   for(let i=S.enemies.length-1;i>=0;i--){const e=S.enemies[i];if(e.type!=='lastBanquet'||e.dead)continue;const p=perfPosition(e);if(perfWithin(p.x-x,p.y-y,29*e.size)){v13MultiBuild(false);showEnemyInfo(e);return}}
   for(let i=S.towers.length-1;i>=0;i--){const t=S.towers[i];if(perfWithin(t.x-x,t.y-y,Math.max(23,gridSize*.4))){v13MultiBuild(false);showTowerInfo(t);return}}
-  for(let i=S.enemies.length-1;i>=0;i--){const e=S.enemies[i];if(e.dead)continue;const p=banquetVisiblePosition(e,perfPosition(e));if(perfWithin(p.x-x,p.y-y,e.boss?29*e.size:gridSize*.35)){v13MultiBuild(false);showEnemyInfo(e);return}}
+  for(let i=S.enemies.length-1;i>=0;i--){const e=S.enemies[i];if(e.dead)continue;const p=banquetVisiblePosition(e,perfPosition(e));if(perfWithin(p.x-x,p.y-y,e.boss?29*e.size*v15EnemyArtScale(e):gridSize*.35*v15EnemyArtScale(e))){v13MultiBuild(false);showEnemyInfo(e);return}}
   clearSelection('빈 공간을 눌러 선택을 해제했습니다.');
 },true);
 document.addEventListener('click',event=>{
@@ -4170,7 +4332,7 @@ document.addEventListener('click',event=>{
   if(event.target!==canvas)clearSelection();
 });
 const v13Start=startRound;
-startRound=function(){if(S.paused){S.paused=false;v13SyncControls();if(S.running)return}return v13Start()};
+startRound=function(){if(S.banquetPrompt)return;if(S.paused){S.paused=false;v13SyncControls();if(S.running)return}return v13Start()};
 ui.start.onclick=()=>startRound();ui.pause.onclick=()=>{if(S.gameOver)return;S.paused=!S.paused;v13SyncControls()};
 function v13SyncControls(){
   perfText(ui.pause,S.paused?'▶ 재개':'❚❚ 일시정지');perfToggle(ui.pause,'active',S.paused);perfSet(ui.pause,'disabled',S.gameOver);
@@ -4252,12 +4414,453 @@ audio.feast=new Audio('./Feast_bgm.mp3');audio.feast.loop=true;audio.feast.prelo
 r3AudioTickets.feast=r6AudioTickets.feast=interactionAudio.tokens.feast=0;r7AudioPending.feast=false;
 applyVolume=function(){masterVolume=r7SafeVolume(masterVolume,.3);for(const track of Object.keys(audio))r7SetAudioVolume(track,track===interactionAudio.track?masterVolume:0);return masterVolume};
 const v13Enqueue=enqueueRound;
-enqueueRound=function(...args){S.feastLeaders=null;const result=v13Enqueue(...args);if((args[0]??S.round)>=110&&interactionAudio.track!=='feast')switchBgm('game');return result};
+enqueueRound=function(...args){S.feastLeaders=null;const result=v13Enqueue(...args);if((args[0]??S.round)>=111&&interactionAudio.track!=='feast')switchBgm('game');return result};
+const sandboxMinimize=document.createElement('button');
+sandboxMinimize.id='sandboxMinimize';sandboxMinimize.type='button';sandboxMinimize.setAttribute('aria-controls','sandboxTools');
+ui.sandboxTools.querySelector('.sandboxHead').appendChild(sandboxMinimize);
+function setSandboxMinimized(minimized){
+  ui.sandboxTools.classList.toggle('isMinimized',!!minimized);
+  sandboxMinimize.textContent=minimized?'+':'−';sandboxMinimize.setAttribute('aria-expanded',String(!minimized));
+  sandboxMinimize.setAttribute('aria-label',minimized?'소환 패널 펼치기':'소환 패널 접기');
+}
+sandboxMinimize.onclick=()=>{if(S.sandbox)setSandboxMinimized(!ui.sandboxTools.classList.contains('isMinimized'))};
+setSandboxMinimized(false);
 const v13Enter=enterGame,v13Restart=restartGame;
-enterGame=function(...args){v13SelectedEnemy=v13Panel=null;v13Enter(...args);v13MultiBuild(false);S.selectedBuild=S.selectedTower=null;v13SelectionButton();updateUI(true)};
-restartGame=function(...args){v13SelectedEnemy=v13Panel=null;v13Restart(...args);v13MultiBuild(false);S.selectedBuild=S.selectedTower=null;switchBgm('game');v13SelectionButton();updateUI(true)};
+enterGame=function(...args){v13SelectedEnemy=v13Panel=null;v13Enter(...args);setSandboxMinimized(false);v13MultiBuild(false);S.selectedBuild=S.selectedTower=null;showUnselectedInfo();v13SelectionButton();updateUI(true)};
+restartGame=function(...args){v13SelectedEnemy=v13Panel=null;v13Restart(...args);setSandboxMinimized(false);v13MultiBuild(false);S.selectedBuild=S.selectedTower=null;showUnselectedInfo();switchBgm('game');v13SelectionButton();updateUI(true)};
 const v13Style=document.createElement('style');v13Style.textContent='#cancelSelection{display:block;width:100%;margin:12px 0 3px;padding:10px;border:1px solid #f399a1;border-radius:8px;background:#9a3048;color:#fff;font-weight:800;cursor:pointer}#info .upgrade:disabled{opacity:.48;cursor:not-allowed}';document.head.append(v13Style);
 buildTowerPanel();updateUI(true);
+
+/* Course lineage, feast protection and actual-damage economy. */
+const V14_COURSE_TYPES=Object.freeze([
+  'hamburger','spicyHamburger','pizza','spicyPizza','oysterBoss','spicyOysterBoss',
+  'chicken','spicyChicken','malatang','spicyMalatang','gluttonKing','lastBanquet'
+]);
+const v14RoundScale=round=>round>=112?1+.05*(round-112):1;
+
+// Four ordinary waves: composition/density only; no new event or global stats.
+const DENSE_ROUNDS=Object.freeze({
+  26:{normal:64,bosses:[]},
+  46:{normal:72,bosses:['hamburger','hamburger','spicyHamburger','pizza','pizza']},
+  66:{normal:90,bosses:['pizza','pizza','pizza','spicyPizza','spicyOysterBoss','spicyOysterBoss','chicken','chicken']},
+  86:{normal:112,bosses:['spicyOysterBoss','spicyOysterBoss','spicyPizza','spicyPizza','chicken','chicken','chicken','spicyChicken','spicyChicken','malatang','malatang']}
+});
+function denseRoundEntries(round){
+  const config=DENSE_ROUNDS[round],kinds=['starch','protein','fatblob'];
+  const entry=(type,delay,spicy=false)=>({...r6Entry(type,round,delay*R7_LEGACY_TIME,spicy),delay,r7TimeNormalized:true});
+  const normal=Array.from({length:config.normal},(_,i)=>entry(kinds[(i+round)%3],.25,i%5===4));
+  const bosses=config.bosses.map(type=>entry(type,.4,!!ENEMY_DEFS[type].spicy));
+  return r6Interleave(normal,bosses,round);
+}
+/* 112+ uses one fixed full-course order. Difficulty rises through speed and the
+ * Last Banquet's HP rather than by changing the course contents. */
+const v14RoundEntries=makeRoundEntries;
+makeRoundEntries=function(round){
+  if(DENSE_ROUNDS[round])return denseRoundEntries(round);
+  if(round===110)return v14RoundEntries(109).map(entry=>({...entry,wave:110,enteritis:true}));
+  if(round<112)return v14RoundEntries(round);
+  return V14_COURSE_TYPES.map((type,index)=>({
+    type,wave:round,enteritis:isEnteritisRound(round),spicy:!!ENEMY_DEFS[type]?.spicy,
+    delay:.25,courseIndex:index,courseRound:round
+  }));
+};
+
+/* Rebase the Last Banquet's late-game HP on round 112.  Keep round 111 exactly
+ * as authored; from 113 onward add 5% of the 112 baseline per round (linear). */
+let v14DeathParent=null;
+const v14Enemy=enemy;
+enemy=function(type,options={}){
+  const e=v14Enemy(type,options),wave=options.wave??e.wave??S.round;
+  const parent=v14DeathParent;
+  if(parent&&parent.type!=='lastBanquet'){
+    for(const key of ['courseIndex','courseRound','feastSummonToken','feastPhaseMember','feastPhaseFloor','feastArtScale'])if(parent[key]!==undefined)e[key]=parent[key];
+  }else if(parent?.type==='lastBanquet')e.banquetAfterlife=true;
+  if(type==='lastBanquet'||Number.isInteger(e.courseIndex))v14GuardHp(e);
+  return e;
+};
+function v14ApplyCourseSpeed(e,round){
+  if(!e||e.v14CourseSpeed||round<112)return;
+  const d=ENEMY_DEFS[e.type],base=d.speed*Math.min(1.5,1+.005*Math.max(0,111-(d.unlockRound===111&&e.type==='lastBanquet'?110:(d.unlockRound||111))));
+  Object.defineProperty(e,'speed',{configurable:true,get(){return base*v14RoundScale(round)*(e.type==='lastBanquet'?1+.08*(e.feastPhase||0):1)/roundMult().speed},set(){}});
+  e.v14CourseSpeed=v14RoundScale(round);
+}
+
+const v14SpawnOne=spawnOne;
+spawnOne=function(entry){
+  const start=S.enemies.length,result=v14SpawnOne(entry),data=typeof entry==='string'?null:entry;
+  if(data&&Number.isInteger(data.courseIndex)){
+    for(let i=start;i<S.enemies.length;i++){
+      const e=S.enemies[i];e.courseIndex=data.courseIndex;e.courseRound=data.courseRound??data.wave;
+      v14ApplyCourseSpeed(e,e.courseRound);v14GuardHp(e);
+    }
+    v14RefreshLocks();
+  }
+  const spawned=S.enemies[start];if(spawned)r5NoticeName(spawned.type);
+  return result;
+};
+
+/* Phase 66/33: follow the clarified forward path span, with five evenly
+ * spaced bosses and a bounded, distance-derived nutrient procession. */
+let v14FeastToken=0;
+let v14Metric=null;
+function v14PathMetric(){
+  if(v14Metric?.path===path)return v14Metric;
+  const distance=[0];for(let i=1;i<path.length;i++)distance.push(distance[i-1]+Math.hypot(path[i].x-path[i-1].x,path[i].y-path[i-1].y));
+  return v14Metric={path,distance};
+}
+function v14Distance(t){
+  const d=v14PathMetric().distance,f=Math.max(0,Math.min(1,t))*(d.length-1),i=Math.floor(f);
+  return d[i]+(d[Math.min(i+1,d.length-1)]-d[i])*(f-i);
+}
+function v14DistanceT(value){
+  const d=v14PathMetric().distance;let lo=0,hi=d.length-1;
+  while(lo+1<hi){const mid=(lo+hi)>>>1;if(d[mid]<value)lo=mid;else hi=mid}
+  return (lo+Math.max(0,Math.min(1,(value-d[lo])/Math.max(1e-9,d[hi]-d[lo]))))/(d.length-1);
+}
+function v15EnemyArtScale(e){return window.innerWidth<600||mlWanted()?(e.feastArtScale||1):1}
+function v14PhaseSpan(e){
+  const lane=banquetSegments().horizontals.findLast(seg=>seg.sign>0);
+  // Before the last row: Feast-front to that row's ENTRY. On that row: front to END.
+  const end=e.t<lane.start?lane.start:e.t<lane.end?lane.end:1-1e-6;
+  const right=v14Distance(end),origin=v14Distance(e.t),big=29*Math.max(ENEMY_DEFS.gluttonKing.size,ENEMY_DEFS.spicyMalatang.size);
+  let scale=1,left=origin;
+  for(let i=0;i<3;i++){
+    const front=banquetLeaderFloor(e,29*e.size+big*scale+4);
+    left=front>e.t&&front<end?v14Distance(front):origin+(right-origin)*.08;
+    scale=Math.min(1,Math.max(.04,(right-left)/(4*(big*2+120+10))));
+  }
+  return {start:v14DistanceT(left),end,left,right,scale};
+}
+function v14SpawnFeastPhase(e,phase){
+  const wave=banquetOrigin(e),span=v14PhaseSpan(e),token=`feast-${wave}-${phase}-${++v14FeastToken}`;
+  const base=phase===1?'malatang':'gluttonKing',anchors=Array.from({length:5},(_,i)=>span.left+(span.right-span.left)*i/4);
+  const old=recordCreationContext;recordCreationContext={state:S,wave:e.recordWave??wave,child:true};
+  const mark=child=>{child.banquetWave=wave;child.feastSummonToken=token;child.feastPhaseMember=true;child.feastPhaseFloor=span.start;child.feastArtScale=span.scale;child.courseIndex=undefined;return child};
+  try{
+    const bosses=[];
+    for(const x of anchors){
+      const spicy=base==='malatang'&&Math.random()<v12BossSpicyChance(base,e.wave),type=spicy?R6_SPICY_BOSS[base]:base;
+      const child=mark(enemy(type,{wave:e.wave,enteritis:e.enteritis,spicy}));child.t=v14DistanceT(x);S.enemies.push(child);bosses.push(child);
+    }
+    const kinds=['starch','protein','fatblob'],gap=40*span.scale;let kind=0;
+    for(let x=span.left+gap;x<span.right-gap*.5;x+=gap){
+      if(anchors.some((a,i)=>Math.abs(x-a)<(29*bosses[i].size+20)*span.scale+span.scale*2))continue;
+      const child=mark(enemy(kinds[kind++%3],{wave:e.wave,enteritis:e.enteritis,spicy:false}));child.t=v14DistanceT(x);S.enemies.push(child);
+    }
+  }finally{recordCreationContext=old}
+  e.feastGuardToken=token;e.phaseLocked=true;e.feastLocked=true;perf.grid=null;
+  v14RefreshLocks();
+}
+
+/* Trigger only one threshold at a time.  If one hit crosses both thresholds,
+ * the 33% course waits until the 66% summoned food has been completely cleared. */
+v13FeastPhase=function(e){
+  if(e.type!=='lastBanquet'||e.dead||e.deploying||e.feastGuardToken)return;
+  const wanted=e.hp/e.maxHp<=.33?2:e.hp/e.maxHp<=.66?1:0,current=e.feastPhase||0;
+  if(current>=wanted)return;
+  const next=current+1;e.feastPhase=next;e.color=next===1?'#ec8a30':'#d93632';
+  const wave=banquetOrigin(e);(S.feastLeaders||(S.feastLeaders=new Map())).set(wave,e);
+  v14SpawnFeastPhase(e,next);S.feastShakeUntil=performance.now()+280;
+};
+
+/* A phase lock follows all descendants of the summoned food.  Course locks use
+ * authored appearance order, never physical position, so faster bosses cannot
+ * skip ahead in the target sequence. */
+let v14RefreshingLocks=false;
+function v14RefreshLocks(){
+  if(v14RefreshingLocks||v14DeathParent)return;
+  v14RefreshingLocks=true;
+  try{
+  for(let i=0;i<S.enemies.length;i++){
+    const e=S.enemies[i];
+    if(!e.dead&&!e.deathResolved&&!e.digesting&&!e.feastLocked&&e.hp<=0&&(Number.isInteger(e.courseIndex)||e.feastSummonToken))resolveDeath(e);
+  }
+  const firstByRound=new Map(),tokens=new Set();
+  const include=e=>{
+    if(e.dead)return;
+    if(e.feastSummonToken)tokens.add(e.feastSummonToken);
+    if(!e.feastPhaseMember&&!e.banquetAfterlife&&Number.isInteger(e.courseIndex)){
+      const wave=e.courseRound??e.wave,old=firstByRound.get(wave);
+      if(old===undefined||e.courseIndex<old)firstByRound.set(wave,e.courseIndex);
+    }
+  };
+  for(const e of S.enemies)include(e);
+  for(const e of S.spawnQueue)include(e);
+  for(const e of S.enemies){
+    if(e.dead)continue;
+    if(e.feastGuardToken&&!tokens.has(e.feastGuardToken))e.feastGuardToken=null;
+    e.courseLocked=!e.feastPhaseMember&&!e.banquetAfterlife&&Number.isInteger(e.courseIndex)&&e.courseIndex>(firstByRound.get(e.courseRound??e.wave)??e.courseIndex);
+    e.phaseLocked=e.type==='lastBanquet'&&!!e.feastGuardToken;
+    e.feastLocked=!!(e.courseLocked||e.phaseLocked);
+  }
+  }finally{v14RefreshingLocks=false}
+}
+function v14GuardHp(e){
+  if(e.v14HpGuard)return;
+  let value=e.hp;
+  Object.defineProperty(e,'hp',{configurable:true,enumerable:true,get(){return value},set(next){
+    if(next<value){
+      if(e.feastLocked)return;
+      if(e.type==='lastBanquet'&&(e.feastPhase||0)<2){
+        const threshold=e.maxHp*((e.feastPhase||0)===0?.66:.33);
+        if(next<=threshold){value=threshold;v13FeastPhase(e);return}
+      }
+    }
+    value=next;
+  }});
+  e.v14HpGuard=true;
+}
+
+
+/* Targeting filters. Locked food keeps moving but cannot be deliberately selected
+ * or damaged by splash/global attacks while its plate is not yet active. */
+findTarget=function(t,range,livingOnly=false){
+  const mode=t.targetMode||'front',priority=mode==='protein'||mode==='carb'||mode==='fat'||mode==='boss';
+  let preferred=null,fallback=null,preferredValue=0,fallbackValue=0,preferredOrder=Infinity,fallbackOrder=Infinity;
+  const byHp=mode==='strong'||mode==='weak',ascending=mode==='back'||mode==='weak';
+  const query=perfQuery(t.x,t.y,range),entries=query?query.entries:S.enemies;
+  for(let i=0;i<entries.length;i++){
+    const e=query?entries[i].e:entries[i],order=query?entries[i].order:i;
+    if(e.dead||e.digesting||e.feastLocked||(livingOnly&&e.hp<=0))continue;
+    const p=perfPosition(e);if(!perfWithin(p.x-t.x,p.y-t.y,range))continue;
+    const match=!priority||(mode==='boss'?e.boss:e.kind===mode),value=byHp?e.hp:e.t;
+    if(match){if(!preferred||(ascending?value<preferredValue:value>preferredValue)||(value===preferredValue&&order<preferredOrder)){preferred=e;preferredValue=value;preferredOrder=order}}
+    else if(!fallback||value>fallbackValue||(value===fallbackValue&&order<fallbackOrder)){fallback=e;fallbackValue=value;fallbackOrder=order}
+  }
+  return preferred||fallback;
+};
+const v14PickBoss=r6PickBoss;
+r6PickBoss=function(t,range,filter=()=>true){return v14PickBoss(t,range,e=>!e.feastLocked&&filter(e))};
+r5CannonBossTarget=function(t,range){
+  r6PruneKnockMap(t);const counts=r6KnockMap(t),now=S.compatElapsed||0,mode=R10_KNOCK_MODES.includes(t.knockMode)?t.knockMode:'front';
+  let available=null,fallback=null;
+  const better=(a,b)=>!a?b:mode==='back'?(b.t<a.t?b:a):mode==='strong'?(b.hp>a.hp?b:a):mode==='weak'?(b.hp<a.hp?b:a):(b.t>a.t?b:a);
+  for(const e of perfNearby(t.x,t.y,range)){
+    if(e.dead||e.digesting||e.feastLocked||e.hp<=0||!e.boss)continue;
+    const p=perfPosition(e);if(!perfWithin(p.x-t.x,p.y-t.y,range))continue;
+    fallback=better(fallback,e);if((counts.get(e.r6Id)||0)<2&&(e.knockImmuneUntil||0)<=now)available=better(available,e);
+  }
+  return available||fallback;
+};
+r3DigestTarget=function(){
+  let best=null;for(const e of S.enemies){if(e.dead||e.digesting||e.feastLocked||e.hp<=0||!e.boss||r6DigestRank(e)===0)continue;if(!best||r6DigestRank(e)>r6DigestRank(best)||(r6DigestRank(e)===r6DigestRank(best)&&e.t>best.t))best=e}
+  if(best&&!best.r6DigestSetter){const total=r6DigestSeconds(best)*1.5;let value=0,started=false;Object.defineProperty(best,'digesting',{configurable:true,get(){return value},set(next){if(!started&&next===5){started=true;value=total}else value=next}});best.r6DigestSetter=true;best.digestTotal=total}
+  return best;
+};
+const v14Neighbors=r9PancreasNeighbors;
+r9PancreasNeighbors=function(primary){return v14Neighbors(primary).filter(e=>!e.feastLocked)};
+const v14Hit=r9Hit;
+r9Hit=function(e,raw,t){
+  if(!e||e.dead||e.digesting||e.deploying||e.feastLocked||e.hp<=0)return 0;
+  const before=Math.max(0,e?.hp||0),result=v14Hit(e,raw,t);
+  if(t?.type==='villus')v14VillusGold(t,Math.max(0,before-Math.max(0,e.hp)),!!t.villusFullActive);
+  if(e.hp<=0&&(Number.isInteger(e.courseIndex)||e.feastSummonToken))v14RefreshLocks();
+  return result;
+};
+const v14FlatHit=r10FlatTowerHit;
+r10FlatTowerHit=function(e,...args){if(e?.feastLocked)return 0;const result=v14FlatHit(e,...args);if(e?.hp<=0&&(Number.isInteger(e.courseIndex)||e.feastSummonToken))v14RefreshLocks();return result};
+const v14Deal=deal;
+deal=function(e,...args){if(e?.feastLocked)return;const result=v14Deal(e,...args);if(e?.hp<=0&&(Number.isInteger(e.courseIndex)||e.feastSummonToken))v14RefreshLocks();return result};
+
+
+/* Locked bosses are visually translucent; movement and knockback floors are left
+ * untouched. The existing remains and phase-two drawing order are preserved. */
+const v14DrawNormal=[],v14DrawLocked=[],v14DrawFeast=[],v14DrawFeastLocked=[];
+drawEnemies=function(){
+  banquetDrawRemains();v14DrawNormal.length=v14DrawLocked.length=v14DrawFeast.length=v14DrawFeastLocked.length=0;
+  for(const e of S.enemies){
+    if(e.type==='lastBanquet')(e.feastLocked?v14DrawFeastLocked:v14DrawFeast).push(e);
+    else (e.feastLocked?v14DrawLocked:v14DrawNormal).push(e);
+  }
+  perfDrawEnemies(v14DrawNormal);
+  ctx.save();ctx.globalAlpha=.38;perfDrawEnemies(v14DrawLocked);ctx.restore();
+  for(const group of S.banquetDeployments||[])perfDrawEnemies(group.items);
+  perfDrawEnemies(v14DrawFeast);
+  ctx.save();ctx.globalAlpha=.38;perfDrawEnemies(v14DrawFeastLocked);ctx.restore();
+};
+
+/* Refresh locks before combat and after state changes, without altering movement. */
+const v14BeforeCombat=absorbBeforeCombat;
+absorbBeforeCombat=function(){v14RefreshLocks();return v14BeforeCombat()};
+const v14Update=update;
+update=function(dt){if(S.banquetPrompt)return;v14RefreshLocks();const result=v14Update(dt);v14RefreshLocks();return result};
+
+/* Only announce after the actual round starts, including automatic starts. */
+const v14Intro=r8ShowRoundIntro;
+r8ShowRoundIntro=function(round,options){
+  if(round>=112){if(!S.running)setMsg('▶ 라운드 시작을 눌러 코스 요리를 시작하세요.');return true}
+  return v14Intro(round,options);
+};
+
+
+
+/* Full decomposition reward. A special deletion may skip rendering/spawning a
+ * branch, but it must not delete the gold that branch would have yielded. */
+const v14GoldMemo=new Map();
+function v14TreeGold(type,stack=new Set()){
+  if(v14GoldMemo.has(type))return v14GoldMemo.get(type);
+  if(stack.has(type))return 0;const d=ENEMY_DEFS[type];if(!d)return 0;
+  const children=Array.isArray(d.children)?d.children:[];
+  if(!children.length){v14GoldMemo.set(type,20);return 20}
+  const next=new Set(stack);next.add(type);const value=3+children.reduce((sum,k)=>sum+v14TreeGold(k,next),0);v14GoldMemo.set(type,value);return value;
+}
+const v14Digest=r3CompleteDigestion;
+r3CompleteDigestion=function(e){
+  if(e?.feastLocked)return;
+  if(!e||e.dead||e.deathResolved)return v14Digest(e);
+  const before=S.gold,target=v14TreeGold(e.type),result=v14Digest(e);
+  if(e.dead&&e.deathResolved)S.gold+=target-(S.gold-before);
+  v14RefreshLocks();return result;
+};
+const v14Death=resolveDeath;
+resolveDeath=function(e){
+  if(!e||e.dead||e.deathResolved||e.feastLocked)return;
+  absorbCommit(e);if(e.feastLocked)return;
+  const beforeChildren=Array.isArray(e.children)?e.children.slice():[],parent=v14DeathParent;
+  v14DeathParent=e;
+  try{
+    const result=v14Death(e);
+    if(e.dead&&e.deathResolved&&beforeChildren.length){
+      const remaining=new Map();for(const k of e.children||[])remaining.set(k,(remaining.get(k)||0)+1);
+      let bonus=0;for(const k of beforeChildren){const left=remaining.get(k)||0;if(left)remaining.set(k,left-1);else bonus+=v14TreeGold(k)}
+      S.gold+=bonus;
+    }
+    return result;
+  }finally{v14DeathParent=parent;v14RefreshLocks()}
+};
+
+
+/* Digestion laboratory: cached art, bounded projectiles, lazy per-source effects. */
+const LAB_STATS=Object.freeze({damage:[45,70,105,155,230,340,510,760,1120,1800],range:[5,5.2,5.4,5.6,6,6.2,6.5,6.9,7.3,8],interval:[.625,.60,.575,.55,.525,.5,.47,.44,.41,.36],splash:[.65,.7,.75,.8,.9,1,1.1,1.25,1.4,1.65],amp:[5,7,9,11,13,15,18,20,22,30],cost:[300,500,800,1200,2000,3500,6000,10000,20000],chance:[90,80,70,60,50,40,30,20,10]});
+TOWER_DEFS.digestionLab={name:'소화 실험실',short:'지원·범위 용액',color:'#78f2bb',icon:'⚗️',cost:600,range:5,rate:.9375,damage:45,type:'digestionLab',group:'지원',desc:'용액 범위 공격 · 보스 피해 증폭 5초 · 확률 연구 강화 · 최대 3개.',awaken:'최첨단 소화 연구소'};
+const labName=t=>t.level===10?'최첨단 소화 연구소':'소화 실험실';
+function labSetLevel(t,level){t.level=Math.max(1,Math.min(10,level));const i=t.level-1;t.damage=t.damageBase=LAB_STATS.damage[i];t.rangeTiles=LAB_STATS.range[i];t.range=t.rangeTiles*gridSize;t.rate=LAB_STATS.interval[i]*R7_LEGACY_TIME}
+const labCreate=createTower;
+createTower=function(type,...args){const t=labCreate(type,...args);if(type==='digestionLab'){t.labFailed=false;labSetLevel(t,1)}return t};
+const labLimited=r5Limited,labLimitText=r5LimitText;
+r5Limited=function(type){return type==='digestionLab'?S.towers.filter(t=>t.type===type).length>=3:labLimited(type)};
+r5LimitText=function(type){return type==='digestionLab'?'소화 실험실은 최대 3개입니다.':labLimitText(type)};
+const labUpgradeCost=upgradeCost;
+upgradeCost=function(t){if(t?.type!=='digestionLab')return labUpgradeCost(t);return S.sandbox||t.level>=10?0:Math.round(LAB_STATS.cost[t.level-1]*(1-(S.discount||0)))};
+function labChance(t){return t.level>=10?0:LAB_STATS.chance[t.level-1]+(t.labFailed?5:0)}
+const labUpgrade=upgradeTower;
+upgradeTower=function(t){
+ if(t?.type!=='digestionLab')return labUpgrade(t);
+ if(t!==S.selectedTower||!S.towers.includes(t)||t.level>=10)return;
+ const cost=S.sandbox?0:(v13Panel?.tower===t&&v13Panel.level===t.level?v13Panel.quote:upgradeCost(t));
+ if(!S.sandbox&&S.gold<cost){setMsg('생체 에너지가 부족합니다.');return}
+ if(!S.sandbox){S.gold-=cost;t.spent=(t.spent||0)+cost}
+ const success=S.sandbox||Math.random()*100<labChance(t);
+ if(success){labSetLevel(t,t.level+1);t.labFailed=false}else t.labFailed=true;
+ t.labReaction={start:S.elapsed,success,final:success&&t.level===10};showTowerInfo(t);refreshBuildButtons();
+ setMsg(success?(t.level===10?'최종 연구 성공! 최첨단 소화 연구소 완성!':'연구 성공!'):'연구 실패! 레벨 유지 · 다음 성공 확률 +5%p (최대 보정)');
+};
+const labSell=sellSelected;
+sellSelected=function(){const t=S.selectedTower;labSell();if(t?.type==='digestionLab'&&!S.towers.includes(t))t.labRetired=true};ui.sell.onclick=sellSelected;
+// Three live sources at most. Expire on demand, never scan every enemy per frame.
+function labAmp(e){
+ if(!e?.boss||!e.labAmps)return 0;let best=0,maxed=0;
+ for(const [source,a] of e.labAmps){if(a.until<=S.elapsed||source.labRetired){e.labAmps.delete(source);continue}best=Math.max(best,a.percent);if(a.level===10)maxed++}
+ return maxed?LAB_STATS.amp[9]+10*(Math.min(3,maxed)-1):best;
+}
+function labApplyAmp(e,source,level){
+ if(!e.boss||e.dead||e.hp<=0||e.feastLocked||e.deploying||source.labRetired)return;
+ labAmp(e);const amps=e.labAmps||(e.labAmps=new Map()),old=amps.get(source),percent=LAB_STATS.amp[level-1];
+ if(old&&old.percent>percent)return; // Older projectile cannot downgrade newer effect.
+ amps.set(source,{level,percent,until:S.elapsed+5});
+}
+let labExcludeAmp=false;
+const labBossMultiplier=r9BossMultiplier;
+r9BossMultiplier=function(t,e){return labBossMultiplier(t,e)+(labExcludeAmp?0:labAmp(e)/100)};
+// Legacy awakening bursts contain max-HP damage; do not amplify special formulas.
+const labAwaken=awakenTower;
+awakenTower=function(t){const previous=labExcludeAmp;labExcludeAmp=true;try{return labAwaken(t)}finally{labExcludeAmp=previous}};
+const labDeal=deal;
+deal=function(e,raw,t){
+ if(t.type!=='digestionLab')return labDeal(e,raw,t);
+ if(!e||e.dead||e.digesting||e.deploying||e.feastLocked||e.hp<=0)return;
+ (S.labProjectiles||(S.labProjectiles=[])).push({source:t,level:t.level,raw,target:e,start:S.elapsed,due:S.elapsed+.22,fromX:t.x/W,fromY:t.y/H,progress:e.t});
+};
+function labImpact(shot){
+ const progress=shot.target.dead?shot.progress:shot.target.t,p=pointAt(progress),radius=LAB_STATS.splash[shot.level-1]*gridSize;
+ const attack={type:'digestionLab',level:shot.level,x:shot.source.x,y:shot.source.y},hits=[];
+ for(const e of perfNearby(p.x,p.y,radius)){
+  if(e.dead||e.digesting||e.deploying||e.feastLocked||e.hp<=0)continue;
+  const q=perfPosition(e);if(perfWithin(q.x-p.x,q.y-p.y,radius))hits.push(e);
+ }
+ for(const e of hits){const hp=e.hp,damage=r9Hit(e,shot.raw,attack);if(damage>0&&e.hp<hp)labApplyAmp(e,shot.source,shot.level)}
+ const splashes=S.labSplashes||(S.labSplashes=[]);if(splashes.length<12)splashes.push({progress,start:S.elapsed,level:shot.level});
+}
+function labProcessProjectiles(){
+ const shots=S.labProjectiles;if(shots?.length){let write=0;for(const shot of shots){if(S.elapsed>=shot.due)labImpact(shot);else shots[write++]=shot}shots.length=write}
+ const splashes=S.labSplashes;if(splashes?.length){let write=0;for(const s of splashes)if(S.elapsed-s.start<.35)splashes[write++]=s;splashes.length=write}
+}
+const labPanel=buildTowerPanel;
+buildTowerPanel=function(){
+ labPanel();const d=TOWER_DEFS.digestionLab,b=document.createElement('button');b.type='button';b.className='towerBtn';b.dataset.key='digestionLab';
+ b.innerHTML=`<canvas class="towerPreview" width="42" height="34" aria-hidden="true"></canvas><div class="towerName">${d.name}</div><div class="towerTag">${d.short}</div><div class="towerMeta">600 생체 에너지</div><div class="towerDesc">${d.desc}</div>`;
+ ui.grid.querySelector('[data-key="probiotic"]').after(b);r3DrawTowerPreview(b.querySelector('canvas'),'digestionLab');
+ b.onclick=()=>{if(r5Limited('digestionLab')){setMsg(r5LimitText('digestionLab'));return}if(!S.sandbox&&S.gold<600){setMsg('생체 에너지가 부족합니다.');return}S.selectedBuild='digestionLab';S.selectedTower=null;ui.sell.disabled=true;refreshBuildButtons();showBuildInfo('digestionLab')};
+ perf.shop=null;refreshBuildButtons();if(ml.active)mlPrices();mlSync();
+};
+const labBuildInfo=showBuildInfo;
+showBuildInfo=function(key){
+ if(key!=='digestionLab')return labBuildInfo(key);v13SelectedEnemy=null;v13Panel=null;
+ if(S.selectedBuild!==key){showUnselectedInfo();v13SelectionButton();return}
+ ui.info.innerHTML='<div class="infoTitle">⚗️ 소화 실험실</div><p>건설 600 생체 에너지 · 최대 3개</p><p>모든 영양소에 용액 범위 공격. 피해 45 · 반경 0.65타일 · 사거리 5타일 · 간격 0.625초.</p><p>맞은 보스는 5초 동안 모든 타워로부터 받는 피해 +5%. 확률 강화로 Lv10 최첨단 소화 연구소까지 성장합니다.</p>';
+ v13SelectionButton();ml.detailScroll.scrollTop=0;mlSync();
+};
+const labInfo=showTowerInfo;
+showTowerInfo=function(t){
+ if(t?.type!=='digestionLab')return labInfo(t);
+ S.selectedTower=t;S.selectedBuild=null;v13SelectedEnemy=null;ui.sell.disabled=false;
+ const i=t.level-1,cost=upgradeCost(t),row=(a,b)=>`<div class="infoRow"><span>${a}</span><span>${b}</span></div>`,modes={front:'가장 앞',back:'가장 뒤',strong:'HP 높음',weak:'HP 낮음',boss:'보스 우선'};
+ ui.info.innerHTML=`<div class="infoTitle" style="color:#78f2bb">⚗️ ${labName(t)} · Lv${t.level}</div><canvas id="labDetailPreview" width="88" height="80" style="display:block;margin:4px auto"></canvas>`+
+ row('범위 공격 피해',t.damage.toLocaleString())+row('공격 범위 (반경)',LAB_STATS.splash[i]+'타일')+row('사거리',t.rangeTiles+'타일')+row('공격 간격',LAB_STATS.interval[i]+'게임초')+row('보스 피해 증폭','+'+LAB_STATS.amp[i]+'%')+row('지속 시간','5게임초 · 재적중 갱신')+row('설치 제한','최대 3개')+
+ (t.level<10?row('현재 성공 확률',S.sandbox?'100% (연습 모드)':labChance(t)+'%')+row('실패 보정',t.labFailed?'+5%p 적용 (최대)':'없음')+`<button class="upgrade" id="upgBtn"><div class="uhead">연구 강화 (성공 확률 ${S.sandbox?'100':labChance(t)}%)</div><div class="ucost">${S.sandbox?'∞':cost.toLocaleString()} 생체 에너지</div></button>`:'<div class="awaken">최첨단 소화 연구소 완성! · Lv10</div>')+
+ `<div class="targetBox"><div class="targetTitle">🎯 타겟 우선순위</div><div class="targetBtns">${Object.entries(modes).map(([m,label])=>`<button class="targetBtn ${t.targetMode===m?'active':''}" data-target="${m}">${label}</button>`).join('')}</div></div><p>실험실 효과는 최고값만 적용. Lv10은 1/2/3개 적중 시 30/40/50%. 다른 타워의 보스 피해 증가와 합산합니다. 최대 HP 비례 특수 피해는 제외합니다.</p><p>실패해도 비용은 소모되며 레벨은 유지됩니다. 판매 시 해당 실험실의 증폭은 종료됩니다.</p>`;
+ const c=document.getElementById('labDetailPreview').getContext('2d');c.translate(44,40);labPaint(c,t.level,1.8);
+ const up=document.getElementById('upgBtn');if(up)up.onclick=()=>upgradeTower(t);
+ ui.info.querySelectorAll('[data-target]').forEach(b=>b.onclick=()=>{t.targetMode=b.dataset.target;showTowerInfo(t)});
+ v13Panel={tower:t,level:t.level,sandbox:S.sandbox,up,cost:up?.querySelector('.ucost'),quote:cost};v13RefreshPanel();v13SelectionButton();refreshBuildButtons();mlSync();
+};
+// Reference-inspired silhouettes fit within +/-19 pixels including all level lights.
+function labPaint(c,level,scale=1){
+ c.save();c.scale(scale,scale);c.lineJoin='round';c.lineCap='round';c.lineWidth=1.2;
+ const ellipse=(x,y,rx,ry,fill,stroke)=>{c.beginPath();c.ellipse(x,y,rx,ry,0,0,TAU);c.fillStyle=fill;c.fill();if(stroke){c.strokeStyle=stroke;c.stroke()}};
+ const tube=(x,y,w,h)=>{c.fillStyle='#163b4e';c.strokeStyle='#9cf7f5';c.fillRect(x,y,w,h);c.strokeRect(x,y,w,h);c.fillStyle='#b9f522';c.fillRect(x+1,y+h*.38,w-2,h*.58);c.fillStyle='#736782';c.fillRect(x-1,y-2,w+2,3);c.fillStyle='#faffcd';c.fillRect(x+1,y+h*.45,1,h*.25)};
+ if(level<5){
+  ellipse(0,2,16,16,'#14263c','#62e2dc');
+  c.beginPath();c.moveTo(-4,-10);c.lineTo(-4,-3);c.lineTo(-10,10);c.quadraticCurveTo(0,15,10,10);c.lineTo(4,-3);c.lineTo(4,-10);c.closePath();c.fillStyle='#19414d';c.fill();c.strokeStyle='#bdffff';c.lineWidth=1.8;c.stroke();
+  c.beginPath();c.moveTo(-5,2);c.lineTo(-8,9);c.quadraticCurveTo(0,12,8,9);c.lineTo(5,2);c.closePath();c.fillStyle='#c2f726';c.fill();ellipse(-1,6,2,1.4,'#faffc1');
+  c.strokeStyle='#bafffa';c.beginPath();c.moveTo(-5,-10);c.lineTo(5,-10);c.stroke();for(let i=0;i<level;i++)ellipse(9-i*3,-8-i%2*3,1.3,1.3,'#d6ff48');
+ }else{
+  ellipse(0,12,17,5,'#55536d','#161a32');ellipse(0,9,17,4,'#8b819d','#181e36');c.fillStyle='#5cf4dd';c.fillRect(-12,12,8,2);c.fillRect(5,12,8,2);
+  if(level<8){
+   c.beginPath();c.moveTo(-3,-13);c.lineTo(-3,-7);c.lineTo(-9,5);c.quadraticCurveTo(0,10,9,5);c.lineTo(3,-7);c.lineTo(3,-13);c.closePath();c.fillStyle='#1b4e59';c.fill();c.strokeStyle='#a4ffff';c.stroke();
+   c.beginPath();c.moveTo(-5,-1);c.lineTo(-7,5);c.quadraticCurveTo(0,8,7,5);c.lineTo(5,-1);c.closePath();c.fillStyle='#baff28';c.fill();tube(-14,0,4,9);if(level>=6)tube(10,-3,4,11);
+   c.strokeStyle='#a7a0b9';c.lineWidth=3;c.beginPath();c.moveTo(11,6);c.lineTo(13,-11);c.lineTo(6,-11);c.stroke();ellipse(5,-11,2,2,'#73ffdf','#363049');if(level===7)ellipse(-1,2,2,2,'#efff95');
+  }else{
+   tube(-8,-9,16,17);ellipse(0,-9,8,3,'#78718c','#27213e');ellipse(0,8,9,3,'#514d67','#252038');c.fillStyle='#aefa25';c.fillRect(-6,-2,12,8);ellipse(0,-2,6,2,'#d6ff65');ellipse(-2,3,1.8,1.8,'#f1ffc7');tube(-15,-4,4,12);tube(11,1,4,9);
+   c.strokeStyle='#59e9d8';c.lineWidth=2.5;c.beginPath();c.moveTo(-12,-5);c.bezierCurveTo(-16,-17,-3,-19,-4,-9);c.stroke();
+   if(level>=9){c.strokeStyle='#a098b5';c.lineWidth=3;c.beginPath();c.moveTo(5,-9);c.lineTo(9,-16);c.lineTo(16,-10);c.stroke();ellipse(9,-16,2,2,'#7cfbe5','#332849');tube(13,-9,4,5)}
+   if(level===10){c.strokeStyle='#b9accd';c.lineWidth=3;c.beginPath();c.moveTo(-11,5);c.lineTo(-17,0);c.lineTo(-13,-9);c.stroke();ellipse(-17,0,1.8,1.8,'#5bffdd');c.strokeStyle='#5ffff0';c.lineWidth=1.6;c.strokeRect(-5,-12,10,4);tube(6,3,3,8)}
+  }ellipse(0,12,3.5,3.5,'#172840','#90fff4');ellipse(0,12,1.6,2.2,'#64f9e6');
+ }for(let i=0;i<10;i++){c.fillStyle=i<level?(level===10?'#e5ff74':'#6cf7c4'):'#41415d';c.fillRect(-14+i*3,18,2,1)}c.restore();
+}
+const labCore=r4TowerCore;
+r4TowerCore=function(c,type,level,scale=1){if(type==='digestionLab')return labPaint(c,level,scale);return labCore(c,type,level,scale)};
+const labGauge=drawTowerGauge;
+drawTowerGauge=function(t){if(t.type!=='digestionLab')return labGauge(t)};
+const labDrawShots=drawShots;
+drawShots=function(){
+ labDrawShots();ctx.save();
+ for(const shot of S.labProjectiles||[]){const f=Math.max(0,Math.min(1,(S.elapsed-shot.start)/.22)),p=pointAt(shot.target.dead?shot.progress:shot.target.t),x=shot.fromX*W+(p.x-shot.fromX*W)*f,y=shot.fromY*H+(p.y-shot.fromY*H)*f-Math.sin(f*Math.PI)*gridSize*.3,r=Math.min(gridSize*.14,3+shot.level*.25);ctx.fillStyle='#b9fa35';ctx.strokeStyle='#56e7d6';ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.fill();ctx.stroke();ctx.fillStyle='#f5ffd9';ctx.beginPath();ctx.arc(x-r*.3,y-r*.3,r*.28,0,TAU);ctx.fill()}
+ for(const s of S.labSplashes||[]){const f=(S.elapsed-s.start)/.35,p=pointAt(s.progress),radius=LAB_STATS.splash[s.level-1]*gridSize;ctx.globalAlpha=(1-f)*.6;ctx.fillStyle='#80ed9b';ctx.beginPath();ctx.ellipse(p.x,p.y,radius*(.35+.65*f),radius*(.2+.4*f),0,0,TAU);ctx.fill();ctx.strokeStyle='#bbf85a';ctx.lineWidth=1.4;for(let i=0;i<(s.level>=8?7:4);i++){const a=i*2.4;ctx.beginPath();ctx.arc(p.x+Math.cos(a)*radius*f,p.y+Math.sin(a)*radius*f,Math.max(.5,(2+s.level*.16)*(1-f)),0,TAU);ctx.stroke()}}
+ for(const t of S.towers){const v=t.labReaction;if(!v)continue;const f=(S.elapsed-v.start)/.65;if(f>=1){t.labReaction=null;continue}const r=gridSize*.32;ctx.globalAlpha=(1-f)*.85;ctx.strokeStyle=v.success?'#93ffe1':'#b1b6c8';ctx.lineWidth=v.final?2:1;for(let i=0;i<(v.final?8:4);i++){const a=i*TAU/(v.final?8:4),k=v.final?1-f:f;ctx.beginPath();ctx.arc(t.x+Math.cos(a)*r*k,t.y+Math.sin(a)*r*k,1.5,0,TAU);ctx.stroke()}}
+ ctx.restore();
+};
+buildTowerPanel();
 
 backgroundInstall();
 </script>
